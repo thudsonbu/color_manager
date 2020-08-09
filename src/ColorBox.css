@@ -1,6 +1,6 @@
 .ColorBox {
     width: 20%;
-    height: 20%;
+    height: 25%;
     margin: 0 auto;
     display: inline-block;
     position: relative;
@@ -43,7 +43,7 @@
 
 .box-content {
     font-size: .6rem;
-    padding: 5px;
+    margin: 5px;
     font-weight: 500;
     text-transform: uppercase;
     color: #ffffff;

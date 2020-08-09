@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 6vh;
+    height: 10%;
 }
 
 .logo {
@@ -60,5 +60,5 @@
 }
 
 .select-container {
-    margin: 10px;
+    margin: 0 10px;
 }
