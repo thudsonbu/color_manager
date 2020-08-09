@@ -53,11 +53,21 @@
     background: rgba(255, 255, 255, 0.3);
     border: none;
     color: #ffffff;
-    padding: 5px;
     text-align: center;
     font-size: .6rem;
     font-weight: 500;
     text-transform: uppercase;
+    width: 45px;
+    height: 22px;
+    z-index: 0;
+    outline: none;
+    border: none;
+}
+
+Link:hover {
+    color: black;
+    background-color: white;
+    height: 50px;
 }
 
 .copy-overlay {
