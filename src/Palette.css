@@ -36,9 +36,12 @@
     background-color: #ffffff;
     height: 10%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     font-weight: bold;
     margin: 0 1rem;
 }
 
+.Emoji {
+    font-size: 30px;
+}

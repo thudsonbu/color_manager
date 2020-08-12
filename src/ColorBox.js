@@ -17,11 +17,11 @@ class ColorBox extends Component {
         })
     }
     render() {
-        const { name, background, paletteId, id, showLink } = this.props; // unpack props
+        const { name, background, paletteId, id, showLink, tallHeight } = this.props; // unpack props
         const { copied } = this.state;
         return (
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
-                <div className="ColorBox">
+                <div className={`ColorBox ${tallHeight && "bigBox"}`}>
                     <div 
                         className={`copy-overlay ${copied && "show"}`} 
                         style={{backgroundColor: background}}>

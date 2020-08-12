@@ -60,5 +60,6 @@
 }
 
 .select-container {
-    margin: 0 10px;
+    margin-left: auto;
+    margin-right: 10px;
 }
