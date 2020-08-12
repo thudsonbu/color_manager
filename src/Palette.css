@@ -6,6 +6,8 @@
 .Palette-colors {
     height: 80%;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .Slider {
