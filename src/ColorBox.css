@@ -4,8 +4,8 @@
     margin: 0 auto;
     display: inline-block;
     position: relative;
-    cursor: pointer;
     font-size: .8rem;
+    cursor: pointer;
 }
 
 .copy-button {
@@ -26,6 +26,7 @@
     color: #ffffff;
     text-transform: uppercase;
     opacity: 0;
+    cursor: pointer;
 }
 
 .ColorBox:hover .copy-button {
@@ -53,15 +54,19 @@
     background: rgba(255, 255, 255, 0.3);
     border: none;
     color: #ffffff;
-    text-align: center;
     font-size: .6rem;
     font-weight: 500;
     text-transform: uppercase;
     width: 45px;
     height: 22px;
-    z-index: 0;
+    z-index: 2;
     outline: none;
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
 }
 
 Link:hover {
