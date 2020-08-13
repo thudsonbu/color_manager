@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
-import Snackbar from '@material-ui/core/Snackbar'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
-import { Link } from 'react-router-dom'
-import Slider from 'rc-slider';
-import { withStyles } from '@material-ui/styles'
-import styles from './styles/NavStyles'
+  
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+import styles from "./styles/NavStyles";
 
 
 class Navbar extends Component {
@@ -38,22 +40,20 @@ class Navbar extends Component {
                 <div className={classes.logoClass}>
                     <Link to='/'>react<span>color</span>manager</Link>
                 </div>
-                { showSlider &&
-                <div className={classes.sliderContainerClass}>
-                    <div className={classes.sliderLevelClass}>
-                        <span>Level: {level}</span>
-                    </div>
-                    <div className={classes.SliderClass}>
-                        <Slider 
-                            defaultValue={level} 
-                            min={100} 
-                            max={900}
-                            step={100}
-                            onAfterChange={changeLevel}
-                        />
+                {showSlider && (
+                <div>
+                    <span>Level: {level}</span>
+                    <div className={classes.slider}>
+                    <Slider
+                        defaultValue={level}
+                        min={100}
+                        max={900}
+                        step={100}
+                        onAfterChange={changeLevel}
+                    />
                     </div>
                 </div>
-                }
+                )}
                 <div className={classes.selectContainerClass}>
                     <Select value={format} onChange={this.handleFormatChange}>
                         <MenuItem value="hex">HEX - #ffffff</MenuItem>
