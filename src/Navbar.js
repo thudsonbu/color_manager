@@ -40,7 +40,9 @@ class Navbar extends Component {
                 </div>
                 { showSlider &&
                 <div className={classes.sliderContainerClass}>
-                    <span>Level: {level}</span>
+                    <div className={classes.sliderLevelClass}>
+                        <span>Level: {level}</span>
+                    </div>
                     <div className={classes.SliderClass}>
                         <Slider 
                             defaultValue={level} 
