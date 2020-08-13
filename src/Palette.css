@@ -1,39 +1,6 @@
-.Palette {
-    height: 100%;
-    overflow: hidden;
-}
 
-.Palette-colors {
-    height: 80%;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
 
-.Slider {
-    width: 280px;
-    margin: 0 10px;
-    display: inline-block;
-}
 
-.rc-slider-track {
-    background-color: transparent;
-}
-
-.rc-slider-rail {
-    height: 6px;
-}
-
-.rc-slider-handle,
-.rc-slider-handle:active,
-.rc-slider-handle:focus,
-.rc.slider-handle:hover {
-    background-color: #ff7300;
-    outline: none;
-    border: 2px solid #ff7300;
-    box-shadow: none;
-}
 
 .Palette-footer {
     background-color: #ffffff;
