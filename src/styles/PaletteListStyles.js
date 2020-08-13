@@ -20,7 +20,11 @@ export default {
         width: "100%",
         justifyContent: "space-between",
         color: "white",
-        fontSize: "20px"
+        fontSize: "20px",
+        alignItems: "center",
+        "& a": {
+            color: "white"
+        }
     },
     palettes: {
         boxSizing: "border-box",
