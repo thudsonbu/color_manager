@@ -34,9 +34,8 @@ class SingleColorPalette extends Component{
             <ColorBox 
                 key={color.name} 
                 name={color.name} 
-                background={color[format]} 
-                showLink={false}
-                tallHeight={true}
+                background={color[format]}
+                fullBox={false}
             />
         ))
         return(
