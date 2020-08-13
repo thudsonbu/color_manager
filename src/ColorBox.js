@@ -3,7 +3,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Link } from 'react-router-dom'
 import chroma from 'chroma-js'
 import { withStyles } from "@material-ui/styles"
-import './ColorBox.css';
 
 const styles = {
     seeMore: {
@@ -43,35 +42,6 @@ const styles = {
         height: "50%",
         margin: "0",
         padding: "0"
-    },
-    goBackClass: {
-        alignSelf: "end",
-        width: "20%",
-        marginBottom: "0px",
-        padding: "0",
-        backgroundColor: "#000000",
-        height: "50%",
-        zIndex: "0"
-    },
-    backButtonClass: {
-        width: "60px",
-        height: "20px",
-        position: "absolute",
-        display: "inline-block",
-        top: "50%",
-        left: "50%",
-        marginLeft: "-30px",
-        AccountsForWidthOfBoxForPositioningMarginTop: "-10px",
-        AccountsForHeightOfBoxForPositioningTextAlign: "center",
-        outline: "none",
-        border: "none",
-        background: "rgba(255, 255, 255, 0.3)",
-        fontSize: ".6rem",
-        lineHeight: "20px",
-        color: "#ffffff",
-        textTransform: "uppercase",
-        opacity: "0",
-        cursor: "pointer"
     },
     copyButtonClass: {
         width: "60px",

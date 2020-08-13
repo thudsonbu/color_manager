@@ -9,6 +9,44 @@ import 'rc-slider/assets/index.css'
 import './Navbar.css'
 import Slider from 'rc-slider';
 
+var styles = {
+    SliderClass: {
+        width: "280px",
+        margin: "0 10px",
+        display: "inline-block"
+    },
+    rcSliderTrackClass: {
+        backgroundColor: "transparent"
+    },
+    rcSliderRailClass: {
+        height: "6px"
+    },
+    rcSliderHandleClass: {
+        backgroundColor: "#ff7300",
+        outline: "none",
+        border: "2px solid #ff7300",
+        boxShadow: "none",
+        "&:Hover": {
+            backgroundColor: "#ff7300",
+            outline: "none",
+            border: "2px solid #ff7300",
+            boxShadow: "none"
+        },
+        "&:Focus": {
+            backgroundColor: "#ff7300",
+            outline: "none",
+            border: "2px solid #ff7300",
+            boxShadow: "none"
+        },
+        "&:Active": {
+            backgroundColor: "#ff7300",
+            outline: "none",
+            border: "2px solid #ff7300",
+            boxShadow: "none"
+        }
+    },
+}
+
 
 class Navbar extends Component {
     constructor(props){
