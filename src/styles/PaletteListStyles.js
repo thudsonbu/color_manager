@@ -1,7 +1,7 @@
 export default {
     root: {
         backgroundColor: "blue",
-        height: "100%",
+        height: "200vh",
         width: "100%",
         display: "flex",
         alignItems: "flex-start",
@@ -9,11 +9,13 @@ export default {
         fontSize: "12px"
     },
     container: {
-        width: "50%",
+        width: "80%",
         display: "flex",
         alignItems: "flex-start",
         flexDirection: "column",
         flexWrap: "wrap",
+        alignItems: "center",
+        justifyContent: "center",
     },
     nav: {
         display: "flex",
@@ -29,8 +31,8 @@ export default {
     palettes: {
         boxSizing: "border-box",
         width: "100%",
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 30%)",
+        display: "flex",
+        flexWrap: "wrap",
         gridGap: "5%",
     },
 }

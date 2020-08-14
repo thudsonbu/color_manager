@@ -4,6 +4,11 @@ export default {
         border: "1px solid black",
         borderRadius: "5px",
         padding: "0.5rem",
+        margin: "1rem",
+        height: "20%",
+        width: "23%",
+        maxWidth: "250px",
+        minWidth: "150px",
         position: "relative",
         overflow: "hidden",
         "&:hover": {
