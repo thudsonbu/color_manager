@@ -26,12 +26,18 @@ const styles = {
         color: "rgba(0,0,0,0.5)",
         letterSpacing: "1px",
         textTransform: "uppercase",
-        fontSize: "12px",
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
     },
     deleteIcon: {
         transition: "all 0.3s ease-in-out",
+    },
+    colorName: {
+        fontSize: ".6rem",
+        fontWeight: "500",
+        color: "#000000",
+        textTransform: "uppercase",
     }
 }
 
@@ -40,7 +46,7 @@ function DraggableColorBox(props) {
     return (
         <div className={classes.root} style={{backgroundColor: color}}>
             <div className={classes.boxContent}>
-                <span>{name}</span>
+                <span className={classes.colorName}>{name}</span>
                 <DeleteIcon className={classes.deleteIcon} onClick={handleClick}/>
             </div>
         </div>
