@@ -20,9 +20,9 @@ class PaletteFormNav extends Component {
     }
 
     componentDidMount(){
-        ValidatorForm.addValidationRule('isColorNameUnique', (value) => 
-            this.state.colors.every(
-                ({name}) => name.toLowerCase() !== value.toLowerCase()
+        ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => 
+            this.props.palettes.every(
+                ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
             )
         )
     }

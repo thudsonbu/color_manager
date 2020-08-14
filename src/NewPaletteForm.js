@@ -108,11 +108,6 @@ class NewPaletteForm extends Component {
                 ({color}) => color !== this.state.currentColor
             )
         )
-        ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
-            this.props.palettes.every(
-                ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
-            )
-        )
     }
 
     handleDrawerOpen() {
@@ -245,7 +240,6 @@ class NewPaletteForm extends Component {
                             {paletteFull ? "Palette Full" : "Add Color"}
                         </Button>
                     </ValidatorForm>
-                    
                 </Drawer>
                 <main
                     className={classNames(classes.content, {
