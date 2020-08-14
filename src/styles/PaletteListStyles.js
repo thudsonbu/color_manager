@@ -14,7 +14,6 @@ export default {
         alignItems: "flex-start",
         flexDirection: "column",
         flexWrap: "wrap",
-        alignItems: "center",
         justifyContent: "center",
     },
     nav: {

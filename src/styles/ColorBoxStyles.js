@@ -12,7 +12,6 @@ export default {
         height: "22px",
         zIndex: "2",
         outline: "none",
-        border: "none",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
