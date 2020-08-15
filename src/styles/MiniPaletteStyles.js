@@ -11,8 +11,9 @@ export default {
         minWidth: "150px",
         position: "relative",
         overflow: "hidden",
-        "&:hover": {
-            cursor: "pointer"
+        cursor: "pointer",
+        "&:hover svg": {
+            opacity: 1
         }
     },
     colors: {
@@ -43,5 +44,20 @@ export default {
         diplay: "inline-block",
         margin: "0 auto",
         position: "relative",
+    },
+    delete: {
+
+    },
+    deleteIcon: {
+        color: "white",
+        backgroundColor: "#eb3d30",
+        width: "15px",
+        height: "15px",
+        position: "absolute",
+        right: "0px",
+        top: "0px",
+        padding: "7px",
+        zIndex: 10,
+        opacity: 0,
     }
 }
