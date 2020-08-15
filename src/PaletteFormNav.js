@@ -15,15 +15,12 @@ import PaletteMetaForm from './PaletteMetaForm';
 const drawerWidth = 300;
 
 const styles = theme => ({
-    
     appBar: {
+        width: "100%",
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen
         }),
-        flexDirect: "row",
-        justifyContent: "space-between",
-        height: "64px",
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -32,28 +29,30 @@ const styles = theme => ({
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen
         }),
-        height: "64px",
     },
-    navToolbar: {
-        height: "100%",
+    toolbar: {
         width: "100%",
+        display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        aligntItems: "center",
-    },
-    menuButton: {
-        marginLeft: 12,
-        marginRight: 10
-    },
-    NavBtns: {
-        width: "70%",
+        alignItems: "center",
         height: "64px",
+    },
+    menuAndTitle: {
+        marginLeft: "1rem",
         display: "flex",
-        justifyContent: "flex-end",
+        flexDirection: "row",
+        height: "64px",
         alignItems: "center",
     },
-    NavBtn: {
-        margin: "25px",
+    navBtns: {
+        marginRight: "1rem",
+        display: "flex",
+        flexDirection: "row",
+    },
+    item: {
+        margin: "0 0.5rem",
+        textDecoration: "none",
     }
 
 })
@@ -63,7 +62,7 @@ class PaletteFormNav extends Component {
     render() {
         const { classes, palettes, handleSubmit, handleDrawerOpen, drawerOpen } = this.props;
         return (
-            <div className={classes.root}>
+            <div>
                 <CssBaseline />
                 <AppBar
                     position='fixed'
@@ -72,34 +71,35 @@ class PaletteFormNav extends Component {
                         [classes.appBarShift]: drawerOpen
                     })}
                 >
-                    <Toolbar disableGutters={!drawerOpen} className={classes.navToolbar}>
-                        {!drawerOpen &&
-                        <IconButton
-                            color='inherit'
-                            aria-label='Open drawer'
-                            onClick={handleDrawerOpen}
-                            className={classNames(classes.menuButton, drawerOpen && classes.hide)}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        }
-                        <Typography variant='h6' color='inherit' noWrap>
-                            Create A Palette
-                        </Typography>
-                        <div className={classes.NavBtns}>
+                    <Toolbar disableGutters={!drawerOpen} className={classes.toolbar}>
+                        <div className={classes.menuAndTitle}>
+                            {!drawerOpen &&
+                            <IconButton
+                                color='inherit'
+                                aria-label='Open drawer'
+                                onClick={handleDrawerOpen}
+                                className={classNames(classes.item, drawerOpen && classes.hide)}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            }
+                            <Typography variant='h6' color='inherit' noWrap className={classes.item}>
+                                Create A Palette
+                            </Typography>
+                        </div>
+                        <div className={classes.navBtns}>
                             <PaletteMetaForm
-                                className={classes.NavBtn} 
+                                className={classes.item} 
                                 palettes={palettes}
                                 handleSubmit={handleSubmit}
                             />
-                            <Link to="/" className={classes.NavBtn}>
+                            <Link to="/" className={classes.item}>
                                 <Button variant='contained' color='secondary'>
                                     Go Back
                                 </Button>
                             </Link>
                         </div>
                     </Toolbar>
-                    
                 </AppBar>
             </div>
         )
