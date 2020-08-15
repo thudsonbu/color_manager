@@ -10,54 +10,8 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
+import styles from './styles/PaletteFormNavStyles.js';
 
-
-const drawerWidth = 300;
-
-const styles = theme => ({
-    appBar: {
-        width: "100%",
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen
-        }),
-    },
-    toolbar: {
-        width: "100%",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: "64px",
-    },
-    menuAndTitle: {
-        marginLeft: "1rem",
-        display: "flex",
-        flexDirection: "row",
-        height: "64px",
-        alignItems: "center",
-    },
-    navBtns: {
-        marginRight: "1rem",
-        display: "flex",
-        flexDirection: "row",
-    },
-    item: {
-        margin: "0 0.5rem",
-        textDecoration: "none",
-    },
-    formText: {
-        width: "100%",
-    }
-})
 
 class PaletteFormNav extends Component {
     
