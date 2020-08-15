@@ -3,6 +3,8 @@ import { DRAWER_WIDTH } from '../constants';
 export default theme => ({
     root: {
         display: "flex",
+        overflow: "hidden",
+        height: "100%",
     },
     hide: {
         display: "none"
@@ -31,7 +33,7 @@ export default theme => ({
     content: {
         height: "calc(100vh - 64px)",
         flexGrow: 1,
-        padding: theme.spacing.unit * 3,
+        padding: 0,
         transition: theme.transitions.create("margin", {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen
