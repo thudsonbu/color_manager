@@ -13,13 +13,14 @@ class PaletteMetaForm extends Component{
     constructor(props){
         super(props)
         this.state = {
-            dialogOpen: false,
+            stage: "",
             newPaletteName: "",
         }
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleNameSubmit = this.handleNameSubmit.bind(this);
+        this.handleEmojiSubmit = this.handleEmojiSubmit.bind(this);
     }
 
     componentDidMount(){
@@ -32,13 +33,14 @@ class PaletteMetaForm extends Component{
     
     handleClickOpen() {
         this.setState({
-            dialogOpen: true,
+            stage: "nameForm"
         })
     };
 
     handleClose() {
         this.setState({
-            dialogOpen: false,
+            stage: "",
+            newPaletteName: "",
         })
     };
 
@@ -48,27 +50,54 @@ class PaletteMetaForm extends Component{
         });
     }
 
-    handleSubmit(){
-        this.handleClose();
-        this.props.handleSubmit(this.state.newPaletteName);
-        this.setState({ newPaletteName: "" })
+    handleNameSubmit(){
+        this.setState({
+            stage: "emojiForm",
+        })
+    }
+
+    handleEmojiSubmit(selectedEmoji){
+        this.props.handleSubmit({
+            paletteName: this.state.newPaletteName,
+            emoji: selectedEmoji.native,
+        })
     }
 
     render(){
         const { classes } = this.props;
-        const { dialogOpen, newPaletteName, } = this.state;
+        const { newPaletteName, stage } = this.state;
+        const nameForm = stage === "nameForm"
+        const emojiForm = stage === "emojiForm"
+
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
                     SAVE PALETTE
                 </Button>
+                <Dialog
+                    open={emojiForm}
+                    onClose={this.handleClose}
+                >
+                    <DialogTitle id="form-dialog-title">Pick Emoji</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                Give your palette an emoji!
+                            </DialogContentText>
+                            <Picker onSelect={this.handleEmojiSubmit} />
+                        </DialogContent>
+                        <DialogActions>
+                                <Button onClick={this.handleClose}  variant="contained" color="secondary">
+                                    Cancel
+                                </Button>
+                        </DialogActions>
+                </Dialog> 
                 <Dialog 
-                    open={dialogOpen} 
+                    open={nameForm} 
                     onClose={this.handleClose} 
                     aria-labelledby="form-dialog-title"
                 >
-                    <ValidatorForm onSubmit={this.handleSubmit}>
-                        <DialogTitle id="form-dialog-title">Save Palette</DialogTitle>
+                    <ValidatorForm onSubmit={this.handleNameSubmit}>
+                        <DialogTitle id="form-dialog-title">Pick Name</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
                                 Give your palette a unique name! This name must not match with other palette names.
@@ -82,14 +111,13 @@ class PaletteMetaForm extends Component{
                                 validators={["required","isPaletteNameUnique"]}
                                 errorMessages={["Name Required", "Name Already Used"]}
                             />
-                            <Picker />
                         </DialogContent>
                         <DialogActions>
                                 <Button onClick={this.handleClose}  variant="contained" color="secondary">
                                     Cancel
                                     </Button>
                                 <Button type="submit" variant="contained" color="primary">
-                                    Save Palette
+                                    Next
                                 </Button>
                         </DialogActions>
                     </ValidatorForm>
