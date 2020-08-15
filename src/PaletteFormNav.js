@@ -53,8 +53,10 @@ const styles = theme => ({
     item: {
         margin: "0 0.5rem",
         textDecoration: "none",
+    },
+    formText: {
+        width: "100%",
     }
-
 })
 
 class PaletteFormNav extends Component {
@@ -92,6 +94,7 @@ class PaletteFormNav extends Component {
                                 className={classes.item} 
                                 palettes={palettes}
                                 handleSubmit={handleSubmit}
+                                classes={classes}
                             />
                             <Link to="/" className={classes.item}>
                                 <Button variant='contained' color='secondary'>

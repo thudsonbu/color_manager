@@ -5,6 +5,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { DialogContentText } from '@material-ui/core';
+import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
 
 class PaletteMetaForm extends Component{
     constructor(props){
@@ -52,17 +55,26 @@ class PaletteMetaForm extends Component{
     }
 
     render(){
+        const { classes } = this.props;
         const { dialogOpen, newPaletteName, } = this.state;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
                     SAVE PALETTE
                 </Button>
-                <Dialog open={dialogOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                <Dialog 
+                    open={dialogOpen} 
+                    onClose={this.handleClose} 
+                    aria-labelledby="form-dialog-title"
+                >
                     <ValidatorForm onSubmit={this.handleSubmit}>
                         <DialogTitle id="form-dialog-title">Save Palette</DialogTitle>
                         <DialogContent>
+                            <DialogContentText>
+                                Give your palette a unique name! This name must not match with other palette names.
+                            </DialogContentText>
                             <TextValidator 
+                                className={classes.formText}
                                 label="Palette Name" 
                                 value={newPaletteName} 
                                 name="newPaletteName"
@@ -70,14 +82,15 @@ class PaletteMetaForm extends Component{
                                 validators={["required","isPaletteNameUnique"]}
                                 errorMessages={["Name Required", "Name Already Used"]}
                             />
+                            <Picker />
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={this.handleClose}  variant="contained" color="secondary">
-                                Cancel
+                                <Button onClick={this.handleClose}  variant="contained" color="secondary">
+                                    Cancel
+                                    </Button>
+                                <Button type="submit" variant="contained" color="primary">
+                                    Save Palette
                                 </Button>
-                            <Button type="submit" variant="contained" color="primary">
-                                Save Palette
-                            </Button>
                         </DialogActions>
                     </ValidatorForm>
                 </Dialog>
