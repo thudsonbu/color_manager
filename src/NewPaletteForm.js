@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
-import PaletteFormNav from './PaletteFromNav';
+import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 
 const drawerWidth = 300;
@@ -92,7 +91,7 @@ class NewPaletteForm extends Component {
     constructor(props){
         super(props)
         this.state = {
-            open: true,
+            drawerOpen: true,
             colors: this.props.palettes[0].colors,
             newPaletteName: "",
         }
@@ -107,11 +106,11 @@ class NewPaletteForm extends Component {
     }
 
     handleDrawerOpen() {
-        this.setState({ open: true });
+        this.setState({ drawerOpen: true });
     };
 
     handleDrawerClose() {
-        this.setState({ open: false });
+        this.setState({ drawerOpen: false });
     };
 
     handleChange(evt){
@@ -164,21 +163,21 @@ class NewPaletteForm extends Component {
 
     render() {
         const { classes, maxColors, palettes} = this.props;
-        const { open, colors } = this.state;
+        const { drawerOpen, colors } = this.state;
         const paletteFull = colors.length >= maxColors;
         return (
             <div className={classes.root}>
                 <PaletteFormNav 
-                    open={open} 
+                    drawerOpen={drawerOpen}
                     palettes={palettes}
                     handleSubmit={this.handleSubmit}
-                    handleOpen={this.handleDrawerOpen}
+                    handleDrawerOpen={this.handleDrawerOpen}
                 />
                 <Drawer
                     className={classes.drawer}
                     variant='persistent'
                     anchor='left'
-                    open={open}
+                    open={drawerOpen}
                     classes={{paper: classes.drawerPaper}}
                 >
                 
@@ -219,7 +218,7 @@ class NewPaletteForm extends Component {
                 </Drawer>
                 <main
                     className={classNames(classes.content, {
-                        [classes.contentShift]: open
+                        [classes.contentShift]: drawerOpen
                     })}
                 >
                     <div className={classes.drawerHeader} />
