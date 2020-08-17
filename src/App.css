@@ -2,3 +2,9 @@
   height: 100%;
   width: 100%;
 }
+
+.Page {
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+}

@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom'
 import styles from './styles/PaletteListStyles'
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { DialogContentText } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import Avatar from '@material-ui/core/Avatar';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,8 +15,6 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
-
-
 
 class PaletteList extends Component{
     constructor(props){
@@ -46,8 +41,8 @@ class PaletteList extends Component{
         this.closeDialog();
     }
     render() {
-        const { deleteDialog, deletingId } = this.state
-        const { palettes, classes, deletePalette, } = this.props
+        const { deleteDialog } = this.state
+        const { palettes, classes, } = this.props
         return(
             <div className={classes.root}>
                 <div className={classes.container}>
