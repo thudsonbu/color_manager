@@ -6,10 +6,11 @@ import styles from './styles/MiniPaletteStyles'
 class MiniPalette extends Component{
     constructor(props){
         super(props)
-
+        this.deletePalette = this.deletePalette.bind(this);
     }
     deletePalette(e){
-        e.stopPropogation();
+        e.stopPropagation();
+        console.log(this.props)
         this.props.handleDelete(this.props.id);
     }
     render(){
@@ -39,7 +40,6 @@ class MiniPalette extends Component{
             </div>
         )
     }
-    
 }
 
 export default withStyles(styles)(MiniPalette)
