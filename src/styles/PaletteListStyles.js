@@ -41,6 +41,9 @@ export default {
             color: "white"
         }
     },
+    navTitle: {
+        fontSize: "3rem",
+    },
     palettes: {
         boxSizing: "border-box",
         width: "100%",
