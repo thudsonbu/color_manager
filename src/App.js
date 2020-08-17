@@ -11,8 +11,9 @@ import PaletteList from './PaletteList';
 class App extends Component {
   constructor(props) {
     super(props)
+    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
     this.state = {
-      palettes: seedColors
+      palettes: savedPalettes || seedColors
     }
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
@@ -25,6 +26,9 @@ class App extends Component {
   }
   savePalette(newPalette) {
     this.setState({palettes: [...this.state.palettes, newPalette]})
+  }
+  syncLocalStorage(newPalette) {
+    
   }
   deletePalette(id) {
     this.setState(

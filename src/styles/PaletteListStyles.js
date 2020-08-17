@@ -10,7 +10,7 @@ export default {
     },
     root: {
         backgroundColor: "blue",
-        height: "200vh",
+        height: "100%",
         width: "100%",
         display: "flex",
         alignItems: "flex-start",
@@ -18,7 +18,7 @@ export default {
         fontSize: "12px"
     },
     container: {
-        width: "80%",
+        width: "95%",
         display: "flex",
         alignItems: "flex-start",
         flexDirection: "column",
@@ -41,6 +41,8 @@ export default {
         width: "100%",
         display: "flex",
         flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
         gridGap: "5%",
     },
 }
