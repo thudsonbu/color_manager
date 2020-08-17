@@ -25,10 +25,16 @@ class App extends Component {
     })
   }
   savePalette(newPalette) {
-    this.setState({palettes: [...this.state.palettes, newPalette]})
+    this.setState(
+      {palettes: [...this.state.palettes, newPalette]},
+      this.syncLocalStorage  
+    )
   }
-  syncLocalStorage(newPalette) {
-    
+  syncLocalStorage() {
+    window.localStorage.setItem(
+      "palettes",
+      JSON.stringify(this.state.palettes)
+    )
   }
   deletePalette(id) {
     this.setState(
