@@ -1,3 +1,5 @@
+import bg from "./Large-Triangles.svg";
+
 export default {
     "@global": {
         ".fade-exit": {
@@ -9,13 +11,16 @@ export default {
         }
     },
     root: {
-        backgroundColor: "blue",
+        backgroundColor: "#00b7ff",
+        backgroundImage: `url(${bg})`,
+        /* background by svgbackgrounds.com */
         height: "100%",
         width: "100%",
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
-        fontSize: "12px"
+        fontSize: "12px",
+        overflowY: "scroll",
     },
     container: {
         width: "95%",
