@@ -47,9 +47,10 @@ class App extends Component {
   render() {
     return (
       <Route 
+        className='background'
         render={({location}) => (
         <TransitionGroup style={{height: "100%"}}>
-          <CSSTransition key={location.key} classNames='page' timeout={500}>
+          <CSSTransition key={location.key} classNames='page' timeout={1000}>
               <Switch location={location}>
                 <Route
                   exact

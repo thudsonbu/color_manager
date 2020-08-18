@@ -3,11 +3,23 @@
   position: fixed;
   width: 100%;
   top: 0;
-  transition: transform .5s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 .page-enter {
-  transform: translateX(100%);
+  opacity: 0;
+}
+
+.page-enter-active {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+}
+
+/* .page-enter {
+  transform: translateX(200%);
 }
 
 .page-enter-active {
@@ -15,5 +27,5 @@
 }
 
 .page-exit-active {
-  transform: translateX(-100%);
-}
+  transform: translateX(-200%);
+} */
