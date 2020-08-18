@@ -1,4 +1,5 @@
 import { DRAWER_WIDTH } from '../constants';
+import sizes from './sizes'
 
 export default theme => ({
     appBar: {
@@ -31,8 +32,13 @@ export default theme => ({
         height: "64px",
         alignItems: "center",
     },
+    title: {
+        [sizes.down("sm")]: {
+            display: "none",
+        }
+    },
     navBtns: {
-        marginRight: "1rem",
+        marginRight: ".5rem",
         display: "flex",
         flexDirection: "row",
     },

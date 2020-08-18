@@ -23,29 +23,29 @@ class ColorBox extends Component {
         const { copied } = this.state;
         return (
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
-                <div className={classes.ColorBoxClass}>
+                <div className={classes.ColorBox}>
                     <div 
-                        className={classNames(
-                            classes.copyOverlayClass,
-                            {[classes.showOverlayClass]:copied}
+                        className={classnames(
+                            classes.copyOverlay,
+                            {[classes.showOverlay]:copied}
                         )} 
                         style={{backgroundColor: background}}
                     >
                     </div>
                     <div 
-                        className={classNames(
-                            classes.copyMsgClass,
-                            {[classes.copyMsShowClass]:copied}
+                        className={classnames(
+                            classes.copyMsg,
+                            {[classes.copyMsgShow]:copied}
                         )}
                     >
                         <h1 className={classes.copyText} >Copied!</h1>
                         <p className={classes.copyText} >{background}</p>
                     </div>
-                    <div className={classes.copyContainerClass} style={{backgroundColor: background}}>
-                        <div className={classes.boxContentClass}>
+                    <div className={classes.copyContainer} style={{backgroundColor: background}}>
+                        <div className={classes.boxContent}>
                             <span className={classes.colorName}>{name}</span>
                         </div>
-                            <button className={classes.copyButtonClass}>Copy</button>
+                            <button className={classes.copyButton}>Copy</button>
                         { fullBox &&
                             <Link to={`/palette/${paletteId}/${id}`} onClick={e => e.stopPropagation()} className={classes.seeMore}>
                                 <span className={classes.lightText}>SHADES</span>

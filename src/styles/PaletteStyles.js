@@ -1,7 +1,8 @@
+import sizes from './sizes'
+
 export default {
     PaletteClass: {
         height: "100%",
-        overflow: "hidden"
     },
     PaletteColorsClass: {
         height: "80%",
@@ -21,6 +22,14 @@ export default {
         display: "flex",
         justifyContent: "center",
         alignItems:"center",
+        [sizes.down("md")]: {
+            width:"50%",
+            height: props => props.fullBox ? "10%" : "20%",
+        },
+        [sizes.down("sm")]: {
+            width:"100%",
+            height: props => props.fullBox ? "5%" : "10%",
+        }
     },
     backButtonClass: {
         width: "60px",
@@ -37,6 +46,6 @@ export default {
         color: "#ffffff",
         textTransform: "uppercase",
         opacity: "1",
-        cursor: "pointer"
+        cursor: "pointer",
     },
 }
