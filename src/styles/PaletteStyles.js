@@ -2,7 +2,7 @@ import sizes from './sizes'
 
 export default {
     PaletteClass: {
-        height: "100%",
+        height: "100vh",
     },
     PaletteColorsClass: {
         height: "80%",

@@ -39,7 +39,7 @@ class PaletteFormNav extends Component {
                                 <ChevronRightIcon />
                             </IconButton>
                             }
-                            <Typography variant='h6' color='inherit' noWrap className={classes.item, classes.title}>
+                            <Typography variant='h6' color='inherit' noWrap className={classes.title}>
                                 Create A Palette
                             </Typography>
                         </div>

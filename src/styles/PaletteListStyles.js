@@ -14,13 +14,13 @@ export default {
         backgroundColor: "#00b7ff",
         backgroundImage: `url(${bg})`,
         /* background by svgbackgrounds.com */
-        height: "100%",
+        height: "100vh",
         width: "100%",
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
         fontSize: "12px",
-        overflowY: "scroll",
+        overflow: "scroll",
     },
     container: {
         width: "95%",

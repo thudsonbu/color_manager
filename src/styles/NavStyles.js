@@ -5,7 +5,7 @@ export default {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    height: "10%"
+    height: "10vh"
   },
   logoClass: {
     marginRight: "10px",

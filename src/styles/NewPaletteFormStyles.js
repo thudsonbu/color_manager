@@ -1,11 +1,10 @@
 import { DRAWER_WIDTH } from '../constants';
-import sizes from './sizes';
 
 export default theme => ({
     root: {
         display: "flex",
         overflow: "hidden",
-        height: "100%",
+        height: "100vh",
     },
     hide: {
         display: "none"

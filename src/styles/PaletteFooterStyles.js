@@ -1,7 +1,7 @@
 export default {
     PaletteFooterClass: {
         backgroundColor: "#ffffff",
-        height: "10%",
+        height: "10vh",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",

@@ -1,4 +1,7 @@
 export default {
+    root: {
+        height: "100vh",
+    },
     picker: {
         width: "100% !important",
         marginTop: "2rem",

@@ -33,6 +33,8 @@ export default theme => ({
         alignItems: "center",
     },
     title: {
+        margin: "0 0.5rem",
+        textDecoration: "none",
         [sizes.down("sm")]: {
             display: "none",
         }
