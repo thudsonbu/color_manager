@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Palette from './Palette'
 import { Route, Switch } from 'react-router-dom'
 import seedColors from './seedColors'
-import './App.css'
 import SingleColorPalette from './SingleColorPalette'
 import NewPaletteForm from './NewPaletteForm'
 import { generatePalette } from './colorHelpers'
@@ -50,7 +49,7 @@ class App extends Component {
       <Route 
         render={({location}) => (
         <TransitionGroup style={{height: "100%"}}>
-          <CSSTransition key={location.key} classNames='fade' timeout={500}>
+          <CSSTransition key={location.key} classNames='page' timeout={500}>
               <Switch location={location}>
                 <Route
                   exact
