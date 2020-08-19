@@ -13,6 +13,7 @@ function DraggableColorList({ colors, removeColor }){
                     color={color.color} 
                     name={color.name} 
                     handleClick={() => removeColor(color.name)}
+                    pressDelay={200}
                 />
             ))}  
         </div>

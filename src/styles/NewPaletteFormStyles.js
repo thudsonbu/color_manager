@@ -32,10 +32,11 @@ export default theme => ({
         justifyContent: "flex-end"
     },
     content: {
-        [sizes.down("md")]: {
+        [sizes.down("xs")]: {
             marginTop: "8px",
+            height: "calc(100vh - 100p)",
         },
-        height: "calc(100vh - 85px)",
+        height: "calc(100vh - 60px)",
         flexGrow: 1,
         padding: 0,
         transition: theme.transitions.create("margin", {
@@ -82,7 +83,7 @@ export default theme => ({
     },
     metaFormMobile: {
         width: "45%",
-        [sizes.up("md")]: {
+        [sizes.up("sm")]: {
             display: "None",
         }
     }

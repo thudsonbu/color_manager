@@ -1,4 +1,5 @@
 import sizes from './sizes';
+import chroma from 'chroma-js'
 
 export default {
     root: {
@@ -13,8 +14,7 @@ export default {
             fontSize: "1.5rem",
         },
         "&:hover svg": {
-            color: "white",
-            transform: "scale(1.3)"
+            transform: "scale(1.75)",
         },
         [sizes.down("md")]: {
             width:"50%",
@@ -22,7 +22,7 @@ export default {
         },
         [sizes.down("sm")]: {
             width:"100%",
-            height: "5%",
+            height: "4.7%",
         }
     },
     boxContent: {
@@ -37,9 +37,14 @@ export default {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        [sizes.down("sm")]: {
+            padding: "5px",
+            top: "0px",
+        }
     },
     deleteIcon: {
         transition: "all 0.3s ease-in-out",
+        color: "#ffffff",
         [sizes.down("sm")]: {
             fontSize: "1rem",
         }
@@ -47,7 +52,7 @@ export default {
     colorName: {
         fontSize: ".6rem",
         fontWeight: "500",
-        color: "#000000",
         textTransform: "uppercase",
+        color: "#ffffff",
     }
 }
