@@ -13,8 +13,10 @@ export default {
         "& svg": {
             fontSize: "1.5rem",
         },
-        "&:hover svg": {
-            transform: "scale(1.75)",
+        [sizes.up("md")]: {
+            "&:hover svg": {
+                transform: "scale(1.75)",
+            }
         },
         [sizes.down("md")]: {
             width:"50%",
@@ -23,6 +25,9 @@ export default {
         [sizes.down("sm")]: {
             width:"100%",
             height: "4.7%",
+            "& svg": {
+                fontSize: "1.75rem",
+            }
         }
     },
     boxContent: {
