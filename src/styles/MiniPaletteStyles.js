@@ -14,7 +14,7 @@ export default {
         position: "relative",
         overflow: "hidden",
         cursor: "pointer",
-        [sizes.up("md")]: {
+        [sizes.up("sm")]: {
             "&:hover svg": {
                 opacity: 1
             }
@@ -49,22 +49,34 @@ export default {
         margin: "0 auto",
         position: "relative",
     },
-    delete: {
-
+    editIcon: {
+        color: "#ffffff",
+        backgroundColor: "#45a749",
+        width: "20px",
+        height: "15px",
+        position: "absolute",
+        left: "0px",
+        top: "0px",
+        padding: "9px",
+        zIndex: 10,
+        opacity: 1,
+        [sizes.up("sm")]: {
+            opacity: 0,
+        }
     },
     deleteIcon: {
         color: "white",
         backgroundColor: "#eb3d30",
-        width: "15px",
+        width: "20px",
         height: "15px",
         position: "absolute",
         right: "0px",
         top: "0px",
-        padding: "7px",
+        padding: "9px",
         zIndex: 10,
         opacity: 1,
         [sizes.up("sm")]: {
-            opacity: 0
+            opacity: 0,
 
         },
 

@@ -15,7 +15,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
-
+import green from "@material-ui/core/colors/green";
 
 
 class PaletteList extends Component{
@@ -23,28 +23,42 @@ class PaletteList extends Component{
         super(props);
         this.state = {
             deleteDialog: false,
+            editDialog: false,
             deletingId: "",
+            editId: "",
         }
-        this.openDialog = this.openDialog.bind(this);
-        this.closeDialog = this.closeDialog.bind(this);
+        this.openDeleteDialog = this.openDeleteDialog.bind(this);
+        this.closeDeleteDialog = this.closeDeleteDialog.bind(this);
+        this.openEditDialog = this.openEditDialog.bind(this);
+        this.closeEditDialog = this.closeEditDialog.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.goToPalette = this.goToPalette.bind(this);
     }
-    openDialog(id){
+    openDeleteDialog(id){
         this.setState({deleteDialog: true, deletingId: id})
     }
-    closeDialog(){
+    openEditDialog(id){
+        this.setState({editDialog: true, editId: id})
+    }
+    closeDeleteDialog(){
         this.setState({deleteDialog: false, deletingId: ""})
+    }
+    closeEditDialog(){
+        this.setState({editDialog: false, editId: ""})
     }
     goToPalette(id){
         this.props.history.push(`/palette/${id}`)
     }
     handleDelete(){
         this.props.deletePalette(this.state.deletingId);
-        this.closeDialog();
+        this.closeDeleteDialog();
+    }
+    handleEdit(){
+        this.props.editPalette(this.state.editId);
+        this.closeEditDialog();
     }
     render() {
-        const { deleteDialog } = this.state
+        const { deleteDialog, editDialog } = this.state
         const { palettes, classes } = this.props
         return(
             <div className={classes.root}>
@@ -58,8 +72,9 @@ class PaletteList extends Component{
                         <CSSTransition key={palette.id} classNames="fade" timeout={500}>
                             <MiniPalette 
                                 {...palette} 
-                                handleClick={this.goToPalette}
-                                openDialog={this.openDialog}
+                                handleClick={this.goToPalette}                     
+                                openDeleteDialog={this.openDeleteDialog}
+                                openEditDialog={this.openEditDialog}
                                 key={palette.id}
                                 id={palette.id}
                             />    
@@ -72,11 +87,11 @@ class PaletteList extends Component{
                     open={deleteDialog} 
                     aria-labelledby='delete-dialog-title'
                 >
-                    <DialogTitle id='delete-dialog-title'>Delete This Palette</DialogTitle>
+                    <DialogTitle id='delete-dialog-title'>Delete This Palette?</DialogTitle>
                     <List>
                         <ListItem button onClick={this.handleDelete}>
                             <ListItemAvatar>
-                                <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
+                                <Avatar style={{backgroundColor: red[100], color: red[600]}}>
                                     <CheckIcon />
                                 </Avatar>
                             </ListItemAvatar>
@@ -86,7 +101,36 @@ class PaletteList extends Component{
                         </ListItem>
                         <ListItem button onClick={this.closeDialog}>
                             <ListItemAvatar>
-                                <Avatar style={{backgroundColor: red[100], color: red[600]}}>
+                                <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
+                                    <CloseIcon/>
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText>
+                                Cancel
+                            </ListItemText>
+                        </ListItem>
+                    </List>
+                </Dialog>
+                <Dialog 
+                    onClose={this.closeEditDialog}
+                    open={editDialog} 
+                    aria-labelledby='edit-dialog-title'
+                >
+                    <DialogTitle id='edit-dialog-title'>Edit This Palette?</DialogTitle>
+                    <List>
+                        <ListItem button onClick={this.handleEdit}>
+                            <ListItemAvatar>
+                                <Avatar style={{backgroundColor: green[100], color: green[600]}}>
+                                    <CheckIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText>
+                                Edit
+                            </ListItemText>
+                        </ListItem>
+                        <ListItem button onClick={this.closeEditDialog}>
+                            <ListItemAvatar>
+                                <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
                                     <CloseIcon/>
                                 </Avatar>
                             </ListItemAvatar>
