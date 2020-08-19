@@ -72,14 +72,15 @@ export default theme => ({
     },
     clearPaletteButton: {
         width: "45%",
-        
+        height: "57px",
     },
     randomColorButton: {
         width: "45%",
         height: "57px",
         [sizes.down("sm")]: {
             display: "None",
-        }
+        },
+        background: "red",
     },
     metaFormMobile: {
         width: "45%",

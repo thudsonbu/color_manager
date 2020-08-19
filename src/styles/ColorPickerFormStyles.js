@@ -21,11 +21,12 @@ export default {
         width: "100%",
     },
     buttons: {
+        marginTop: "20px",
         width: "100%",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        [sizes.up("md")]: {
+        [sizes.up("sm")]: {
             display: "None",
         }
     },
