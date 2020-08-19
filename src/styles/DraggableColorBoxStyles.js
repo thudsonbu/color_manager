@@ -9,6 +9,9 @@ export default {
         position: "relative",
         cursor: "pointer",
         marginBottom: "-6px",
+        "& svg": {
+            fontSize: "1.5rem",
+        },
         "&:hover svg": {
             color: "white",
             transform: "scale(1.3)"
@@ -37,6 +40,9 @@ export default {
     },
     deleteIcon: {
         transition: "all 0.3s ease-in-out",
+        [sizes.down("sm")]: {
+            fontSize: "1rem",
+        }
     },
     colorName: {
         fontSize: ".6rem",

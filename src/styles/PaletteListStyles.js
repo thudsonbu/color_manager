@@ -52,5 +52,6 @@ export default {
         justifyContent: "center",
         alignItems: "center",
         gridGap: "5%",
+        marginBottom: "200px",
     },
 }
