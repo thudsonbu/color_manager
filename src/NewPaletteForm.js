@@ -11,6 +11,7 @@ import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import styles from './styles/NewPaletteFormStyles';
+import PaletteMetaForm from './PaletteMetaForm';
 
 class NewPaletteForm extends Component {
     static defaultProps = {
@@ -99,11 +100,12 @@ class NewPaletteForm extends Component {
 
     render() {
         const { classes, maxColors, palettes} = this.props;
-        const { drawerOpen, colors, randomColor } = this.state;
+        const { drawerOpen, colors, randomColor, stage } = this.state;
         const paletteFull = colors.length >= maxColors;
         return (
             <div className={classes.root}>
                 <PaletteFormNav 
+                    stage={stage}
                     drawerOpen={drawerOpen}
                     palettes={palettes}
                     handleSubmit={this.handleSubmit}
@@ -134,20 +136,20 @@ class NewPaletteForm extends Component {
                                     onClick={this.clearColors}>   
                                     Clear Palette
                                 </Button>
-                                <Button
-                                    className={classes.savePaletteButtonMobile}
-                                    variant="contained" 
-                                    color="primary"
-                                    onClick={this.handleSubmit}>
-                                    Save Palette
-                                </Button>
+                                <div className={classes.metaFormMobile}>
+                                    <PaletteMetaForm
+                                        className={classes.savePaletteButtonMobile} 
+                                        palettes={palettes}
+                                        handleSubmit={this.handleSubmit}
+                                    />
+                                </div>
                                 <Button
                                     className={classes.randomColorButton}
                                     variant="contained" 
                                     color="primary"
                                     onClick={this.addRandomColor}
                                     disabled={paletteFull}
-                                    style={{backgroundColor: paletteFull? "lightgrey" : this.state.currentColor}}>
+                                    style={{backgroundColor: paletteFull? "lightgrey" : randomColor.color}}>
                                     {paletteFull ? "Palette Full" : "Random Color"}
                                 </Button>
                             </div>

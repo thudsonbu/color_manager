@@ -48,7 +48,6 @@ class PaletteFormNav extends Component {
                                 className={classes.item} 
                                 palettes={palettes}
                                 handleSubmit={handleSubmit}
-                                classes={classes}
                             />
                             <Link to="/" className={classes.item}>
                                 <Button variant='contained' color='secondary'>

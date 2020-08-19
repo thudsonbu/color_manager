@@ -35,14 +35,14 @@ export default theme => ({
     title: {
         margin: "0 0.5rem",
         textDecoration: "none",
-        [sizes.down("sm")]: {
-            display: "none",
-        }
     },
     navBtns: {
         marginRight: ".5rem",
         display: "flex",
         flexDirection: "row",
+        [sizes.down("sm")]: {
+            display: "none",
+        }
     },
     item: {
         margin: "0 0.5rem",

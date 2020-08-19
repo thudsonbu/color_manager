@@ -73,16 +73,16 @@ export default theme => ({
         width: "45%",
         
     },
-    savePaletteButtonMobile: {
-        width: "45%",
-        [sizes.up("md")]: {
-            display: "None",
-        }
-        
-    },
     randomColorButton: {
         width: "45%",
+        height: "57px",
         [sizes.down("sm")]: {
+            display: "None",
+        }
+    },
+    metaFormMobile: {
+        width: "45%",
+        [sizes.up("md")]: {
             display: "None",
         }
     }
