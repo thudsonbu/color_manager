@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 export default {
     root: {
         height: "100vh",
@@ -11,8 +13,29 @@ export default {
         padding: "1rem",
         marginTop: "1rem",
         fontSize: "1.5rem",
+        [sizes.down("sm")]: {
+            display: "None",
+        }
     },
     colorNameInput: {
         width: "100%",
+    },
+    buttons: {
+        width: "100%",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        [sizes.up("md")]: {
+            display: "None",
+        }
+    },
+    randomColorButtonMobile: {
+        color: "#ffffff",
+        width: "45%",
+        height: "57px",
+    },
+    addColorButtonMobile: {
+        width: "45%",
+        height: "57px",
     }
 } 

@@ -22,15 +22,17 @@ class NewPaletteForm extends Component {
             drawerOpen: true,
             colors: this.props.palettes[0].colors,
             newPaletteName: "",
+            randomColor: this.genRandomColor()
         }
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.removeColor = this.removeColor.bind(this);
         this.clearColors = this.clearColors.bind(this);
-        this.addRandomColor = this.addRandomColor.bind(this);
         this.handleDrawerClose = this.handleDrawerClose.bind(this);
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+        this.genRandomColor = this.genRandomColor.bind(this);
+        this.addRandomColor = this.addRandomColor.bind(this);
     }
 
     handleDrawerOpen() {
@@ -76,12 +78,17 @@ class NewPaletteForm extends Component {
         })
     }
 
-    addRandomColor(){
+    genRandomColor(){
         const allColors = this.props.palettes.map(p => p.colors).flat();
         var randNum = Math.floor(Math.random() * allColors.length);
         const randomColor = allColors[randNum];
-        this.setState({colors: [...this.state.colors, randomColor]})
-        console.log(allColors);
+        return randomColor;
+    }
+
+    addRandomColor(){
+        this.addNewColor(this.state.randomColor);
+        let newRand = this.genRandomColor();
+        this.setState({randomColor: newRand});
     }
 
     onSortEnd = ({oldIndex, newIndex}) => {
@@ -92,7 +99,7 @@ class NewPaletteForm extends Component {
 
     render() {
         const { classes, maxColors, palettes} = this.props;
-        const { drawerOpen, colors } = this.state;
+        const { drawerOpen, colors, randomColor } = this.state;
         const paletteFull = colors.length >= maxColors;
         return (
             <div className={classes.root}>
@@ -128,6 +135,13 @@ class NewPaletteForm extends Component {
                                     Clear Palette
                                 </Button>
                                 <Button
+                                    className={classes.savePaletteButtonMobile}
+                                    variant="contained" 
+                                    color="primary"
+                                    onClick={this.handleSubmit}>
+                                    Save Palette
+                                </Button>
+                                <Button
                                     className={classes.randomColorButton}
                                     variant="contained" 
                                     color="primary"
@@ -141,6 +155,8 @@ class NewPaletteForm extends Component {
                                 handleAdd={this.addNewColor}
                                 paletteFull={paletteFull}
                                 colors={colors}
+                                randomColor={randomColor}
+                                addRandomColor={this.addRandomColor}
                             />
                         </div>
                     </div>

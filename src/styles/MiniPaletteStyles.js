@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 export default {
     root: {
         backgroundColor: "white",
@@ -12,9 +14,11 @@ export default {
         position: "relative",
         overflow: "hidden",
         cursor: "pointer",
-        "&:hover svg": {
-            opacity: 1
-        }
+        [sizes.up("md")]: {
+            "&:hover svg": {
+                opacity: 1
+            }
+        },
     },
     colors: {
         backgroundColor: "grey",
@@ -58,6 +62,11 @@ export default {
         top: "0px",
         padding: "7px",
         zIndex: 10,
-        opacity: 0,
+        opacity: 1,
+        [sizes.up("sm")]: {
+            opacity: 0
+
+        },
+
     }
 }

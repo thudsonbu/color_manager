@@ -1,4 +1,5 @@
 import { DRAWER_WIDTH } from '../constants';
+import sizes from './sizes';
 
 export default theme => ({
     root: {
@@ -31,7 +32,10 @@ export default theme => ({
         justifyContent: "flex-end"
     },
     content: {
-        height: "calc(100vh - 64px)",
+        [sizes.down("md")]: {
+            marginTop: "8px",
+        },
+        height: "calc(100vh - 85px)",
         flexGrow: 1,
         padding: 0,
         transition: theme.transitions.create("margin", {
@@ -67,8 +71,19 @@ export default theme => ({
     },
     clearPaletteButton: {
         width: "45%",
+        
+    },
+    savePaletteButtonMobile: {
+        width: "45%",
+        [sizes.up("md")]: {
+            display: "None",
+        }
+        
     },
     randomColorButton: {
         width: "45%",
+        [sizes.down("sm")]: {
+            display: "None",
+        }
     }
 });

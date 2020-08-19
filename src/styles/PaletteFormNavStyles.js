@@ -29,7 +29,7 @@ export default theme => ({
         marginLeft: "1rem",
         display: "flex",
         flexDirection: "row",
-        height: "64px",
+        height: "60px",
         alignItems: "center",
     },
     title: {

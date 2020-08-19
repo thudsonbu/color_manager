@@ -54,7 +54,7 @@ class ColorPickerForm extends Component{
 
     render() {
         const { newColorName, currentColor } = this.state;
-        const { paletteFull, classes } = this.props;
+        const { paletteFull, classes, randomColor, addRandomColor } = this.props;
         return(
             <div>
                 <ChromePicker
@@ -73,6 +73,25 @@ class ColorPickerForm extends Component{
                         validators={["required", "isColorNameUnique", "isColorUnique"]}
                         errorMessages={["Required", "Color Name Used", "Color is Used"]}
                     />
+                    <div className={classes.buttons}>
+                        <Button
+                            className={classes.randomColorButtonMobile} 
+                            variant="contained" 
+                            onClick={addRandomColor}   
+                            disabled={paletteFull}
+                            style={{backgroundColor: paletteFull? "lightgrey" : randomColor.color}}>
+                            {paletteFull ? "Palette Full" : "Random Color"}
+                        </Button>
+                        <Button
+                            className={classes.addColorButtonMobile}
+                            variant="contained" 
+                            color="primary"
+                            type="submit"
+                            disabled={paletteFull}
+                            style={{backgroundColor: paletteFull? "lightgrey" : currentColor}}>
+                            {paletteFull ? "Palette Full" : "Add Color"}
+                        </Button>
+                    </div>
                     <Button
                         className={classes.addColorButton}
                         variant="contained" 
