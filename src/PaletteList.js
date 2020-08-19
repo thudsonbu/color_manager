@@ -32,6 +32,7 @@ class PaletteList extends Component{
         this.openEditDialog = this.openEditDialog.bind(this);
         this.closeEditDialog = this.closeEditDialog.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         this.goToPalette = this.goToPalette.bind(this);
     }
     openDeleteDialog(id){
@@ -54,7 +55,8 @@ class PaletteList extends Component{
         this.closeDeleteDialog();
     }
     handleEdit(){
-        this.props.editPalette(this.state.editId);
+        let editUrl = `/palette/edit/${this.state.editId}`
+        this.props.history.push(editUrl)
         this.closeEditDialog();
     }
     render() {

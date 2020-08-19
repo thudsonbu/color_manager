@@ -59,6 +59,23 @@ class App extends Component {
                     (
                       <Page>
                         <NewPaletteForm
+                          palette={this.state.palettes[1]}
+                          savePalette={this.savePalette}
+                          {...routeProps}
+                          palettes={this.state.palettes}
+                        />
+                      </Page>
+                    )
+                  }
+                />
+                <Route
+                  exact
+                  path="/palette/edit/:id"
+                  render={(routeProps) =>
+                    (
+                      <Page>
+                        <NewPaletteForm
+                          palette={this.findPalette(routeProps.match.params.id)}
                           savePalette={this.savePalette}
                           {...routeProps}
                           palettes={this.state.palettes}
@@ -76,6 +93,7 @@ class App extends Component {
                         <PaletteList
                           palettes={this.state.palettes}
                           deletePalette={this.deletePalette}
+                          editPalette={this.editPalette}
                           {...routeProps}
                         />
                       </Page>

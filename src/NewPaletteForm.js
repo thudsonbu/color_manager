@@ -21,9 +21,9 @@ class NewPaletteForm extends Component {
         super(props)
         this.state = {
             drawerOpen: true,
-            colors: this.props.palettes[0].colors,
+            colors: this.props.palette.colors,
             newPaletteName: "",
-            randomColor: this.genRandomColor()
+            randomColor: this.genRandomColor(),
         }
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -34,6 +34,13 @@ class NewPaletteForm extends Component {
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.genRandomColor = this.genRandomColor.bind(this);
         this.addRandomColor = this.addRandomColor.bind(this);
+        this.getColors = this.getColors.bind(this);
+    }
+
+    getColors() {
+        return this.props.palettes.find(function (palette) {
+            return palette.id === this.props.routeProps.match.params.id
+        })
     }
 
     handleDrawerOpen() {
