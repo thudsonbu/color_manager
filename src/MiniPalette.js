@@ -12,11 +12,11 @@ class MiniPalette extends PureComponent{
     }
     deletePalette(e){
         e.stopPropagation();
-        this.props.openDeleteDialog(this.props.id);
+        this.props.openDialog(this.props.id, "Delete");
     }
     editPalette(e){
         e.stopPropagation();
-        this.props.openEditDialog(this.props.id);
+        this.props.openDialog(this.props.id, "Edit");
     }
     render(){
         const { classes, paletteName, emoji, colors, handleClick, id } = this.props;

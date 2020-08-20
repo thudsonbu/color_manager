@@ -24,43 +24,39 @@ class PaletteList extends Component{
         this.state = {
             deleteDialog: false,
             editDialog: false,
+            dialog: false,
+            operation: "",
+            operationId: "",
             deletingId: "",
             editId: "",
         }
-        this.openDeleteDialog = this.openDeleteDialog.bind(this);
-        this.closeDeleteDialog = this.closeDeleteDialog.bind(this);
-        this.openEditDialog = this.openEditDialog.bind(this);
-        this.closeEditDialog = this.closeEditDialog.bind(this);
+        this.openDialog = this.openDialog.bind(this);
+        this.closeDialog = this.closeDialog.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.goToPalette = this.goToPalette.bind(this);
     }
-    openDeleteDialog(id){
-        this.setState({deleteDialog: true, deletingId: id})
+    openDialog(id, operation){
+        this.setState({dialog: true, operationId: id, operation: operation})
     }
-    openEditDialog(id){
-        this.setState({editDialog: true, editId: id})
+    closeDialog(){
+        this.setState({dialog: false, operationId: ""})
     }
-    closeDeleteDialog(){
-        this.setState({deleteDialog: false, deletingId: ""})
-    }
-    closeEditDialog(){
-        this.setState({editDialog: false, editId: ""})
-    }
+    
     goToPalette(id){
         this.props.history.push(`/palette/${id}`)
     }
     handleDelete(){
-        this.props.deletePalette(this.state.deletingId);
-        this.closeDeleteDialog();
+        this.props.deletePalette(this.state.operationId);
+        this.closeDialog();
     }
     handleEdit(){
-        let editUrl = `/palette/edit/${this.state.editId}`
+        let editUrl = `/palette/edit/${this.state.operationId}`
         this.props.history.push(editUrl)
-        this.closeEditDialog();
+        this.closeDialog();
     }
     render() {
-        const { deleteDialog, editDialog } = this.state
+        const { deleteDialog, editDialog, operation, dialog } = this.state
         const { palettes, classes } = this.props
         return(
             <div className={classes.root}>
@@ -75,8 +71,7 @@ class PaletteList extends Component{
                             <MiniPalette 
                                 {...palette} 
                                 handleClick={this.goToPalette}                     
-                                openDeleteDialog={this.openDeleteDialog}
-                                openEditDialog={this.openEditDialog}
+                                openDialog={this.openDialog}
                                 key={palette.id}
                                 id={palette.id}
                             />    
@@ -85,52 +80,38 @@ class PaletteList extends Component{
                     </TransitionGroup>
                 </div>
                 <Dialog 
-                    onClose={this.closeDeleteDialog}
-                    open={deleteDialog} 
-                    aria-labelledby='delete-dialog-title'
+                    onClose={this.closeDialog}
+                    open={dialog}
+                    operation={operation} 
+                    aria-labelledby='dialog-title'
                 >
-                    <DialogTitle id='delete-dialog-title'>Delete This Palette?</DialogTitle>
+                    <DialogTitle id='dialog-title'>{operation} This Palette?</DialogTitle>
                     <List>
-                        <ListItem button onClick={this.handleDelete}>
-                            <ListItemAvatar>
-                                <Avatar style={{backgroundColor: red[100], color: red[600]}}>
-                                    <CheckIcon />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText>
-                                Delete
-                            </ListItemText>
-                        </ListItem>
-                        <ListItem button onClick={this.closeDeleteDialog}>
-                            <ListItemAvatar>
-                                <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
-                                    <CloseIcon/>
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText>
-                                Cancel
-                            </ListItemText>
-                        </ListItem>
-                    </List>
-                </Dialog>
-                <Dialog 
-                    onClose={this.closeEditDialog}
-                    open={editDialog} 
-                    aria-labelledby='edit-dialog-title'
-                >
-                    <DialogTitle id='edit-dialog-title'>Edit This Palette?</DialogTitle>
-                    <List>
-                        <ListItem button onClick={this.handleEdit}>
-                            <ListItemAvatar>
-                                <Avatar style={{backgroundColor: green[100], color: green[600]}}>
-                                    <CheckIcon />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText>
-                                Edit
-                            </ListItemText>
-                        </ListItem>
-                        <ListItem button onClick={this.closeEditDialog}>
+                        {operation === "Delete" &&
+                            <ListItem button onClick={this.handleDelete}>
+                                <ListItemAvatar>
+                                    <Avatar style={{backgroundColor: red[100], color: red[600]}}>
+                                        <CheckIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText>
+                                    Delete
+                                </ListItemText>
+                            </ListItem>
+                        }
+                        {operation === "Edit" &&
+                            <ListItem button onClick={this.handleEdit}>
+                                <ListItemAvatar>
+                                    <Avatar style={{backgroundColor: green[100], color: green[600]}}>
+                                        <CheckIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText>
+                                    Edit
+                                </ListItemText>
+                            </ListItem>
+                        }
+                        <ListItem button onClick={this.closeDialog}>
                             <ListItemAvatar>
                                 <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
                                     <CloseIcon/>
