@@ -35,8 +35,11 @@ class PaletteMetaForm extends Component{
             ({paletteName}) => (paletteName.toLowerCase() !== this.props.paletteName.toLowerCase())
         )
         ValidatorForm.addValidationRule('isPaletteNameUniqueEditMode', (value) => 
-            otherPalettes.every(
-                ({paletteName}) => (paletteName.toLowerCase() !== value.toLowerCase()) 
+            // otherPalettes.every(
+            //     ({paletteName}) => (paletteName.toLowerCase() !== value.toLowerCase()) 
+            // )
+            this.props.palettes.every(
+                ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
             )
         )
     }
@@ -90,7 +93,7 @@ class PaletteMetaForm extends Component{
                     variant="contained" 
                     color="primary" 
                     onClick={this.handleClickOpen}>
-                    {editing ? "SAVE CHANGES" : "SAVE PALETTE"}
+                    {editing ? "SAVE PALETTE" : "SAVE PALETTE"}
                 </Button>
                 <Dialog
                     open={emojiForm}

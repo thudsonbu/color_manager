@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import Palette from './Palette'
-import { Route, Switch } from 'react-router-dom'
-import seedColors from './seedColors'
-import SingleColorPalette from './SingleColorPalette'
-import NewPaletteForm from './NewPaletteForm'
-import { generatePalette } from './colorHelpers'
+import { Route, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+import seedColors from './seedColors';
+import { generatePalette } from './colorHelpers';
+
+import Palette from './Palette';
+import SingleColorPalette from './SingleColorPalette';
+import NewPaletteForm from './NewPaletteForm';
 import PaletteList from './PaletteList';
-import { TransitionGroup, CSSTransition } from "react-transition-group"; 
 import Page from "./Page";
 
 class App extends Component {
@@ -14,10 +16,12 @@ class App extends Component {
     super(props)
     const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
     this.state = {
-      palettes: savedPalettes || seedColors
+      palettes: savedPalettes || seedColors,
+      index: 0
+
     }
     this.savePalette = this.savePalette.bind(this);
-    this.saveEditedPalette = this.saveEditedPalette.bind(this);
+    //this.saveEditedPalette = this.saveEditedPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
   }
@@ -32,18 +36,9 @@ class App extends Component {
       this.syncLocalStorage  
     )
   }
-  saveEditedPalette(newPalette, oldPaletteId) {
-    console.log(oldPaletteId);
-    let filteredPalettes = this.state.palettes.filter((palette) => (palette.id !== oldPaletteId))
-    console.log(filteredPalettes);
-    let newPaletteAdded = filteredPalettes.concat(newPalette);
-    console.log(newPaletteAdded)
-    this.setState(
-      {palettes: newPaletteAdded},
-      this.syncLocalStorage,
-      console.log(this.state.palettes)
-    )
-  }
+  // saveEditedPalette(newPalette, oldPaletteId) {
+  //   this.savePalette(newPalette);
+  // }
   syncLocalStorage() {
     window.localStorage.setItem(
       "palettes",
@@ -58,6 +53,7 @@ class App extends Component {
     )
   }
   render() {
+    console.log(this.state.palettes);
     return (
       <Route 
         className='background'
@@ -89,9 +85,9 @@ class App extends Component {
                     (
                       <Page>
                         <NewPaletteForm
-                          palette={generatePalette(this.findPalette(routeProps.match.params.id))[500]}
+                          palette={this.findPalette(routeProps.match.params.id)}
                           savePalette={this.savePalette}
-                          saveEditedPalette={this.saveEditedPalette}
+                          saveEditedPalette={this.savePalette}
                           editing={true}
                           {...routeProps}
                           palettes={this.state.palettes}
@@ -119,7 +115,7 @@ class App extends Component {
                   exact
                   path="/palette/:id"
                   render={(routeProps) => 
-                    (
+                    ( 
                       <Page>
                         <Palette
                           palette={generatePalette(this.findPalette(routeProps.match.params.id))}
