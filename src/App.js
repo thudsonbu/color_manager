@@ -17,6 +17,7 @@ class App extends Component {
       palettes: savedPalettes || seedColors
     }
     this.savePalette = this.savePalette.bind(this);
+    this.saveEditedPalette = this.saveEditedPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
   }
@@ -29,6 +30,18 @@ class App extends Component {
     this.setState(
       {palettes: [...this.state.palettes, newPalette]},
       this.syncLocalStorage  
+    )
+  }
+  saveEditedPalette(newPalette, oldPaletteId) {
+    console.log(oldPaletteId);
+    let filteredPalettes = this.state.palettes.filter((palette) => (palette.id !== oldPaletteId))
+    console.log(filteredPalettes);
+    let newPaletteAdded = filteredPalettes.concat(newPalette);
+    console.log(newPaletteAdded)
+    this.setState(
+      {palettes: newPaletteAdded},
+      this.syncLocalStorage,
+      console.log(this.state.palettes)
     )
   }
   syncLocalStorage() {
@@ -61,6 +74,7 @@ class App extends Component {
                         <NewPaletteForm
                           palette={this.state.palettes[1]}
                           savePalette={this.savePalette}
+                          editing={false}
                           {...routeProps}
                           palettes={this.state.palettes}
                         />
@@ -75,8 +89,10 @@ class App extends Component {
                     (
                       <Page>
                         <NewPaletteForm
-                          palette={this.findPalette(routeProps.match.params.id)}
+                          palette={generatePalette(this.findPalette(routeProps.match.params.id))[500]}
                           savePalette={this.savePalette}
+                          saveEditedPalette={this.saveEditedPalette}
+                          editing={true}
                           {...routeProps}
                           palettes={this.state.palettes}
                         />
@@ -93,7 +109,6 @@ class App extends Component {
                         <PaletteList
                           palettes={this.state.palettes}
                           deletePalette={this.deletePalette}
-                          editPalette={this.editPalette}
                           {...routeProps}
                         />
                       </Page>

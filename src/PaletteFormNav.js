@@ -16,7 +16,8 @@ import styles from './styles/PaletteFormNavStyles.js';
 class PaletteFormNav extends Component {
     
     render() {
-        const { classes, palettes, handleSubmit, handleDrawerOpen, drawerOpen } = this.props;
+        const { classes, palettes, handleSubmit, handleDrawerOpen, 
+            editing, drawerOpen, paletteName } = this.props;
         return (
             <div>
                 <CssBaseline />
@@ -40,7 +41,7 @@ class PaletteFormNav extends Component {
                             </IconButton>
                             }
                             <Typography variant='h6' color='inherit' noWrap className={classes.title}>
-                                Create A Palette
+                                {editing ? `Editing ${paletteName}`: "Create Palette"}
                             </Typography>
                         </div>
                         <div className={classes.navBtns}>
@@ -48,6 +49,8 @@ class PaletteFormNav extends Component {
                                 className={classes.item} 
                                 palettes={palettes}
                                 handleSubmit={handleSubmit}
+                                editing={editing}
+                                paletteName={paletteName}
                             />
                             <Link to="/" className={classes.item}>
                                 <Button variant='contained' color='secondary'>

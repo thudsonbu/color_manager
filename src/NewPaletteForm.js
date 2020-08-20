@@ -22,6 +22,7 @@ class NewPaletteForm extends Component {
         this.state = {
             drawerOpen: true,
             colors: this.props.palette.colors,
+            oldPaletteId: this.props.palette.id,
             newPaletteName: "",
             randomColor: this.genRandomColor(),
         }
@@ -34,14 +35,8 @@ class NewPaletteForm extends Component {
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.genRandomColor = this.genRandomColor.bind(this);
         this.addRandomColor = this.addRandomColor.bind(this);
-        this.getColors = this.getColors.bind(this);
     }
 
-    getColors() {
-        return this.props.palettes.find(function (palette) {
-            return palette.id === this.props.routeProps.match.params.id
-        })
-    }
 
     handleDrawerOpen() {
         this.setState({ drawerOpen: true });
@@ -64,7 +59,11 @@ class NewPaletteForm extends Component {
             colors: this.state.colors,
             emoji: palette.emoji,
         }
-        this.props.savePalette(newPalette);
+        if(this.props.editing){
+            this.props.saveEditedPalette(newPalette, this.state.oldPaletteId);
+        } else {
+            this.props.savePalette(newPalette);
+        }
         this.props.history.push("/");
     }
 
@@ -106,7 +105,7 @@ class NewPaletteForm extends Component {
     }
 
     render() {
-        const { classes, maxColors, palettes} = this.props;
+        const { classes, maxColors, palettes, editing, palette} = this.props;
         const { drawerOpen, colors, randomColor, stage } = this.state;
         const paletteFull = colors.length >= maxColors;
         return (
@@ -117,6 +116,8 @@ class NewPaletteForm extends Component {
                     palettes={palettes}
                     handleSubmit={this.handleSubmit}
                     handleDrawerOpen={this.handleDrawerOpen}
+                    editing={editing}
+                    paletteName={palette.paletteName}
                 />
                 <Drawer
                     className={classes.drawer}
@@ -148,6 +149,8 @@ class NewPaletteForm extends Component {
                                         className={classes.savePaletteButtonMobile} 
                                         palettes={palettes}
                                         handleSubmit={this.handleSubmit}
+                                        editing={editing}
+                                        paletteName={palette.paletteName}
                                     />
                                 </div>
                                 <Button
@@ -166,6 +169,8 @@ class NewPaletteForm extends Component {
                                 colors={colors}
                                 randomColor={randomColor}
                                 addRandomColor={this.addRandomColor}
+                                editing={editing}
+                                paletteName={palette.paletteName}
                             />
                         </div>
                     </div>

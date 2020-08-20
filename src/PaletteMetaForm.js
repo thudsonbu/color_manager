@@ -31,6 +31,14 @@ class PaletteMetaForm extends Component{
                 ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
             )
         )
+        let otherPalettes = this.props.palettes.filter(
+            ({paletteName}) => (paletteName.toLowerCase() !== this.props.paletteName.toLowerCase())
+        )
+        ValidatorForm.addValidationRule('isPaletteNameUniqueEditMode', (value) => 
+            otherPalettes.every(
+                ({paletteName}) => (paletteName.toLowerCase() !== value.toLowerCase()) 
+            )
+        )
     }
     
     handleClickOpen() {
@@ -50,15 +58,18 @@ class PaletteMetaForm extends Component{
         this.setState({
             [evt.target.name]: evt.target.value
         });
+        console.log(this.state.newPaletteName);
     }
 
     handleNameSubmit(){
         this.setState({
             stage: "emojiForm",
         })
+        console.log(this.state);
     }
 
     handleEmojiSubmit(selectedEmoji){
+        console.log("bacon " + this.state.newPaletteName);
         this.props.handleSubmit({
             paletteName: this.state.newPaletteName,
             emoji: selectedEmoji.native,
@@ -67,7 +78,7 @@ class PaletteMetaForm extends Component{
     }
 
     render(){
-        const { classes } = this.props;
+        const { classes, editing } = this.props;
         const { newPaletteName, stage } = this.state;
         const nameForm = stage === "nameForm"
         const emojiForm = stage === "emojiForm"
@@ -79,7 +90,7 @@ class PaletteMetaForm extends Component{
                     variant="contained" 
                     color="primary" 
                     onClick={this.handleClickOpen}>
-                    SAVE PALETTE
+                    {editing ? "SAVE CHANGES" : "SAVE PALETTE"}
                 </Button>
                 <Dialog
                     open={emojiForm}
@@ -115,7 +126,8 @@ class PaletteMetaForm extends Component{
                                 value={newPaletteName} 
                                 name="newPaletteName"
                                 onChange={this.handleChange}
-                                validators={["required","isPaletteNameUnique"]}
+                                validators={["required",
+                                `${editing ? "isPaletteNameUniqueEditMode" : "isPaletteNameUnique"}`]}
                                 errorMessages={["Name Required", "Name Already Used"]}
                             />
                         </DialogContent>
