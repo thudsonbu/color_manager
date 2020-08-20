@@ -10,7 +10,7 @@ class PaletteNotFound extends Component{
         return (
             <div className={classes.paletteNotFound}>
                 <div className={classes.paletteNotFoundContent}>
-                    <h1 className={classes.paletteNotFoundHeader}>Palette was not found.</h1>
+                    <h1 className={classes.paletteNotFoundHeader}>Palette Deleted</h1>
                     <Button variant="contained" className={classes.paletteNotFoundButton}>
                         <Link to={'/'} className={classes.paletteNotFoundLink}>Palette List</Link>
                     </Button>

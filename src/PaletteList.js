@@ -85,7 +85,7 @@ class PaletteList extends Component{
                     </TransitionGroup>
                 </div>
                 <Dialog 
-                    onClose={this.closeDialog}
+                    onClose={this.closeDeleteDialog}
                     open={deleteDialog} 
                     aria-labelledby='delete-dialog-title'
                 >
@@ -101,7 +101,7 @@ class PaletteList extends Component{
                                 Delete
                             </ListItemText>
                         </ListItem>
-                        <ListItem button onClick={this.closeDialog}>
+                        <ListItem button onClick={this.closeDeleteDialog}>
                             <ListItemAvatar>
                                 <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
                                     <CloseIcon/>
