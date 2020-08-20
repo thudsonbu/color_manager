@@ -13,7 +13,6 @@ import ColorPickerForm from './ColorPickerForm';
 import styles from './styles/NewPaletteFormStyles';
 import PaletteMetaForm from './PaletteMetaForm';
 import PaletteNotFound from './PaletteNotFound';
-import { colors } from "@material-ui/core";
 
 class NewPaletteForm extends Component {
     static defaultProps = {

@@ -31,9 +31,9 @@ class PaletteMetaForm extends Component{
                 ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
             )
         )
-        let otherPalettes = this.props.palettes.filter(
-            ({paletteName}) => (paletteName.toLowerCase() !== this.props.paletteName.toLowerCase())
-        )
+        // let otherPalettes = this.props.palettes.filter(
+        //     ({paletteName}) => (paletteName.toLowerCase() !== this.props.paletteName.toLowerCase())
+        // )
         ValidatorForm.addValidationRule('isPaletteNameUniqueEditMode', (value) => 
             // otherPalettes.every(
             //     ({paletteName}) => (paletteName.toLowerCase() !== value.toLowerCase()) 

@@ -1,5 +1,4 @@
 import sizes from './sizes';
-import chroma from 'chroma-js'
 
 export default {
     root: {

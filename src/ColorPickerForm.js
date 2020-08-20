@@ -17,7 +17,6 @@ class ColorPickerForm extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }  
     
-
     componentDidMount(){
         ValidatorForm.addValidationRule('isColorNameUnique', (value) => 
             this.props.colors.every(
