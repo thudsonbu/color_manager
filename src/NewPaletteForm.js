@@ -12,6 +12,8 @@ import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import styles from './styles/NewPaletteFormStyles';
 import PaletteMetaForm from './PaletteMetaForm';
+import PaletteNotFound from './PaletteNotFound';
+import { colors } from "@material-ui/core";
 
 class NewPaletteForm extends Component {
     static defaultProps = {
@@ -21,8 +23,8 @@ class NewPaletteForm extends Component {
         super(props)
         this.state = {
             drawerOpen: true,
-            colors: this.props.palette.colors,
-            oldPaletteId: this.props.palette.id,
+            colors: this.getColors(),
+            oldPaletteId: this.getOldId(),
             newPaletteName: "",
             randomColor: this.genRandomColor(),
         }
@@ -35,8 +37,27 @@ class NewPaletteForm extends Component {
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.genRandomColor = this.genRandomColor.bind(this);
         this.addRandomColor = this.addRandomColor.bind(this);
+        this.getColors = this.getColors.bind(this);
+        this.getOldId = this.getOldId.bind(this);
     }
 
+    getColors(){
+        try {
+            let colors = this.props.palette.colors
+            return colors;
+        } catch(e) {
+            return {};
+        }
+    }
+
+    getOldId(){
+        try {
+            let oldPaletteId = this.props.palette.id;
+            return oldPaletteId;
+        } catch(e) {
+            return "";
+        }
+    }
 
     handleDrawerOpen() {
         this.setState({ drawerOpen: true });
@@ -108,90 +129,97 @@ class NewPaletteForm extends Component {
         const { classes, maxColors, palettes, editing, palette} = this.props;
         const { drawerOpen, colors, randomColor, stage } = this.state;
         const paletteFull = colors.length >= maxColors;
-        return (
-            <div className={classes.root}>
-                <PaletteFormNav 
-                    stage={stage}
-                    drawerOpen={drawerOpen}
-                    palettes={palettes}
-                    handleSubmit={this.handleSubmit}
-                    handleDrawerOpen={this.handleDrawerOpen}
-                    editing={editing}
-                    paletteName={palette.paletteName}
-                />
-                <Drawer
-                    className={classes.drawer}
-                    variant='persistent'
-                    anchor='left'
-                    open={drawerOpen}
-                    classes={{paper: classes.drawerPaper}}
-                >
-                
-                    <div className={classes.drawerHeader}>
-                        <IconButton onClick={this.handleDrawerClose}>
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <div className={classes.drawerContent}>
-                        <div className={classes.container}>
-                            <h1 className={classes.drawerHeaderText}>Design Your Palet</h1>
-                            <div className={classes.buttons}>
-                                <Button
-                                    className={classes.clearPaletteButton} 
-                                    variant="contained" 
-                                    color="secondary"
-                                    onClick={this.clearColors}>   
-                                    Clear Palette
-                                </Button>
-                                <div className={classes.metaFormMobile}>
-                                    <PaletteMetaForm
-                                        className={classes.savePaletteButtonMobile} 
-                                        palettes={palettes}
-                                        handleSubmit={this.handleSubmit}
-                                        editing={editing}
-                                        paletteName={palette.paletteName}
-                                    />
-                                </div>
-                                <Button
-                                    className={classes.randomColorButton}
-                                    variant="contained" 
-                                    color="primary"
-                                    onClick={this.addRandomColor}
-                                    disabled={paletteFull}
-                                    style={{backgroundColor: paletteFull? "lightgrey" : randomColor.color}}>
-                                    {paletteFull ? "Palette Full" : "Random Color"}
-                                </Button>
-                            </div>
-                            <ColorPickerForm 
-                                handleAdd={this.addNewColor}
-                                paletteFull={paletteFull}
-                                colors={colors}
-                                randomColor={randomColor}
-                                addRandomColor={this.addRandomColor}
-                                editing={editing}
-                                paletteName={palette.paletteName}
-                            />
+        try {
+            return (
+                <div className={classes.root}>
+                    <PaletteFormNav 
+                        stage={stage}
+                        drawerOpen={drawerOpen}
+                        palettes={palettes}
+                        handleSubmit={this.handleSubmit}
+                        handleDrawerOpen={this.handleDrawerOpen}
+                        editing={editing}
+                        paletteName={palette.paletteName}
+                    />
+                    <Drawer
+                        className={classes.drawer}
+                        variant='persistent'
+                        anchor='left'
+                        open={drawerOpen}
+                        classes={{paper: classes.drawerPaper}}
+                    >
+                    
+                        <div className={classes.drawerHeader}>
+                            <IconButton onClick={this.handleDrawerClose}>
+                                <ChevronLeftIcon />
+                            </IconButton>
                         </div>
-                    </div>
-                </Drawer>
-                <main
-                    className={classNames(classes.content, {
-                        [classes.contentShift]: drawerOpen
-                    })}
-                >
-                    <div className={classes.drawerHeader} />
-                    <DraggableColorList 
-                        colors={colors}
-                        removeColor={this.removeColor}
-                        axis='xy'
-                        onSortEnd={this.onSortEnd}
-                        pressDelay={200}
-                    /> 
-                </main>
-            </div>
-        );
+                        <Divider />
+                        <div className={classes.drawerContent}>
+                            <div className={classes.container}>
+                                <h1 className={classes.drawerHeaderText}>Design Your Palet</h1>
+                                <div className={classes.buttons}>
+                                    <Button
+                                        className={classes.clearPaletteButton} 
+                                        variant="contained" 
+                                        color="secondary"
+                                        onClick={this.clearColors}>   
+                                        Clear Palette
+                                    </Button>
+                                    <div className={classes.metaFormMobile}>
+                                        <PaletteMetaForm
+                                            className={classes.savePaletteButtonMobile} 
+                                            palettes={palettes}
+                                            handleSubmit={this.handleSubmit}
+                                            editing={editing}
+                                            paletteName={palette.paletteName}
+                                        />
+                                    </div>
+                                    <Button
+                                        className={classes.randomColorButton}
+                                        variant="contained" 
+                                        color="primary"
+                                        onClick={this.addRandomColor}
+                                        disabled={paletteFull}
+                                        style={{backgroundColor: paletteFull? "lightgrey" : randomColor.color}}>
+                                        {paletteFull ? "Palette Full" : "Random Color"}
+                                    </Button>
+                                </div>
+                                <ColorPickerForm 
+                                    handleAdd={this.addNewColor}
+                                    paletteFull={paletteFull}
+                                    colors={colors}
+                                    randomColor={randomColor}
+                                    addRandomColor={this.addRandomColor}
+                                    editing={editing}
+                                    paletteName={palette.paletteName}
+                                />
+                            </div>
+                        </div>
+                    </Drawer>
+                    <main
+                        className={classNames(classes.content, {
+                            [classes.contentShift]: drawerOpen
+                        })}
+                    >
+                        <div className={classes.drawerHeader} />
+                        <DraggableColorList 
+                            colors={colors}
+                            removeColor={this.removeColor}
+                            axis='xy'
+                            onSortEnd={this.onSortEnd}
+                            pressDelay={200}
+                        /> 
+                    </main>
+                </div>
+            );
+        } catch(e){
+            return (
+                <PaletteNotFound />
+            )
+        }
     }
+        
 }
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);
 

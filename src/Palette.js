@@ -7,7 +7,6 @@ import PaletteFooter from './PaletteFooter'
 import styles from './styles/PaletteStyles'
 
 
-
 class Palette extends Component{
     constructor(props){
         super(props);
