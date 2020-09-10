@@ -12,6 +12,7 @@
     "chroma-js": "^2.1.0",
     "daemon": "^1.1.0",
     "emoji-mart": "^3.0.0",
+    "firebase": "^7.19.1",
     "rc-slider": "^9.3.1",
     "react": "^16.13.1",
     "react-color": "^2.18.1",
