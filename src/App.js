@@ -18,8 +18,7 @@ class App extends Component {
     this.state = {
       palettes: savedPalettes || seedColors,
       index: 0
-
-    }
+    };
     this.savePalette = this.savePalette.bind(this);
     //this.saveEditedPalette = this.saveEditedPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
@@ -99,7 +98,7 @@ class App extends Component {
                 <Route
                   exact
                   path="/"
-                  render={(routeProps) => 
+                  render={(routeProps) =>
                     (
                       <Page>
                         <PaletteList
@@ -114,8 +113,8 @@ class App extends Component {
                 <Route
                   exact
                   path="/palette/:id"
-                  render={(routeProps) => 
-                    ( 
+                  render={(routeProps) =>
+                    (
                       <Page>
                         <Palette
                           palette={generatePalette(this.findPalette(routeProps.match.params.id))}
@@ -126,7 +125,7 @@ class App extends Component {
                 />
                 <Route
                   path={"/palette/:paletteId/:colorId"}
-                  render={(routeProps) => 
+                  render={(routeProps) =>
                     (
                       <Page>
                         <SingleColorPalette

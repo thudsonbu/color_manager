@@ -13,9 +13,9 @@ class Palette extends Component{
         this.state = {
             level: 500,
             format: "hex"
-        }
-        this.changeLevel = this.changeLevel.bind(this)
-        this.changeFormat = this.changeFormat.bind(this)
+        };
+        this.changeLevel = this.changeLevel.bind(this);
+        this.changeFormat = this.changeFormat.bind(this);
     }
     changeLevel(newLevel){
         this.setState({ level: newLevel })
@@ -26,7 +26,7 @@ class Palette extends Component{
     render() {
         console.log(this.props.history);
         const { colors, paletteName, emoji, id } = this.props.palette;
-        const { classes } = this.props
+        const { classes } = this.props;
         const { level, format } = this.state;
         try{
             const colorBoxes = colors[level].map( color => (
@@ -38,7 +38,7 @@ class Palette extends Component{
                     paletteId={id}
                     fullBox={true}
                 />
-            ))
+            ));
             return (
                 <div className={classes.PaletteClass}>
                     <Navbar 

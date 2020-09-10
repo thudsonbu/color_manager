@@ -85,7 +85,6 @@ class PaletteMetaForm extends Component{
         const { newPaletteName, stage } = this.state;
         const nameForm = stage === "nameForm"
         const emojiForm = stage === "emojiForm"
-
         return (
             <div>
                 <Button 
