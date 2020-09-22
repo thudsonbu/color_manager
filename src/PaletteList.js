@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 
-import Firebase from './Firebase'
-import 'firebase/auth';
-
 import MiniPalette from './MiniPalette'
+import SignUpDialog from './SignUpDialog'
 
 import { withStyles } from '@material-ui/core'
 import styles from './styles/PaletteListStyles'
 
 import { Link } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+
+import { withFirebase } from './Firebase/index';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -37,16 +37,11 @@ class PaletteList extends Component{
             deletingId: "",
             editId: "",
         }
-        this.login = this.login.bind(this);
         this.openDialog = this.openDialog.bind(this);
         this.closeDialog = this.closeDialog.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.goToPalette = this.goToPalette.bind(this);
-    }
-    login(){
-        e = new Firebase();
-
     }
     openDialog(id, operation){
         this.setState({dialog: true, operationId: id, operation: operation})
@@ -75,11 +70,7 @@ class PaletteList extends Component{
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1>Palette List</h1>
-                        <button 
-                            onClick={this.login}
-                            className={classes.loginButton}>
-                            Login
-                        </button>
+                        <SignUpDialog/>
                         <Link to="/palette/new">Create Palette</Link>
                     </nav>
                     <TransitionGroup className={classes.palettes}>

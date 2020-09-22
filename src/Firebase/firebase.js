@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyA4fxBa0cZ7ixICby18NdSgbhc3ySHfT5A",
     authDomain: "color-manager.firebaseapp.com",
@@ -15,30 +16,8 @@ const firebaseConfig = {
 class Firebase {
     constructor() {
         app.initializeApp(firebaseConfig);
-        this.googleAuthProvidor = app.auth.GoogleAuthProvider();
         this.auth = app.auth();
-        this.googleLogin = this.googleLogin.bind(this);
     }
-
-    googleLogin(){
-        this.auth.signInWithPopup(this.googleAuthProvidor).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // ...
-          }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-          });
-    }
-    // *** Auth API ***
  
     doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
