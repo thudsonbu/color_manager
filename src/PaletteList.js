@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Firebase from './Firebase'
+import 'firebase/auth';
 
 import MiniPalette from './MiniPalette'
 
@@ -44,8 +45,8 @@ class PaletteList extends Component{
         this.goToPalette = this.goToPalette.bind(this);
     }
     login(){
-        const Firebase = new Firebase;
-        Firebase.googleLogin();
+        e = new Firebase();
+
     }
     openDialog(id, operation){
         this.setState({dialog: true, operationId: id, operation: operation})
