@@ -9,7 +9,7 @@ import styles from './styles/PaletteListStyles'
 import { Link } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import { withFirebase } from './Firebase/index';
+import { FirebaseContext, withFirebase } from './Firebase/index';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -70,7 +70,9 @@ class PaletteList extends Component{
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1>Palette List</h1>
-                        <SignUpDialog/>
+                        <FirebaseContext.Consumer>
+                            {firebase => <SignUpDialog firebase={firebase} />}
+                        </FirebaseContext.Consumer>
                         <Link to="/palette/new">Create Palette</Link>
                     </nav>
                     <TransitionGroup className={classes.palettes}>

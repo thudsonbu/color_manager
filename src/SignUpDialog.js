@@ -14,11 +14,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { render } from '@testing-library/react';
 
-const SignUpDialog = () => (
-    <SignUpDialogForm/>
-)
-
-class SignUpDialogBase extends Component {
+class SignUpDialog extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -37,7 +33,7 @@ class SignUpDialogBase extends Component {
         const { email, password } = this.state;
 
         this.props.firebase
-        .doCreateUserWithEmailAndPassword(email,password).then(authUser => {
+        .doSignInWithEmailAndPassword(email,password).then(authUser => {
             this.setState({
                 dialogOpen: false,
                 email: '',
@@ -45,6 +41,7 @@ class SignUpDialogBase extends Component {
             })
             this.props.history.push('/');
         }).catch(error => {
+            console.log(error);
             this.setState({
                 error: true,
             })
@@ -122,6 +119,5 @@ class SignUpDialogBase extends Component {
     }
 }
 
-const SignUpDialogForm = withFirebase(SignUpDialogBase);
 
 export default withStyles(styles)(SignUpDialog)
