@@ -56,6 +56,7 @@ class App extends Component {
     return (
       <Route 
         className='background'
+        style={{height: "100%"}}
         render={({location}) => (
         <TransitionGroup style={{height: "100%"}}>
           <CSSTransition key={location.key} classNames='page' timeout={1000}>
