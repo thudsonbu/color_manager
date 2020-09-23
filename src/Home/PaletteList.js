@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 
 import MiniPalette from './MiniPalette'
-import SignUpDialog from './SignUpDialog'
+import SignUpDialog from '../Authorization/SignUpDialog'
 
 import { withStyles } from '@material-ui/core'
-import styles from './styles/PaletteListStyles'
+import styles from '../styles/PaletteListStyles'
 
 import { Link } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import { FirebaseContext, withFirebase } from './Firebase/index';
+import { FirebaseContext } from '../Firebase/index';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';

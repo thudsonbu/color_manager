@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { withStyles } from '@material-ui/core'
-import styles from './styles/PaletteListStyles'
+import styles from '../styles/PaletteListStyles'
 
-import withFirebase from './Firebase'
+import withFirebase from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';

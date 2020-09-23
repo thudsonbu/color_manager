@@ -8,7 +8,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { DialogContentText } from '@material-ui/core';
 import { Picker } from "emoji-mart";
 import { withStyles } from "@material-ui/core/styles";
-import styles from './styles/PaletteMetaFormStyles';
+import styles from '../styles/PaletteMetaFormStyles';
 import "emoji-mart/css/emoji-mart.css";
 
 class PaletteMetaForm extends Component{
