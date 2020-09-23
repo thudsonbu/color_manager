@@ -11,6 +11,8 @@ import NewPaletteForm from './PaletteForm/NewPaletteForm';
 import PaletteList from './Home/PaletteList';
 import Page from "./Page";
 
+import Firebase from "./Firebase/firebase";
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -24,6 +26,13 @@ class App extends Component {
     this.deletePalette = this.deletePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
   }
+
+  componentDidMount(){
+    Firebase.getD
+  }
+  
+
+
   findPalette(id) {
     return this.state.palettes.find(function (palette) {
       return palette.id === id

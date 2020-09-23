@@ -1,6 +1,5 @@
-import app from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/auth';
-
 
 const firebaseConfig = {
     apiKey: "AIzaSyA4fxBa0cZ7ixICby18NdSgbhc3ySHfT5A",
@@ -15,22 +14,34 @@ const firebaseConfig = {
 
 class Firebase {
     constructor() {
-        app.initializeApp(firebaseConfig);
-        this.auth = app.auth();
+        firebase.initializeApp(firebaseConfig);
+        this.auth = firebase.auth();
+        this.getDataFromFirebase = this.getDataFromFirebase.bind(this);
+
+        // doCreateUserWithEmailAndPassword = (email, password) =>
+        // this.auth.createUserWithEmailAndPassword(email, password);
+
+        // doSignInWithEmailAndPassword = (email, password) =>
+        // this.auth.signInWithEmailAndPassword(email, password);
+
+        // doSignOut = () => this.auth.signOut();
+
+        // doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+
+        // doPasswordUpdate = password =>
+        // this.auth.currentUser.updatePassword(password);
     }
- 
-    doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
 
-    doSignInWithEmailAndPassword = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
-
-    doSignOut = () => this.auth.signOut();
-
-    doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
-
-    doPasswordUpdate = password =>
-    this.auth.currentUser.updatePassword(password);
+    getDataFromFirebase(() => {
+        const fetchData = async () => {
+            const db = firebase.firestore()
+            const data = await db.collection("defeaultpalettes").get()
+            return data
+        }
+        data = fetchData()
+        return data
+    },[]);
+    
 }
 
 export default Firebase;
