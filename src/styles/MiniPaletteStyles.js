@@ -14,10 +14,9 @@ export default {
         position: "relative",
         overflow: "hidden",
         cursor: "pointer",
-        [sizes.up("sm")]: {
-            "&:hover svg": {
-                opacity: 1
-            }
+        [sizes.down("md")]: {
+            width: "50%",
+            maxWidth: "400px",
         },
     },
     colors: {
@@ -32,11 +31,13 @@ export default {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        margin: "0",
+        margin: "0px",
         color: "black",
-        paddingTop: "0.5rem",
         fontSize: "1rem",
         position: "relative"
+    },
+    titleContainer: {
+        paddingBottom: "10px",
     },
     emoji: {
         marginLeft: "0.5rem",
@@ -80,5 +81,17 @@ export default {
 
         },
 
+    },
+    buttons: {
+        display: "flex",
+        justifyContent: "space-around",
+        marginTop: "10px",
+        height: "20px",
+    },
+    editButton:{
+        color: "#83bb43",
+    },
+    deleteButton:{
+        color: "#eb3d30",
     }
 }

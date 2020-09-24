@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import app from 'firebase/app';
 import 'firebase/auth';
 
 const firebaseConfig = {
@@ -14,22 +14,26 @@ const firebaseConfig = {
 
 class Firebase {
     constructor() {
-        // firebase.initializeApp(firebaseConfig);
-        // this.auth = firebase.auth();
-        // this.db = firebase.firestore();
+        app.initializeApp(firebaseConfig);
+        this.auth = app.auth();
+        this.doCreateUserWithEmailAndPassword = this.doCreateUserWithEmailAndPassword.bind(this);
+        this.doSignInWithEmailAndPassword = this.doSignInWithEmailAndPassword.bind(this);
+        this.doSignOut = this.doSignOut.bind(this);
     }
 
-    getDataHelper() {
-        try {
-            const data = this.db.collection("defeaultpalettes").get()
-            return data
-        } catch (error) {
-            console.log(error);
-        }
-    }  
+    doCreateUserWithEmailAndPassword(email,password){
+        return this.auth.createUserWithEmailAndPassword(email,password);
+    }
+
+    doSignInWithEmailAndPassword(email,password){
+        return this.auth.signInWithEmailAndPassword(email,password);
+    }
+
+    doSignOut(){
+        return this.auth.signOut();
+    }
+  
 }
-
-
 
 export default Firebase;
 

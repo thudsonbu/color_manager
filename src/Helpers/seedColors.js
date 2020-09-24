@@ -54,8 +54,8 @@ export default [
       ]
     },
     {
-      paletteName: "Flat UI Colors Dutch",
-      id: "flat-ui-colors-dutch",
+      paletteName: "BCG Colors",
+      id: "bcg-colors",
       emoji: "🇳🇱",
       colors: [
         { name: "Sunflower", color: "#FFC312" },
