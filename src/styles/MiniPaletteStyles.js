@@ -14,9 +14,11 @@ export default {
         position: "relative",
         overflow: "hidden",
         cursor: "pointer",
-        [sizes.down("md")]: {
-            width: "50%",
-            maxWidth: "400px",
+        [sizes.down("sm")]: {
+            width: "60%",
+            height: "30%",
+            maxWidth: "500px",
+            margin: "1.5rem",
         },
     },
     colors: {

@@ -123,5 +123,6 @@ export default {
         transition: "all 0.4s ease-in-out",
         transitionDelay: "0.2s",
         overflow: "hidden",
+        textTransform: "uppercase",
     },
 }
