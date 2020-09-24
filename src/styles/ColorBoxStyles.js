@@ -48,16 +48,14 @@ export default {
         padding: "0"
     },
     copyButton: {
-        width: "60px",
+        width: "130px",
         height: "20px",
         position: "absolute",
         display: "inline-block",
         top: "50%",
         left: "50%",
-        marginLeft: "-30px",
+        marginLeft: "-65px",
         marginTop: "-10px",
-        AccountsForWidthOfBoxForPositioningMarginTop: "-10px",
-        AccountsForHeightOfBoxForPositioningTextAlign: "center",
         outline: "none",
         border: "none",
         background: "rgba(255, 255, 255, 0.3)",

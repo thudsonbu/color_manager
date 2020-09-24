@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
+
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+
 import { Link } from 'react-router-dom'
+
 import { withStyles } from "@material-ui/styles"
+
 import styles from '../styles/ColorBoxStyles'
+
 import classnames from 'classnames';
+
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 class ColorBox extends Component {
     constructor(props){
@@ -39,13 +46,13 @@ class ColorBox extends Component {
                         )}
                     >
                         <h1 className={classes.copyText} >Copied!</h1>
-                        <p className={classes.copyText} >{background}</p>
+                        <p className={classes.copyText}>{background}</p>
                     </div>
                     <div className={classes.copyContainer} style={{backgroundColor: background}}>
                         <div className={classes.boxContent}>
                             <span className={classes.colorName}>{name}</span>
                         </div>
-                            <button className={classes.copyButton}>Copy</button>
+                            <button className={classes.copyButton}>Copy <span>{background}</span></button>
                         { fullBox &&
                             <Link to={`/palette/${paletteId}/${id}`} onClick={e => e.stopPropagation()} className={classes.seeMore}>
                                 <span className={classes.lightText}>SHADES</span>
