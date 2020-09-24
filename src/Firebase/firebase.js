@@ -14,9 +14,24 @@ const firebaseConfig = {
 
 class Firebase {
     constructor() {
-        firebase.initializeApp(firebaseConfig);
-        this.auth = firebase.auth();
-        this.getDataFromFirebase = this.getDataFromFirebase.bind(this);
+        // firebase.initializeApp(firebaseConfig);
+        // this.auth = firebase.auth();
+        // this.db = firebase.firestore();
+    }
+
+    getDataHelper() {
+        try {
+            const data = this.db.collection("defeaultpalettes").get()
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    }  
+}
+
+
+
+export default Firebase;
 
         // doCreateUserWithEmailAndPassword = (email, password) =>
         // this.auth.createUserWithEmailAndPassword(email, password);
@@ -30,18 +45,3 @@ class Firebase {
 
         // doPasswordUpdate = password =>
         // this.auth.currentUser.updatePassword(password);
-    }
-
-    getDataFromFirebase(() => {
-        const fetchData = async () => {
-            const db = firebase.firestore()
-            const data = await db.collection("defeaultpalettes").get()
-            return data
-        }
-        data = fetchData()
-        return data
-    },[]);
-    
-}
-
-export default Firebase;

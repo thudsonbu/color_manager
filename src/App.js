@@ -11,7 +11,8 @@ import NewPaletteForm from './PaletteForm/NewPaletteForm';
 import PaletteList from './Home/PaletteList';
 import Page from "./Page";
 
-import Firebase from "./Firebase/firebase";
+import firebase from "firebase";
+import "firebase/auth";
 
 class App extends Component {
   constructor(props) {
@@ -22,13 +23,27 @@ class App extends Component {
       index: 0
     };
     this.savePalette = this.savePalette.bind(this);
-    //this.saveEditedPalette = this.saveEditedPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
   }
 
-  componentDidMount(){
-    Firebase.getD
+  
+
+  async componentDidMount(){
+    const firebaseConfig = {
+      apiKey: "AIzaSyA4fxBa0cZ7ixICby18NdSgbhc3ySHfT5A",
+      authDomain: "color-manager.firebaseapp.com",
+      databaseURL: "https://color-manager.firebaseio.com",
+      projectId: "color-manager",
+      storageBucket: "color-manager.appspot.com",
+      messagingSenderId: "570569969501",
+      appId: "1:570569969501:web:fb78e46001ae766d94e2b4",
+      measurementId: "G-QWJQZED2E9"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.firestore();
+    const data = database.collection("defeaultpalettes").get()
+    console.log(data);
   }
   
 
