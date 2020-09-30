@@ -9,7 +9,10 @@ export default {
         margin: "0",
         display: "flex",
         flexWrap: "wrap",
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
+        [sizes.down("sm")]: {
+            height: "70vh",
+        },
     },
     goBackClass: {
         alignSelf: "end",

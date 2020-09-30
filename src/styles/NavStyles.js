@@ -5,7 +5,10 @@ export default {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    height: "10vh"
+    height: "10vh",
+    [sizes.down("sm")]: {
+      hight: "6vh",
+    },
   },
   logoClass: {
     marginRight: "10px",
@@ -27,12 +30,15 @@ export default {
       fontWeight: "700",
       color: "#ff7300",
     },
-    [sizes.down("xs")]: {
-      display: "none",
+    [sizes.down("sm")]: {
+      display: "None",
     }
   },
   sliderContainer: {
     marginLeft: "10px",
+    [sizes.down("sm")]: {
+      display: "None",
+    }
   },
   slider: {
     width: "340px",
@@ -54,9 +60,6 @@ export default {
       marginLeft: "-7px",
       marginTop: "-3px",
     },
-    [sizes.down("xs")]: {
-      width: "200px",
-    }
   },
   selectContainerClass: {
     marginLeft: "auto",

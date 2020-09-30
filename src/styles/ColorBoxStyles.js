@@ -17,8 +17,8 @@ export default {
             height: props => props.fullBox ? "10%" : "20%",
         },
         [sizes.down("sm")]: {
-            width:"100%",
-            height: props => props.fullBox ? "5%" : "10%",
+            width:"50%",
+            height: props => props.fullBox ? "10%" : "20%",
         }
     },
     seeMore: {
