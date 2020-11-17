@@ -9,6 +9,7 @@ import Palette from './Palette/Palette';
 import SingleColorPalette from './Palette/SingleColorPalette';
 import NewPaletteForm from './PaletteForm/NewPaletteForm';
 import PaletteList from './Home/PaletteList';
+import SignUp from './SignUp/index';
 import Page from "./Page";
 
 import firebase from "firebase";
@@ -157,6 +158,16 @@ class App extends Component {
                           colorId={routeProps.match.params.colorId}
                           palette={generatePalette(this.findPalette(routeProps.match.params.paletteId))}
                         />
+                      </Page>
+                    )
+                  }
+                />
+                <Route
+                  path={"/signup"}
+                  render={() =>
+                    (
+                      <Page>
+                        <SignUp/>
                       </Page>
                     )
                   }
