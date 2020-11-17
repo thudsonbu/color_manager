@@ -8,9 +8,9 @@ import * as serviceWorker from './Helpers/serviceWorker';
 
 ReactDOM.render(
   <BrowserRouter>
-      <FirebaseContext.Provider value={new Firebase()}>
-        <App />
-      </FirebaseContext.Provider>,
+    <FirebaseContext.Provider value={new Firebase()}>
+      <App />
+    </FirebaseContext.Provider>,
   </BrowserRouter>,
   document.getElementById('root')
 );

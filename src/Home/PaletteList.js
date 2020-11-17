@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import MiniPalette from './MiniPalette'
-import SignUpDialog from '../Authorization/SignUpDialog'
+import SignUpDialog from '../Authorization/LoginDialog'
 
 import { withStyles } from '@material-ui/core'
 import styles from '../styles/PaletteListStyles'
@@ -70,9 +70,7 @@ class PaletteList extends Component{
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1>Palette List</h1>
-                        {/* <FirebaseContext.Consumer>
-                            {firebase => <SignUpDialog firebase={firebase} />}
-                        </FirebaseContext.Consumer> */}
+                        <SignUpDialog/>
                         <Link to="/palette/new">Create Palette</Link>
                     </nav>
                     <TransitionGroup className={classes.palettes}>
