@@ -18,7 +18,7 @@ import "firebase/auth";
 class App extends Component {
   constructor(props) {
     super(props)
-    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
+    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
     this.state = {
       palettes: savedPalettes || seedColors,
       index: 0
@@ -28,47 +28,26 @@ class App extends Component {
     this.findPalette = this.findPalette.bind(this);
   }
 
-  
-
-  // async componentDidMount(){
-  //   const firebaseConfig = {
-  //     apiKey: "AIzaSyA4fxBa0cZ7ixICby18NdSgbhc3ySHfT5A",
-  //     authDomain: "color-manager.firebaseapp.com",
-  //     databaseURL: "https://color-manager.firebaseio.com",
-  //     projectId: "color-manager",
-  //     storageBucket: "color-manager.appspot.com",
-  //     messagingSenderId: "570569969501",
-  //     appId: "1:570569969501:web:fb78e46001ae766d94e2b4",
-  //     measurementId: "G-QWJQZED2E9"
-  //   };
-  //   firebase.initializeApp(firebaseConfig);
-  //   const database = firebase.firestore();
-  //   const data = database.collection("defeaultpalettes").get()
-  //   console.log(data);
-  // }
-  
-
-
   findPalette(id) {
     return this.state.palettes.find(function (palette) {
       return palette.id === id
     })
   }
+
   savePalette(newPalette) {
     this.setState(
       {palettes: [...this.state.palettes, newPalette]},
       this.syncLocalStorage  
     )
   }
-  // saveEditedPalette(newPalette, oldPaletteId) {
-  //   this.savePalette(newPalette);
-  // }
+
   syncLocalStorage() {
     window.localStorage.setItem(
       "palettes",
       JSON.stringify(this.state.palettes)
     )
   }
+
   deletePalette(id) {
     let filteredPalettes = this.state.palettes.filter((palette) => (palette.id !== id))
     this.setState(
@@ -76,6 +55,7 @@ class App extends Component {
       this.syncLocalStorage
     )
   }
+
   render() {
     console.log(this.state.palettes);
     return (
@@ -164,10 +144,12 @@ class App extends Component {
                 />
                 <Route
                   path={"/signup"}
-                  render={() =>
+                  render={(routeProps) =>
                     (
                       <Page>
-                        <SignUp/>
+                        <SignUp
+                          {...routeProps}
+                        />
                       </Page>
                     )
                   }
