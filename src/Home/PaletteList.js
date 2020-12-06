@@ -25,6 +25,9 @@ import red from "@material-ui/core/colors/red";
 import green from "@material-ui/core/colors/green";
 
 
+import { SignUpLink } from '../SignUp'
+
+
 class PaletteList extends Component{
     constructor(props){
         super(props);
@@ -70,7 +73,7 @@ class PaletteList extends Component{
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1>Palette List</h1>
-                        <SignUpDialog/>
+                        <SignUpLink/>
                         <Link to="/palette/new">Create Palette</Link>
                     </nav>
                     <TransitionGroup className={classes.palettes}>

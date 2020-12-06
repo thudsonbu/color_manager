@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import { withFirebase } from '../Firebase';
+import { FirebaseContext, withFirebase } from '../Firebase';
+
+// the FirebaseContext.Consumer makes the firebase module available
 
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
-    {/* the firebase context gives access to auth methods */}
-      <SignUpFormBase/>
+    <SignUpForm />
   </div>
 );
+
+// initial state is use to reset form
 
 const INITIAL_STATE = {
   username: "",
@@ -105,7 +108,7 @@ const SignUpLink = () => (
   </p>
 );
 
-const SignUpForm = withFirebase(SignUpFormBase);
+const SignUpForm = withRouter(withFirebase(SignUpFormBase));
 
 export default SignUpPage;
 
