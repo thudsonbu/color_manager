@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import { FirebaseContext, withFirebase } from '../Firebase';
+import { withFirebase } from '../Firebase';
 
 // the FirebaseContext.Consumer makes the firebase module available
 
@@ -39,9 +39,9 @@ class SignUpFormBase extends Component {
         })
         .catch(error => { // if auth fails add error to state
           this.setState({error});
-        })
+        });
 
-      event.preventDefault(); // stop page rerender
+    event.preventDefault(); // stop page rerender
   };
 
   onChange = (event) => {
@@ -71,13 +71,15 @@ class SignUpFormBase extends Component {
           onChange={this.onChange}
           type="text"
           placeholder="Username"
+          required
         />
         <input
           name="email"
           value={email}
           onChange={this.onChange}
-          type="text"
+          type="email"
           placeholder="Email Address"
+          required
         />
         <input
           name="passwordOne"
@@ -85,6 +87,7 @@ class SignUpFormBase extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          required
         />
         <input  
           name="passwordTwo"
@@ -92,6 +95,7 @@ class SignUpFormBase extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          required
         />
         {/* form submit button will be disabled if input is invalid */}
         <button type="submit" disabled={isInvalid}>Sign Up</button>
