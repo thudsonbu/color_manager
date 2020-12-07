@@ -24,7 +24,7 @@ export default {
         overflowX: "none",
     },
     container: {
-        width: "95%",
+        width: "100%",
         display: "flex",
         alignItems: "flex-start",
         flexDirection: "column",

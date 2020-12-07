@@ -26,6 +26,8 @@ import green from "@material-ui/core/colors/green";
 import { SignInLink } from '../SignIn';
 import { SignUpLink } from '../SignUp';
 
+import Navbar from '../Navbar';
+
 
 class PaletteList extends Component{
     constructor(props){
@@ -70,11 +72,12 @@ class PaletteList extends Component{
         return(
             <div className={classes.root}>
                 <div className={classes.container}>
-                    <nav className={classes.nav}>
+                    {/* <nav className={classes.nav}>
                         <h1>Palette List</h1>
                         <SignInLink/>
                         <Link to="/palette/new">Create Palette</Link>
-                    </nav>
+                    </nav> */}
+                    <Navbar/>
                     <TransitionGroup className={classes.palettes}>
                         {palettes.map(palette => (
                         <CSSTransition key={palette.id} classNames="fade" timeout={500}>
