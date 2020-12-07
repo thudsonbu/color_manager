@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
 import { SignUpLink } from '../SignUp';
+
 import { withFirebase } from '../Firebase';
 
-const SignInPage = () => (
-    <div>
-        <h1>Sign In</h1>
+import { withStyles } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+
+import styles from './SignInStyles';
+
+const SignInPage = (props) => (
+    <div className={props.classes.root}>
         <SignInForm/>
-        <SignUpLink/>
     </div>
 )
 
@@ -55,28 +59,36 @@ class SignInFormBase extends Component {
     render(){
         // unpack state
         const { email, password, error } = this.state;
-        // check if valid input
+        // styles
+        const { classes } = this.props;
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
+            <form onSubmit={this.onSubmit} className={classes.form}>
+                <h1 className={classes.title}>Sign In</h1>
+                <TextField
+                    className={classes.input}
                     name="email"
                     value={email}
                     onChange={this.onChange}
                     type="email"
-                    placeholder="Email Address"
-                    required
+                    label="Email Address"
+                    variant="filled"
                 />
-                <input
+                <TextField
+                    className={classes.input}
                     name="password"
                     value={password}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
+                    variant="filled"
                     required
                 />
-                <button type="submit">SignIn</button>
+                <button type="submit" className={classes.submit}>Sign In</button>
                 {error && <p>error.message</p>}
+                <div className={classes.signUpContainer}>
+                    <SignUpLink className={classes.signUp}/>
+                </div>
             </form>
         )
     }
@@ -86,8 +98,8 @@ const SignInLink = () => (
     <Link to="/SignIn">SignIn</Link>
 )
 
-const SignInForm = withRouter(withFirebase(SignInFormBase))
+const SignInForm = withRouter(withFirebase(withStyles(styles)(SignInFormBase)));
 
-export default SignInPage;
+export default withStyles(styles)(SignInPage);
 
 export { SignInForm, SignInLink };

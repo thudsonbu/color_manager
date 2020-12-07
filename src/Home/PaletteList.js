@@ -61,12 +61,12 @@ class PaletteList extends Component{
     }
     handleEdit(){
         let editUrl = `/palette/edit/${this.state.operationId}`
-        this.props.history.push(editUrl)
+        this.props.history.push(editUrl);
         this.closeDialog();
     }
     render() {
-        const { operation, dialog } = this.state
-        const { palettes, classes } = this.props
+        const { operation, dialog } = this.state;
+        const { palettes, classes } = this.props;
         return(
             <div className={classes.root}>
                 <div className={classes.container}>
