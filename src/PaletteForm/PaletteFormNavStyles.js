@@ -1,5 +1,5 @@
 import { DRAWER_WIDTH } from '../styles/constants';
-import sizes from './sizes'
+import sizes from '../styles/sizes'
 
 export default theme => ({
     appBar: {

@@ -10,7 +10,7 @@ import SingleColorPalette from './Palette/SingleColorPalette';
 import NewPaletteForm from './PaletteForm/NewPaletteForm';
 import PaletteList from './Home/PaletteList';
 import SignUpPage from './SignUp/index';
-import LoginPage from './Login';
+import LoginPage from './SignIn';
 import Page from "./Page";
 
 import firebase from "firebase";
@@ -154,7 +154,7 @@ class App extends Component {
                   }
                 />
                 <Route
-                  path={"/login"}
+                  path={"/signin"}
                   render={(routeProps) =>
                     (
                       <Page>

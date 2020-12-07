@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 
 import MiniPalette from './MiniPalette'
-import SignUpDialog from '../Authorization/LoginDialog'
 
 import { withStyles } from '@material-ui/core'
-import styles from '../styles/PaletteListStyles'
+import styles from './PaletteListStyles';
 
 import { Link } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -24,8 +23,8 @@ import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 import green from "@material-ui/core/colors/green";
 
-import { LoginLink } from '../Login';
-import { SignUpLink } from '../SignUp'
+import { SignInLink } from '../SignIn';
+import { SignUpLink } from '../SignUp';
 
 
 class PaletteList extends Component{
@@ -73,7 +72,7 @@ class PaletteList extends Component{
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1>Palette List</h1>
-                        <LoginLink/>
+                        <SignInLink/>
                         <Link to="/palette/new">Create Palette</Link>
                     </nav>
                     <TransitionGroup className={classes.palettes}>

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import SearchIcon from '@material-ui/icons/Search';
 import EditIcon from '@material-ui/icons/Edit';
-import styles from '../styles/MiniPaletteStyles'
+import styles from './MiniPaletteStyles'
 
 import Button from '@material-ui/core/Button';
 

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { withStyles } from "@material-ui/styles"
 
-import styles from '../styles/ColorBoxStyles'
+import styles from './ColorBoxStyles'
 
 import classnames from 'classnames';
 

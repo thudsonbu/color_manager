@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { withStyles } from "@material-ui/styles";
-import styles from "../styles/NavStyles";
+import styles from "./NavStyles";
 
 
 import Select from "@material-ui/core/Select";

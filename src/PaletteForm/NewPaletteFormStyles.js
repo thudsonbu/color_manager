@@ -1,5 +1,5 @@
-import { DRAWER_WIDTH } from './constants';
-import sizes from './sizes';
+import { DRAWER_WIDTH } from '../styles/constants';
+import sizes from '../styles/sizes';
 
 export default theme => ({
     root: {

@@ -4,10 +4,10 @@ import { withRouter, Link } from 'react-router-dom';
 import { SignUpLink } from '../SignUp';
 import { withFirebase } from '../Firebase';
 
-const LoginPage = () => (
+const SignInPage = () => (
     <div>
-        <h1>Login</h1>
-        <LoginForm/>
+        <h1>Sign In</h1>
+        <SignInForm/>
         <SignUpLink/>
     </div>
 )
@@ -18,7 +18,7 @@ const INITIAL_STATE = {
     error: null
 }
 
-class LoginFormBase extends Component {
+class SignInFormBase extends Component {
     constructor(props){
         super(props);
         this.state = { ...INITIAL_STATE };
@@ -35,7 +35,7 @@ class LoginFormBase extends Component {
     onSubmit = (event) => {
         // unpack variables from event (from form)
         const { email, password } = this.state;
-        // attempt login with firebase
+        // attempt SignIn with firebase
         this.props.firebase
             .doSignInWithEmailAndPassword(email,password) // returns promise we will now handle
                 // successful authentication
@@ -75,19 +75,19 @@ class LoginFormBase extends Component {
                     placeholder="Password"
                     required
                 />
-                <button type="submit">Login</button>
+                <button type="submit">SignIn</button>
                 {error && <p>error.message</p>}
             </form>
         )
     }
 }
 
-const LoginLink = () => (
-    <Link to="/Login">Login</Link>
+const SignInLink = () => (
+    <Link to="/SignIn">SignIn</Link>
 )
 
-const LoginForm = withRouter(withFirebase(LoginFormBase))
+const SignInForm = withRouter(withFirebase(SignInFormBase))
 
-export default LoginPage;
+export default SignInPage;
 
-export { LoginForm, LoginLink };
+export { SignInForm, SignInLink };

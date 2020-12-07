@@ -11,7 +11,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 import { arrayMove } from "react-sortable-hoc";
 
-import styles from '../styles/NewPaletteFormStyles';
+import styles from './NewPaletteFormStyles';
 
 import DraggableColorList from "./DraggableColorList";
 import PaletteFormNav from './PaletteFormNav';

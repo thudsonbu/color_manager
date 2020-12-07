@@ -1,5 +1,5 @@
 import chroma from 'chroma-js'
-import sizes from './sizes';
+import sizes from '../styles/sizes';
 
 export default {
     ColorBox: {

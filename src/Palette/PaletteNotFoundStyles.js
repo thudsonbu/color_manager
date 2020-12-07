@@ -1,4 +1,4 @@
-import bg from "./Large-Triangles.svg";
+import bg from "../styles/Large-Triangles.svg";
 
 export default {
     paletteNotFound: {

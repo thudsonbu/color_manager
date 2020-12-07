@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 
 import PaletteMetaForm from './PaletteMetaForm';
 
-import styles from '../styles/PaletteFormNavStyles.js';
+import styles from './PaletteFormNavStyles.js';
 
 
 class PaletteFormNav extends Component {
