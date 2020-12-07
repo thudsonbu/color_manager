@@ -16,8 +16,14 @@ export default {
         borderRadius: "2px",
         boxShadow: "0px 1px 10px #999",
     },
+    leftNavbar: {
+        width: "60%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+    },
     logoBox: {
-        marginRight: "10px",
         padding: "0 20px",
         fontSize: "16px",
         fontWeight: "500",
@@ -40,14 +46,30 @@ export default {
         //   display: "None",
         // }
     },
-    menuButton: {
-        height: "10vh",
-        width: "10vh",
+    linkButton: {
         color: "#4cb2f5",
-        
-    },
-    menuIcon: {
         fontSize: "2rem",
+        paddingLeft: "2vh",
+    },
+    linkLabel: {
+        color: "#000000",
+        fontSize: ".8rem",
+    },
+    rightNavbar: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        paddingRight: "3vh",
+    },
+    menuButton: {
+        height: "8vh",
+        width: "8vh",
+        color: "#4cb2f5",
+    },
+    icon: {
+        fontSize: "2rem",
+        marginRight: ".5vh",
     },
     link: {
         textDecoration: "none",

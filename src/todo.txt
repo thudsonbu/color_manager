@@ -1,0 +1,7 @@
+- Add create palette and palette list links to navbar
+- Fix logo styling weirdness on mobile on view palette page (logo dissapears)
+- Change navbar on edit palette page to match others
+- Change button styles on edit palette page to match others
+- Move slider and menu to bottom on view palette page
+- Add bottom bar on edit palette page
+- Add user logged in feedback to navbar 
