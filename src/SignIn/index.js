@@ -73,6 +73,7 @@ class SignInFormBase extends Component {
                     type="email"
                     label="Email Address"
                     variant="filled"
+                    required
                 />
                 <TextField
                     className={classes.input}
@@ -81,6 +82,7 @@ class SignInFormBase extends Component {
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
+                    label="Password"
                     variant="filled"
                     required
                 />

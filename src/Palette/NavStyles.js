@@ -28,7 +28,7 @@ export default {
     },
     "& span": {
       fontWeight: "700",
-      color: "#ff7300",
+      color: "#4cb2f5",
     },
     [sizes.down("sm")]: {
       display: "None",

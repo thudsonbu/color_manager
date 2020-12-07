@@ -23,7 +23,7 @@ export default {
     form: {
         backgroundColor: "#ffffff",
         width: "300px",
-        height: "300px",
+        height: "360px",
         padding: "10px 20px 20px 20px",
         borderRadius: "5px",
     },
@@ -45,6 +45,7 @@ export default {
         border: "none",
         color: "#ffffff",
         backgroundColor: "#4cb2f5",
+        fontWeight: "200%",
         "&:hover": {
             backgroundColor: "#0384cc",
         }

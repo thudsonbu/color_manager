@@ -3,12 +3,16 @@ import { Link, withRouter } from "react-router-dom";
 
 import { withFirebase } from '../Firebase';
 
+import { withStyles } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+
+import styles from './SignUpStyles';
+
 // the FirebaseContext.Consumer makes the firebase module available
 
-const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
+const SignUpPage = (props) => (
+  <div className={props.classes.root}>
+    <SignUpForm/>
   </div>
 );
 
@@ -50,13 +54,9 @@ class SignUpFormBase extends Component {
 
   render() {
     // store input states
-    const {
-      username,
-      email,
-      passwordOne,
-      passwordTwo,
-      error,
-    } = this.state;
+    const { username, email, passwordOne, passwordTwo, error, } = this.state;
+    // unpack classes (material ui)
+    const { classes } = this.props;
     // check if the input to the form is valid (form button will be disabled)
     const isInvalid = passwordOne !== passwordTwo ||
       passwordOne === '' ||
@@ -64,41 +64,54 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input 
+      <form onSubmit={this.onSubmit} className={classes.form}>
+        <h1 className={classes.title}>SignUp</h1>
+        <TextField
+          className={classes.input}
           name="username"
           value={username}
           onChange={this.onChange}
           type="text"
           placeholder="Username"
+          variant="filled"
+          size="small"
           required
         />
-        <input
+        <TextField
+          className={classes.input}
           name="email"
           value={email}
           onChange={this.onChange}
           type="email"
           placeholder="Email Address"
+          variant="filled"
+          size="small"
           required
         />
-        <input
+        <TextField
+          className={classes.input}
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          variant="filled"
+          size="small"
           required
         />
-        <input  
+        <TextField
+          className={classes.input}
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
           type="password"
-          placeholder="Password"
+          placeholder="Password Confirm"
+          variant="filled"
+          size="small"
           required
         />
         {/* form submit button will be disabled if input is invalid */}
-        <button type="submit" disabled={isInvalid}>Sign Up</button>
+        <button type="submit" disabled={isInvalid} className={classes.submit}>Sign Up</button>
         {/* display an error message if an error is returned */}
         {error && <p>{error.message}</p>}
       </form>
@@ -106,14 +119,16 @@ class SignUpFormBase extends Component {
   }
 }
 
-const SignUpLink = () => (
+const SignUpLinkBase = (props) => (
   <p>
-    Don't have an account? <Link to="/SignUp">Sign Up</Link>
+    Don't have an account? <Link to="/SignUp" className={props.classes.signUpLink}>Sign Up</Link>
   </p>
 );
 
-const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+const SignUpForm = withRouter(withFirebase(withStyles(styles)(SignUpFormBase)));
 
-export default SignUpPage;
+const SignUpLink = withStyles(styles)(SignUpLinkBase);
+
+export default withStyles(styles)(SignUpPage);
 
 export { SignUpForm, SignUpLink };
