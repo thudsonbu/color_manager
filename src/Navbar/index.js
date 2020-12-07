@@ -23,36 +23,41 @@ class Navbar extends Component {
     handleClick = (event) => {
         this.setState({
             menuOpen: true,
+            menuAnchor: event.currentTarget,
         })
     };
 
     handleClose = () => {
         this.setState({
             menuOpen: false,
+            menuAnchor: null,
         })
     }
 
     render(){
         const { classes } = this.props;
-        const { menuOpen } = this.state;
+        const { menuOpen, menuAnchor } = this.state;
 
         return (
             <div className={classes.root}>
                 <div className={classes.logoBox}>
                     <Link to='/'>react<span>color</span>manager</Link>
                 </div>
+                <div>
                 <IconButton edge="start" onClick={this.handleClick} className={classes.menuButton} color="inherit" aria-label="menu">
-                    <AccountBoxIcon />
+                    <AccountBoxIcon className={classes.menuIcon}/>
                 </IconButton>
                 <Menu 
                     open={menuOpen}
                     keepMounted
                     onClose={this.handleClose}
+                    anchorEl={menuAnchor}
                 >
-                    <MenuItem><Link to='../SignIn'>Sign In</Link></MenuItem>
-                    <MenuItem><Link to='../SignUp'>Sign Up</Link></MenuItem>
+                    <MenuItem><Link to='../SignIn' className={classes.link}>Sign In</Link></MenuItem>
+                    <MenuItem><Link to='../SignUp' className={classes.link}>Sign Up</Link></MenuItem>
                     <MenuItem onClick={this.signOut}>Sign Out</MenuItem>
                 </Menu>
+                </div>
             </div>
         )
     }

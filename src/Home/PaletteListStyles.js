@@ -31,20 +31,32 @@ export default {
         flexWrap: "wrap",
         justifyContent: "center",
     },
-    nav: {
-        display: "flex",
+    title: {
+        marginTop: "10vh",
+        paddingTop: "8vh",
         width: "100%",
-        justifyContent: "space-between",
-        color: "white",
-        fontSize: "20px",
-        alignItems: "center",
-        "& a": {
-            color: "white"
-        }
+        textAlign: "center",
+        height: "15vh",
+        fontSize: "4em",
+        color: "#ffffff",
+        textTransform: "uppercase",
+        fontWeight: 700
     },
-    navTitle: {
-        fontSize: "3rem",
-    },
+
+    // nav: {
+    //     display: "flex",
+    //     width: "100%",
+    //     justifyContent: "space-between",
+    //     color: "white",
+    //     fontSize: "20px",
+    //     alignItems: "center",
+    //     "& a": {
+    //         color: "white"
+    //     }
+    // },
+    // navTitle: {
+    //     fontSize: "3rem",
+    // },
     palettes: {
         boxSizing: "border-box",
         width: "100%",

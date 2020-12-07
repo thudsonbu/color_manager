@@ -3,8 +3,9 @@ import sizes from '../styles/sizes';
 export default {
     root: {
         backgroundColor: "white",
-        border: "1px solid black",
         borderRadius: "5px",
+        boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+        transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",
         padding: "0.5rem",
         margin: "1rem",
         height: "20%",
@@ -20,6 +21,9 @@ export default {
             maxWidth: "500px",
             margin: "1.5rem",
         },
+        "&:hover":{
+            boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+        }
     },
     colors: {
         backgroundColor: "grey",

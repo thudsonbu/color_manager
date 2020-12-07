@@ -1,3 +1,5 @@
+import zIndex from '@material-ui/core/styles/zIndex';
+import { GpsFixed } from '@material-ui/icons';
 import sizes from '../styles/sizes';
 
 export default {
@@ -8,6 +10,11 @@ export default {
         display: "flex",
         alignItemce: "center",
         justifyContent: "space-between",
+        position: "fixed",
+        top: 0,
+        zIndex: "1",
+        borderRadius: "2px",
+        boxShadow: "0px 1px 10px #999",
     },
     logoBox: {
         marginRight: "10px",
@@ -34,6 +41,16 @@ export default {
         // }
     },
     menuButton: {
-        height: "8vh",
+        height: "10vh",
+        width: "10vh",
+        color: "#4cb2f5",
+        
+    },
+    menuIcon: {
+        fontSize: "2rem",
+    },
+    link: {
+        textDecoration: "none",
+        color: "#000000",
     }
 }

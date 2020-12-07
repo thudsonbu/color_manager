@@ -78,6 +78,9 @@ class PaletteList extends Component{
                         <Link to="/palette/new">Create Palette</Link>
                     </nav> */}
                     <Navbar/>
+                    <h1 className={classes.title}>
+                        Palette List
+                    </h1>
                     <TransitionGroup className={classes.palettes}>
                         {palettes.map(palette => (
                         <CSSTransition key={palette.id} classNames="fade" timeout={500}>

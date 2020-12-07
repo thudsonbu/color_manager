@@ -161,7 +161,6 @@ class NewPaletteForm extends Component {
                         <Divider />
                         <div className={classes.drawerContent}>
                             <div className={classes.container}>
-                                <h1 className={classes.drawerHeaderText}>Design Your Palet</h1>
                                 <div className={classes.buttons}>
                                     <Button
                                         className={classes.clearPaletteButton} 
