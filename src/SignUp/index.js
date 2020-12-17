@@ -3,6 +3,8 @@ import { Link, withRouter } from "react-router-dom";
 
 import { withFirebase } from '../Firebase';
 
+import Navbar from '../Navbar/index';
+
 import { withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
@@ -64,57 +66,61 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit} className={classes.form}>
-        <h1 className={classes.title}>SignUp</h1>
-        <TextField
-          className={classes.input}
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Username"
-          variant="filled"
-          size="small"
-          required
-        />
-        <TextField
-          className={classes.input}
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="email"
-          placeholder="Email Address"
-          variant="filled"
-          size="small"
-          required
-        />
-        <TextField
-          className={classes.input}
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-          variant="filled"
-          size="small"
-          required
-        />
-        <TextField
-          className={classes.input}
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password Confirm"
-          variant="filled"
-          size="small"
-          required
-        />
-        {/* form submit button will be disabled if input is invalid */}
-        <button type="submit" disabled={isInvalid} className={classes.submit}>Sign Up</button>
-        {/* display an error message if an error is returned */}
-        {error && <p>{error.message}</p>}
-      </form>
+      <div className={classes.root}>
+        <Navbar/>
+        <form onSubmit={this.onSubmit} className={classes.form}>
+          <h1 className={classes.title}>SignUp</h1>
+          <TextField
+            className={classes.input}
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Username"
+            variant="filled"
+            size="small"
+            required
+          />
+          <TextField
+            className={classes.input}
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="email"
+            placeholder="Email Address"
+            variant="filled"
+            size="small"
+            required
+          />
+          <TextField
+            className={classes.input}
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+            variant="filled"
+            size="small"
+            required
+          />
+          <TextField
+            className={classes.input}
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password Confirm"
+            variant="filled"
+            size="small"
+            required
+          />
+          {/* form submit button will be disabled if input is invalid */}
+          <button type="submit" disabled={isInvalid} className={classes.submit}>Sign Up</button>
+          {/* display an error message if an error is returned */}
+          {error && <p>{error.message}</p>}
+        </form>
+      </div>
+
     );
   }
 }

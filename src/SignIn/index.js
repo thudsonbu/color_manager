@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
 import { SignUpLink } from '../SignUp';
+import Navbar from '../Navbar';
 
 import { withFirebase } from '../Firebase';
 
@@ -63,35 +64,38 @@ class SignInFormBase extends Component {
         const { classes } = this.props;
 
         return (
-            <form onSubmit={this.onSubmit} className={classes.form}>
-                <h1 className={classes.title}>Sign In</h1>
-                <TextField
-                    className={classes.input}
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="email"
-                    label="Email Address"
-                    variant="filled"
-                    required
-                />
-                <TextField
-                    className={classes.input}
-                    name="password"
-                    value={password}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Password"
-                    label="Password"
-                    variant="filled"
-                    required
-                />
-                <button type="submit" className={classes.submit}>Sign In</button>
-                {error && <p>error.message</p>}
-                <div className={classes.signUpContainer}>
-                    <SignUpLink className={classes.signUp}/>
-                </div>
-            </form>
+            <div className={classes.root}>
+                <Navbar/>
+                <form onSubmit={this.onSubmit} className={classes.form}>
+                    <h1 className={classes.title}>Sign In</h1>
+                    <TextField
+                        className={classes.input}
+                        name="email"
+                        value={email}
+                        onChange={this.onChange}
+                        type="email"
+                        label="Email Address"
+                        variant="filled"
+                        required
+                    />
+                    <TextField
+                        className={classes.input}
+                        name="password"
+                        value={password}
+                        onChange={this.onChange}
+                        type="password"
+                        placeholder="Password"
+                        label="Password"
+                        variant="filled"
+                        required
+                    />
+                    <button type="submit" className={classes.submit}>Sign In</button>
+                    {error && <p>error.message</p>}
+                    <div className={classes.signUpContainer}>
+                        <SignUpLink className={classes.signUp}/>
+                    </div>
+                </form>
+            </div>
         )
     }
 }
