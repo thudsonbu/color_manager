@@ -43,7 +43,7 @@ class Navbar extends Component {
         return (
             <header className={classes.NavbarClass}>
                 <div className={classes.logoClass}>
-                    <Link to='/'>react<span>color</span>manager</Link>
+                    <Link to='/'><span>color</span>manager</Link>
                 </div>
                 {showSlider && (
                 <div className={classes.sliderContainer}>

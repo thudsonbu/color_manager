@@ -136,15 +136,6 @@ class NewPaletteForm extends Component {
         try {
             return (
                 <div className={classes.root}>
-                    <PaletteFormNav 
-                        stage={stage}
-                        drawerOpen={drawerOpen}
-                        palettes={palettes}
-                        handleSubmit={this.handleSubmit}
-                        handleDrawerOpen={this.handleDrawerOpen}
-                        editing={editing}
-                        paletteName={palette.paletteName}
-                    />
                     <Drawer
                         className={classes.drawer}
                         variant='persistent'
@@ -152,7 +143,6 @@ class NewPaletteForm extends Component {
                         open={drawerOpen}
                         classes={{paper: classes.drawerPaper}}
                     >
-                    
                         <div className={classes.drawerHeader}>
                             <IconButton onClick={this.handleDrawerClose}>
                                 <ChevronLeftIcon />
@@ -200,6 +190,7 @@ class NewPaletteForm extends Component {
                             </div>
                         </div>
                     </Drawer>
+                    
                     <main
                         className={classNames(classes.content, {
                             [classes.contentShift]: drawerOpen
@@ -214,6 +205,15 @@ class NewPaletteForm extends Component {
                             pressDelay={200}
                         /> 
                     </main>
+                    <PaletteFormNav 
+                        stage={stage}
+                        drawerOpen={drawerOpen}
+                        palettes={palettes}
+                        handleSubmit={this.handleSubmit}
+                        handleDrawerOpen={this.handleDrawerOpen}
+                        editing={editing}
+                        paletteName={palette.paletteName}
+                    />
                 </div>
             );
         } catch(e){

@@ -12,8 +12,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import ListIcon from '@material-ui/icons/List';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import TableChartRoundedIcon from '@material-ui/icons/TableChartRounded';
 
 class Navbar extends Component {
     constructor(props){
@@ -45,22 +45,25 @@ class Navbar extends Component {
             <div className={classes.root}>
                 <div className={classes.leftNavbar}>
                     <div className={classes.logoBox}>
-                        <Link to='/'>react<span>color</span>manager</Link>
+                        <Link to='/'><span>color</span>manager</Link>
                     </div>
                     <Link to='/palette/new' className={classes.link}>
                         <Button className={classes.linkButton}>
-                            <AddIcon className={classes.icon}/>
-                            <p className={classes.linkLabel}>New Palette</p>
+                            <AddBoxIcon className={classes.icon}/>
+                            <p className={classes.linkLabel}>New</p>
                         </Button>
                     </Link>
-                    <div className={classes.linkBox}>
-                        
-                    </div>
+                    <Link to='/' className={classes.link}>
+                        <Button className={classes.linkButton}>
+                            <TableChartRoundedIcon className={classes.icon}/>
+                            <p className={classes.linkLabel}>List</p>
+                        </Button>
+                    </Link>
                 </div>
                 <div className={classes.rightNavbar}>
-                    <IconButton edge="start" onClick={this.handleClick} className={classes.menuButton} color="inherit" aria-label="menu">
+                    <Button edge="start" onClick={this.handleClick} className={classes.linkButton} color="inherit" aria-label="menu">
                         <AccountBoxIcon className={classes.icon}/>
-                    </IconButton>
+                    </Button>
                     <Menu 
                         open={menuOpen}
                         keepMounted

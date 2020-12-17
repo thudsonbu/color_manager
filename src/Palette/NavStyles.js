@@ -13,10 +13,9 @@ export default {
   logoClass: {
     marginRight: "10px",
     padding: "0 20px",
-    fontSize: "16px",
-    fontWeight: "500",
-    backgroundColor: "#eceff1",
-    fontFamily: "Roboto",
+    fontSize: "20px",
+    fontWeight: "700",
+    backgroundColor: "#bdbdbd",
     height: "100%",
     display: "flex",
     alignItems: "center",
@@ -24,15 +23,12 @@ export default {
       textDecoration: "none",
       textTransform: "uppercase",
       letterSpacing: "1px",
-      color: "black"
+      color: "#ffffff"
     },
     "& span": {
       fontWeight: "700",
       color: "#4cb2f5",
     },
-    [sizes.down("sm")]: {
-      display: "None",
-    }
   },
   sliderContainer: {
     marginLeft: "10px",
@@ -51,9 +47,9 @@ export default {
       height: "8px"
     },
     "& .rc-slider-handle, .rc-slider-handle:active, .rc-slider-handle:focus,.rc-slider-handle:hover": {
-      backgroundColor: "green",
+      backgroundColor: "#03a2ec",
       outline: "none",
-      border: "2px solid green",
+      border: "2px solid #03a2ec",
       boxShadow: "none",
       width: "13px",
       height: "13px",

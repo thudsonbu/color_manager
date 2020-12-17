@@ -25,10 +25,9 @@ export default {
     },
     logoBox: {
         padding: "0 20px",
-        fontSize: "16px",
-        fontWeight: "500",
-        backgroundColor: "#eceff1",
-        fontFamily: "Roboto",
+        fontSize: "20px",
+        fontWeight: "700",
+        backgroundColor: "#bdbdbd",
         height: "100%",
         display: "flex",
         alignItems: "center",
@@ -36,31 +35,33 @@ export default {
           textDecoration: "none",
           textTransform: "uppercase",
           letterSpacing: "1px",
-          color: "black"
+          color: "#ffffff"
         },
         "& span": {
           fontWeight: "700",
           color: "#4cb2f5",
         },
-        // [sizes.down("sm")]: {
-        //   display: "None",
-        // }
     },
     linkButton: {
         color: "#4cb2f5",
         fontSize: "2rem",
         paddingLeft: "2vh",
+        height: "100%",
+        paddingRight: "2vh",
     },
     linkLabel: {
         color: "#000000",
-        fontSize: ".8rem",
+        fontSize: "1rem",
+        [sizes.down("sm")]: {
+            display: "none",
+        }
     },
     rightNavbar: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
-        paddingRight: "3vh",
+        heigth: "100%",
     },
     menuButton: {
         height: "8vh",

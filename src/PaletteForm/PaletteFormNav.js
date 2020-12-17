@@ -29,7 +29,7 @@ class PaletteFormNav extends Component {
                 <CssBaseline />
                 <AppBar
                     position='fixed'
-                    color='default'
+                    color='inherit'
                     className={classNames(classes.appBar, {
                         [classes.appBarShift]: drawerOpen
                     })}
