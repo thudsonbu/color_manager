@@ -40,12 +40,19 @@ class Navbar extends Component {
     render(){
         const { classes } = this.props;
         const { menuOpen, menuAnchor } = this.state;
+        // get the user to be displayed in the nav (if logged in)
+        var user = this.props.firebase.getUser();
+        var useremail = null
+        // unpack what we need from user object
+        if(user){
+            useremail = user.email;
+        }
 
         return (
             <div className={classes.root}>
                 <div className={classes.leftNavbar}>
                     <div className={classes.logoBox}>
-                        <Link to='/'><span>color</span>manager</Link>
+                        <Link to='/'><span>color</span>helper</Link>
                     </div>
                     <Link to='/palette/new' className={classes.link}>
                         <Button className={classes.linkButton}>
@@ -53,16 +60,18 @@ class Navbar extends Component {
                             <p className={classes.linkLabel}>New</p>
                         </Button>
                     </Link>
-                    <Link to='/' className={classes.link}>
+                    {/* <Link to='/' className={classes.link}>
                         <Button className={classes.linkButton}>
                             <TableChartRoundedIcon className={classes.icon}/>
                             <p className={classes.linkLabel}>List</p>
                         </Button>
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className={classes.rightNavbar}>
                     <Button edge="start" onClick={this.handleClick} className={classes.linkButton} color="inherit" aria-label="menu">
                         <AccountBoxIcon className={classes.icon}/>
+                        { user && <p className={classes.linkLabel}>{useremail}</p>}
+                        { !user && <p className={classes.linkLabel}>Account</p>}
                     </Button>
                     <Menu 
                         open={menuOpen}

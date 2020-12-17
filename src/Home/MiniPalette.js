@@ -42,9 +42,9 @@ class MiniPalette extends PureComponent{
                     {miniColorBoxes}
                 </div>
                 <div className={classes.buttons}>
-                    <Button className={classes.editButton} size="small" onClick={this.editPalette}>Edit</Button>
-                    <Button className={classes.viewButton} size="small" color="primary" onClick={() => handleClick(id)}>View</Button>
-                    <Button className={classes.deleteButton} size="small" color="secondary" onClick={this.deletePalette}>Delete</Button>
+                    <Button className={classes.editButton}  size="small" onClick={this.editPalette}>Edit</Button>
+                    <Button className={classes.viewButton}  size="small" color="primary" onClick={() => handleClick(id)}>View</Button>
+                    <Button className={classes.deleteButton}  size="small" color="secondary" onClick={this.deletePalette}>Delete</Button>
                 </div>
             </div>
         )

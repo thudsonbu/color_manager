@@ -44,8 +44,8 @@ export default {
         textTransform: "uppercase",
         fontWeight: 700,
         [sizes.down("sm")]: {
-            height: "9vh",
-            paddingTop: "3vh",
+            height: "8vh",
+            paddingTop: "5vh",
         }
     },
 
