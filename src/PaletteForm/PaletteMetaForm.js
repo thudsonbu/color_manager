@@ -92,13 +92,13 @@ class PaletteMetaForm extends Component{
                     variant="contained" 
                     color="primary" 
                     onClick={this.handleClickOpen}>
-                    {editing ? "SAVE PALETTE" : "SAVE PALETTE"}
+                    SAVE
                 </Button>
                 <Dialog
                     open={emojiForm}
                     onClose={this.handleClose}
                 >
-                    <DialogTitle id="form-dialog-title">Pick Emoji</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Pick An Emoji</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
                                 Give your palette an emoji!
@@ -117,7 +117,7 @@ class PaletteMetaForm extends Component{
                     aria-labelledby="form-dialog-title"
                 >
                     <ValidatorForm onSubmit={this.handleNameSubmit}>
-                        <DialogTitle id="form-dialog-title">Pick Name</DialogTitle>
+                        <DialogTitle id="form-dialog-title">Pick A Name</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
                                 Give your palette a unique name! This name must not match with other palette names.

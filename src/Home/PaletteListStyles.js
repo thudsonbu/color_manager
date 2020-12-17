@@ -1,5 +1,7 @@
 import bg from "../styles/Large-Triangles.svg";
 
+import sizes from '../styles/sizes';
+
 export default {
     "@global": {
         ".fade-exit": {
@@ -36,11 +38,15 @@ export default {
         paddingTop: "8vh",
         width: "100%",
         textAlign: "center",
-        height: "15vh",
+        height: "12vh",
         fontSize: "4em",
         color: "#ffffff",
         textTransform: "uppercase",
-        fontWeight: 700
+        fontWeight: 700,
+        [sizes.down("sm")]: {
+            height: "9vh",
+            paddingTop: "3vh",
+        }
     },
 
     // nav: {

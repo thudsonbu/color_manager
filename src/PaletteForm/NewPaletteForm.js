@@ -157,7 +157,7 @@ class NewPaletteForm extends Component {
                                         variant="contained" 
                                         color="secondary"
                                         onClick={this.clearColors}>   
-                                        Clear Palette
+                                        Clear
                                     </Button>
                                     <div className={classes.metaFormMobile}>
                                         <PaletteMetaForm

@@ -5,7 +5,9 @@ export default {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    height: "10vh",
+    height: "9vh",
+    borderRadius: "2px",
+    boxShadow: "0px 1px 10px #999",
     [sizes.down("sm")]: {
       hight: "6vh",
     },
@@ -29,12 +31,12 @@ export default {
       fontWeight: "700",
       color: "#4cb2f5",
     },
+    [sizes.down("md")]: {
+      display: "none",
+    },
   },
   sliderContainer: {
     marginLeft: "10px",
-    [sizes.down("sm")]: {
-      display: "None",
-    }
   },
   slider: {
     width: "340px",
@@ -56,9 +58,16 @@ export default {
       marginLeft: "-7px",
       marginTop: "-3px",
     },
+    [sizes.down("sm")]: {
+      display: "none"
+    }
   },
   selectContainerClass: {
     marginLeft: "auto",
     marginRight: "20px"
+  },
+  item: {
+    marginRight: "2vh",
+    textDecoration: "none",
   }
 }

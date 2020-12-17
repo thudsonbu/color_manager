@@ -4,7 +4,7 @@ import sizes from '../styles/sizes';
 
 export default {
     root: {
-        height: "10vh",
+        height: "9vh",
         backgroundColor: "#ffffff",
         width: "100%",
         display: "flex",
@@ -15,6 +15,9 @@ export default {
         zIndex: "1",
         borderRadius: "2px",
         boxShadow: "0px 1px 10px #999",
+        [sizes.down("sm")]: {
+            hight: "6vh",
+        },
     },
     leftNavbar: {
         width: "60%",
