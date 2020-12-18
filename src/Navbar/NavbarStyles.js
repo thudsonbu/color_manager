@@ -30,7 +30,7 @@ export default {
         padding: "0 20px",
         fontSize: "20px",
         fontWeight: "700",
-        backgroundColor: "#bdbdbd",
+        backgroundColor: "#d3d3d3",
         height: "100%",
         display: "flex",
         alignItems: "center",

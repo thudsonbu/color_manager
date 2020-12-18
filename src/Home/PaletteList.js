@@ -5,10 +5,7 @@ import MiniPalette from './MiniPalette'
 import { withStyles } from '@material-ui/core'
 import styles from './PaletteListStyles';
 
-import { Link } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-
-import { FirebaseContext } from '../Firebase/index';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -23,9 +20,8 @@ import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 import green from "@material-ui/core/colors/green";
 
-import { SignInLink } from '../SignIn';
-import { SignUpLink } from '../SignUp';
 
+import { AuthUserContext } from '../Session';
 import Navbar from '../Navbar';
 
 
@@ -72,11 +68,6 @@ class PaletteList extends Component{
         return(
             <div className={classes.root}>
                 <div className={classes.container}>
-                    {/* <nav className={classes.nav}>
-                        <h1>Palette List</h1>
-                        <SignInLink/>
-                        <Link to="/palette/new">Create Palette</Link>
-                    </nav> */}
                     <Navbar authUser={authUser}/>
                     <h1 className={classes.title}>
                         Palette List

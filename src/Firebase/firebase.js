@@ -1,15 +1,19 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 import firebaseConfig from './firebaseconf';
 
 class Firebase {
     constructor() {
         app.initializeApp(firebaseConfig);
+        // auth methods
         this.auth = app.auth();
         this.doCreateUserWithEmailAndPassword = this.doCreateUserWithEmailAndPassword.bind(this);
         this.doSignInWithEmailAndPassword = this.doSignInWithEmailAndPassword.bind(this);
         this.doSignOut = this.doSignOut.bind(this);
-        this.getUser = this.getUser.bind(this);
+        // database methods
+        this.db = app.firestore();
+        this.getPalettes = this.getPalettes.bind(this);
     }
 
     doCreateUserWithEmailAndPassword(email,password){
@@ -28,16 +32,9 @@ class Firebase {
 
     doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
-    getUser(){
-        var user = this.auth.currentUser;
-
-        if (user) {
-            return user;
-        } else {
-            return null;
-        }
+    getPalettes(){
+        return this.db.collection("defeaultpalettes").get();
     }
-  
 }
 
 export default Firebase;

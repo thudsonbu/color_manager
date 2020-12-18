@@ -5,8 +5,8 @@ const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 function generatePalette(starterPalette){
     if (!starterPalette){
         return {
-            paletteName: "Palet Deleted",
-            id: "palet-deleted",
+            paletteName: "Palette Deleted",
+            id: "palette-deleted",
             emoji: "🎨",
             colors: [
             {},

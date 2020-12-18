@@ -20,26 +20,46 @@ class App extends Component {
     super(props)
     const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
     this.state = {
-      palettes: savedPalettes || seedColors,
+      palettes: [],
       index: 0,
       authUser: null
     };
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
+    this.getPalettes = this.getPalettes.bind(this);
   }
 
   componentDidMount() {
-    this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+    this.authlistener = this.props.firebase.auth.onAuthStateChanged(authUser => {
       authUser
         ? this.setState({ authUser: authUser })
         : this.setState({ authUser: null })
       },
     );
+    this.getPalettes();
   }
 
   componentWillUnmount() {
-    this.listener();
+    this.authlistener();
+  }
+
+  getPalettes(){
+    this.props.firebase.getPalettes()
+      .then((palettes) => {
+          let palettesArray = []
+          palettes.forEach((palette) => {
+            palettesArray.push(palette.data());
+          })
+          this.setState({
+            palettes: palettesArray
+          })
+        }
+      )
+      .catch((error) => {
+          console.log(error);
+        }
+    );
   }
 
   findPalette(id) {
