@@ -14,12 +14,26 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import Button from '@material-ui/core/Button';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import TableChartRoundedIcon from '@material-ui/icons/TableChartRounded';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import SignOutButton from '../SignOut/index';
+
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 class Navbar extends Component {
     constructor(props){
         super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleSnackClose = this.handleSnackClose.bind(this);
+        this.handleSignOut = this.handleSignOut.bind(this);
         this.state = {
             menuOpen: false,
+            snackBar: false,
+            user: null
         }
     }
 
@@ -35,18 +49,24 @@ class Navbar extends Component {
             menuOpen: false,
             menuAnchor: null,
         })
-    }
+    };
+
+    handleSnackClose = () => {
+        this.setState({
+            snackBar: false,
+        })
+    };
+
+    handleSignOut = () => {
+        this.setState({
+            manuOpen: false,
+            snackBar: true,
+        })
+    };
 
     render(){
-        const { classes } = this.props;
-        const { menuOpen, menuAnchor } = this.state;
-        // get the user to be displayed in the nav (if logged in)
-        var user = this.props.firebase.getUser();
-        var useremail = null
-        // unpack what we need from user object
-        if(user){
-            useremail = user.email;
-        }
+        const { classes, authUser } = this.props;
+        const { menuOpen, menuAnchor, snackBar } = this.state;
 
         return (
             <div className={classes.root}>
@@ -70,8 +90,8 @@ class Navbar extends Component {
                 <div className={classes.rightNavbar}>
                     <Button edge="start" onClick={this.handleClick} className={classes.linkButton} color="inherit" aria-label="menu">
                         <AccountBoxIcon className={classes.icon}/>
-                        { user && <p className={classes.linkLabel}>{useremail}</p>}
-                        { !user && <p className={classes.linkLabel}>Account</p>}
+                        { authUser && <p className={classes.linkLabel}>{authUser.email}</p>}
+                        { !authUser && <p className={classes.linkLabel}>Account</p>}
                     </Button>
                     <Menu 
                         open={menuOpen}
@@ -79,11 +99,16 @@ class Navbar extends Component {
                         onClose={this.handleClose}
                         anchorEl={menuAnchor}
                     >
-                        <MenuItem><Link to='../SignIn' className={classes.link}>Sign In</Link></MenuItem>
-                        <MenuItem><Link to='../SignUp' className={classes.link}>Sign Up</Link></MenuItem>
-                        <MenuItem onClick={this.signOut}>Sign Out</MenuItem>
+                        { !authUser && <MenuItem><Link to='../SignIn' className={classes.link}>Sign In</Link></MenuItem> }
+                        { !authUser && <MenuItem><Link to='../SignUp' className={classes.link}>Sign Up</Link></MenuItem> }
+                        { authUser && <MenuItem onClick={this.handleSignOut}><SignOutButton className={classes.link} /></MenuItem> }
                     </Menu>
                 </div>
+                <Snackbar open={snackBar} autoHideDuration={6000} onClose={this.handleSnackClose} className={classes.snackBar}>
+                    <Alert onClose={this.handleClose} severity="success">
+                        Logout Succesful
+                    </Alert>
+                </Snackbar>
             </div>
         )
     }

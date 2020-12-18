@@ -78,5 +78,5 @@ export default {
     link: {
         textDecoration: "none",
         color: "#000000",
-    }
+    },
 }

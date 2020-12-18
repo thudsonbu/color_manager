@@ -10,11 +10,10 @@ import SingleColorPalette from './Palette/SingleColorPalette';
 import NewPaletteForm from './PaletteForm/NewPaletteForm';
 import PaletteList from './Home/PaletteList';
 import SignUpPage from './SignUp/index';
-import LoginPage from './SignIn';
+import SignInPage from './SignIn';
 import Page from "./Page";
 
-import firebase from "firebase";
-import "firebase/auth";
+import { withFirebase } from './Firebase'
 
 class App extends Component {
   constructor(props) {
@@ -22,11 +21,25 @@ class App extends Component {
     const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
     this.state = {
       palettes: savedPalettes || seedColors,
-      index: 0
+      index: 0,
+      authUser: null
     };
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
+  }
+
+  componentDidMount() {
+    this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState({ authUser: authUser })
+        : this.setState({ authUser: null })
+      },
+    );
+  }
+
+  componentWillUnmount() {
+    this.listener();
   }
 
   findPalette(id) {
@@ -74,6 +87,7 @@ class App extends Component {
                     (
                       <Page>
                         <NewPaletteForm
+                          authUser={this.state.authUser}
                           palette={this.state.palettes[1]}
                           savePalette={this.savePalette}
                           editing={false}
@@ -91,6 +105,7 @@ class App extends Component {
                     (
                       <Page>
                         <NewPaletteForm
+                          authUser={this.state.authUser}
                           palette={this.findPalette(routeProps.match.params.id)}
                           savePalette={this.savePalette}
                           saveEditedPalette={this.savePalette}
@@ -109,6 +124,7 @@ class App extends Component {
                     (
                       <Page>
                         <PaletteList
+                          authUser={this.state.authUser}
                           palettes={this.state.palettes}
                           deletePalette={this.deletePalette}
                           {...routeProps}
@@ -124,6 +140,7 @@ class App extends Component {
                     (
                       <Page>
                         <Palette
+                          authUser={this.state.authUser}
                           palette={generatePalette(this.findPalette(routeProps.match.params.id))}
                         />
                       </Page>
@@ -136,6 +153,7 @@ class App extends Component {
                     (
                       <Page>
                         <SingleColorPalette
+                          authUser={this.state.authUser}
                           colorId={routeProps.match.params.colorId}
                           palette={generatePalette(this.findPalette(routeProps.match.params.paletteId))}
                         />
@@ -158,7 +176,7 @@ class App extends Component {
                   render={(routeProps) =>
                     (
                       <Page>
-                        <LoginPage/>
+                        <SignInPage/>
                       </Page>
                     )
                   }
@@ -171,4 +189,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withFirebase(App);

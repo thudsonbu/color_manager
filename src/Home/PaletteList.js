@@ -68,7 +68,7 @@ class PaletteList extends Component{
     }
     render() {
         const { operation, dialog } = this.state;
-        const { palettes, classes } = this.props;
+        const { palettes, classes, authUser } = this.props;
         return(
             <div className={classes.root}>
                 <div className={classes.container}>
@@ -77,7 +77,7 @@ class PaletteList extends Component{
                         <SignInLink/>
                         <Link to="/palette/new">Create Palette</Link>
                     </nav> */}
-                    <Navbar/>
+                    <Navbar authUser={authUser}/>
                     <h1 className={classes.title}>
                         Palette List
                     </h1>
