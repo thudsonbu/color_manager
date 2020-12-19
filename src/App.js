@@ -49,7 +49,7 @@ class App extends Component {
       .then((palettes) => {
           let palettesArray = []
           palettes.forEach((palette) => {
-            palettesArray.push(palette.data());
+            palettesArray.push(palette);
           })
           this.setState({
             palettes: palettesArray

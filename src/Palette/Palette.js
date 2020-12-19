@@ -24,7 +24,7 @@ class Palette extends Component{
         this.setState({format: val})
     }
     render() {
-        console.log(this.props.history);
+        console.log(this.props.palette);
         const { colors, paletteName, emoji, id } = this.props.palette;
         const { classes } = this.props;
         const { level, format } = this.state;

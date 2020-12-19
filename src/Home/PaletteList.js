@@ -43,9 +43,11 @@ class PaletteList extends Component{
         this.handleEdit = this.handleEdit.bind(this);
         this.goToPalette = this.goToPalette.bind(this);
     }
+
     openDialog(id, operation){
         this.setState({dialog: true, operationId: id, operation: operation})
     }
+
     closeDialog(){
         this.setState({dialog: false, operationId: ""})
     }
@@ -53,15 +55,18 @@ class PaletteList extends Component{
     goToPalette(id){
         this.props.history.push(`/palette/${id}`)
     }
+
     handleDelete(){
         this.props.deletePalette(this.state.operationId);
         this.closeDialog();
     }
+
     handleEdit(){
         let editUrl = `/palette/edit/${this.state.operationId}`
         this.props.history.push(editUrl);
         this.closeDialog();
     }
+
     render() {
         const { operation, dialog } = this.state;
         const { palettes, classes, authUser } = this.props;
@@ -76,7 +81,7 @@ class PaletteList extends Component{
                         {palettes.map(palette => (
                         <CSSTransition key={palette.id} classNames="fade" timeout={500}>
                             <MiniPalette 
-                                {...palette} 
+                                {...palette.data()} 
                                 handleClick={this.goToPalette}                     
                                 openDialog={this.openDialog}
                                 key={palette.id}

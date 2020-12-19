@@ -3,6 +3,7 @@ import chroma from "chroma-js"
 const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
 function generatePalette(starterPalette){
+
     if (!starterPalette){
         return {
             paletteName: "Palette Deleted",
@@ -16,16 +17,16 @@ function generatePalette(starterPalette){
 
     // create or output Palette
     let newPalette = {
-        paletteName: starterPalette.paletteName,
+        paletteName: starterPalette.data().paletteName,
         id: starterPalette.id,
-        emoji: starterPalette.emoji,
+        emoji: starterPalette.data().emoji,
         colors: {}
     }
     // create arrays for each level 
     for(let level of levels) {
         newPalette.colors[level] = [];
     }
-    for(let color of starterPalette.colors){
+    for(let color of starterPalette.data().colors){
         // create a new scale based on a color (revers it because it comes out backward)
         let scale = generateScale(color.color, 10).reverse();
         // add each new scale to color palette
