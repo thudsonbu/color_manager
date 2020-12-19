@@ -5,6 +5,8 @@ import MiniPalette from './MiniPalette'
 import { withStyles } from '@material-ui/core'
 import styles from './PaletteListStyles';
 
+import { withFirebase } from '../Firebase';
+
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Dialog from '@material-ui/core/Dialog';
@@ -34,11 +36,34 @@ class PaletteList extends Component{
             deletingId: "",
             editId: "",
         }
+        // this.getPalettes = this.getPalettes.bind(this);
         this.openDialog = this.openDialog.bind(this);
         this.closeDialog = this.closeDialog.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.goToPalette = this.goToPalette.bind(this);
+    }
+
+    componentDidMount(){
+        this.getPalettes();
+    }
+
+    getPalettes(){
+        this.props.firebase.getPalettes()
+          .then((palettes) => {
+              let palettesArray = []
+              palettes.forEach((palette) => {
+                palettesArray.push(palette);
+              })
+              this.setState({
+                palettes: palettesArray
+              })
+            }
+          )
+          .catch((error) => {
+              console.log(error);
+            }
+        );
     }
 
     openDialog(id, operation){
@@ -137,4 +162,4 @@ class PaletteList extends Component{
     }
 }
 
-export default withStyles(styles)(PaletteList)
+export default withFirebase(withStyles(styles)(PaletteList));

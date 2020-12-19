@@ -66,7 +66,6 @@ class PaletteMetaForm extends Component{
     }
 
     handleEmojiSubmit(selectedEmoji){
-        console.log("bacon " + this.state.newPaletteName);
         this.props.handleSubmit({
             paletteName: this.state.newPaletteName,
             emoji: selectedEmoji.native,

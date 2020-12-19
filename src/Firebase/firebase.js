@@ -14,7 +14,9 @@ class Firebase {
         // database methods
         this.db = app.firestore();
         this.getPalettes = this.getPalettes.bind(this);
+        this.findPalette = this.findPalette.bind(this);
         this.saveNewPalette = this.saveNewPalette.bind(this);
+        this.saveEditedPalette = this.saveEditedPalette.bind(this);
     }
 
     doCreateUserWithEmailAndPassword(email,password){
@@ -37,6 +39,10 @@ class Firebase {
         return this.db.collection("defeaultpalettes").get();
     }
 
+    findPalette(paletteID){
+        return this.db.collection('defeaultpalettes').doc(paletteID).get();
+    }
+
     saveNewPalette(palette){
         return this.db.collection('defeaultpalettes').add(palette);
     }
@@ -47,16 +53,3 @@ class Firebase {
 }
 
 export default Firebase;
-
-        // doCreateUserWithEmailAndPassword = (email, password) =>
-        // this.auth.createUserWithEmailAndPassword(email, password);
-
-        // doSignInWithEmailAndPassword = (email, password) =>
-        // this.auth.signInWithEmailAndPassword(email, password);
-
-        // doSignOut = () => this.auth.signOut();
-
-        // doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
-
-        // doPasswordUpdate = password =>
-        // this.auth.currentUser.updatePassword(password);

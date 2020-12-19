@@ -6,13 +6,13 @@ import { generatePalette } from './Helpers/colorHelpers';
 
 import Palette from './Palette/Palette';
 import SingleColorPalette from './Palette/SingleColorPalette';
-import NewPaletteForm from './PaletteForm/NewPaletteForm';
+import PaletteForm from './PaletteForm/PaletteForm';
 import PaletteList from './Home/PaletteList';
 import SignUpPage from './SignUp/index';
 import SignInPage from './SignIn';
 import Page from "./Page";
 
-import { withFirebase } from './Firebase'
+import { withFirebase } from './Firebase';
 
 class App extends Component {
   constructor(props) {
@@ -24,24 +24,10 @@ class App extends Component {
       authUser: null
     };
     this.saveNewPalette = this.saveNewPalette.bind(this);
+    this.saveEditedPalette = this.saveEditedPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
     this.getPalettes = this.getPalettes.bind(this);
-  }
-
-  componentDidMount() {
-    this.authlistener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-      authUser
-        ? this.setState({ authUser: authUser })
-        : this.setState({ authUser: null })
-      },
-    );
-    this.getPalettes();
-    console.log(this.props);
-  }
-
-  componentWillUnmount() {
-    this.authlistener();
   }
 
   getPalettes(){
@@ -62,30 +48,57 @@ class App extends Component {
       );
   }
 
-  findPalette(id) {
-    return this.state.palettes.find(function (palette) {
-      return palette.id === id
-    })
+  componentDidMount() {
+    this.authlistener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState({ authUser: authUser })
+        : this.setState({ authUser: null })
+      },
+    );
+    this.getPalettes();
+    console.log(this.props);
+  }
+
+  componentWillUnmount() {
+    this.authlistener();
+  }
+
+  findPalette(id){
+    this.props.firebase.findPalette(id)
+      .then((palette) => {
+        console.log(palette);
+        return palette
+      })
+      .catch((error) => {
+        console.log(error);
+        return null
+      });
   }
 
   saveNewPalette(newPalette) {
     this.props.firebase.saveNewPalette(newPalette)
-      .then(() => {
-        console.log("Save Succesful");
+      .then((success) => {
+        console.log("Palette Saved");
+        return true;
       })
       .catch((error) => {
         console.log(error);
-      });
+        return false;
+      })
+    this.getPalettes();
   }
 
   saveEditedPalette(editedPalette, id) {
     this.props.firebase.saveEditedPalette(editedPalette, id)
-      .then(() => {
-        console.log("Save Succesful");
+      .then((success) => {
+        console.log("Palette Saved");
+        return true;
       })
       .catch((error) => {
         console.log(error);
-      });
+        return false;
+      })
+    this.getPalettes();
   }
   
 
@@ -119,8 +132,9 @@ class App extends Component {
                   render={(routeProps) =>
                     (
                       <Page>
-                        <NewPaletteForm
+                        <PaletteForm
                           authUser={this.state.authUser}
+                          firebase={this.props.firebase}
                           palette={this.state.palettes[1]}
                           savePalette={this.savePalette}
                           editing={false}
@@ -137,9 +151,11 @@ class App extends Component {
                   render={(routeProps) =>
                     (
                       <Page>
-                        <NewPaletteForm
+                        <PaletteForm
                           authUser={this.state.authUser}
-                          palette={this.findPalette(routeProps.match.params.id)}
+                          firebase={this.props.firebase}
+                          paletteID={routeProps.match.params.id}
+                          findPalette={this.findPalette}
                           savePalette={this.savePalette}
                           saveEditedPalette={this.saveEditedPalette}
                           editing={true}
