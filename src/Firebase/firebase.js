@@ -14,6 +14,7 @@ class Firebase {
         // database methods
         this.db = app.firestore();
         this.getPalettes = this.getPalettes.bind(this);
+        this.saveNewPalette = this.saveNewPalette.bind(this);
     }
 
     doCreateUserWithEmailAndPassword(email,password){
@@ -34,6 +35,14 @@ class Firebase {
 
     getPalettes(){
         return this.db.collection("defeaultpalettes").get();
+    }
+
+    saveNewPalette(palette){
+        return this.db.collection('defeaultpalettes').add(palette);
+    }
+
+    saveEditedPalette(palette,id){
+        return this.db.collection('defeaultpalettes').doc(id).set(palette);
     }
 }
 

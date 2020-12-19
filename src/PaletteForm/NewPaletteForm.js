@@ -47,7 +47,7 @@ class NewPaletteForm extends Component {
 
     getColors(){
         try {
-            let colors = this.props.palette.colors
+            let colors = this.props.palette.data().colors
             return colors;
         } catch(e) {
             return {};
@@ -133,6 +133,13 @@ class NewPaletteForm extends Component {
         const { classes, maxColors, palettes, editing, palette} = this.props;
         const { drawerOpen, colors, randomColor, stage } = this.state;
         const paletteFull = colors.length >= maxColors;
+        
+        if(editing){
+            var paletteName = palette.data().paletteName;
+        } else {
+            var paletteName = palette.paletteName;
+        }
+
         try {
             return (
                 <div className={classes.root}>
@@ -165,7 +172,7 @@ class NewPaletteForm extends Component {
                                             palettes={palettes}
                                             handleSubmit={this.handleSubmit}
                                             editing={editing}
-                                            paletteName={palette.paletteName}
+                                            paletteName={paletteName}
                                         />
                                     </div>
                                     <Button
@@ -185,7 +192,7 @@ class NewPaletteForm extends Component {
                                     randomColor={randomColor}
                                     addRandomColor={this.addRandomColor}
                                     editing={editing}
-                                    paletteName={palette.paletteName}
+                                    paletteName={paletteName}
                                 />
                             </div>
                         </div>
@@ -212,7 +219,7 @@ class NewPaletteForm extends Component {
                         handleSubmit={this.handleSubmit}
                         handleDrawerOpen={this.handleDrawerOpen}
                         editing={editing}
-                        paletteName={palette.paletteName}
+                        paletteName={paletteName}
                     />
                 </div>
             );
@@ -222,7 +229,6 @@ class NewPaletteForm extends Component {
             )
         }
     }
-        
 }
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);
 

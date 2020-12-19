@@ -18,13 +18,13 @@ import { withFirebase } from './Firebase'
 class App extends Component {
   constructor(props) {
     super(props)
-    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
+    // const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
     this.state = {
       palettes: [],
       index: 0,
       authUser: null
     };
-    this.savePalette = this.savePalette.bind(this);
+    this.saveNewPalette = this.saveNewPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
     this.getPalettes = this.getPalettes.bind(this);
@@ -68,11 +68,14 @@ class App extends Component {
     })
   }
 
-  savePalette(newPalette) {
-    this.setState(
-      {palettes: [...this.state.palettes, newPalette]},
-      this.syncLocalStorage  
-    )
+  saveNewPalette(newPalette) {
+    this.props.firebase.saveNewPalette(newPalette)
+      .then(() => {
+        console.log("Save Succesful");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   syncLocalStorage() {

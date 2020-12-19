@@ -28,18 +28,12 @@ class PaletteMetaForm extends Component{
     componentDidMount(){
         ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => 
             this.props.palettes.every(
-                ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
+                (palette) => palette.data().paletteName.toLowerCase() !== value.toLowerCase()
             )
         )
-        // let otherPalettes = this.props.palettes.filter(
-        //     ({paletteName}) => (paletteName.toLowerCase() !== this.props.paletteName.toLowerCase())
-        // )
         ValidatorForm.addValidationRule('isPaletteNameUniqueEditMode', (value) => 
-            // otherPalettes.every(
-            //     ({paletteName}) => (paletteName.toLowerCase() !== value.toLowerCase()) 
-            // )
             this.props.palettes.every(
-                ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
+                (palette) => palette.data().paletteName.toLowerCase() !== value.toLowerCase()
             )
         )
     }
