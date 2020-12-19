@@ -1,23 +1,16 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from './SignOutStyles';
 
 import { withFirebase } from '../Firebase';
 
-class SignOutButton extends Component {
-    constructor(props){
-        super(props);
-    }
 
-    render(){
-        const { classes, firebase } = this.props;
-        return (
-            <button type="button" className={classes.root} onClick={firebase.doSignOut}>
-                SignOut
-            </button>
-        )
-    }
+const SignOutButton = (props) => {
+    return (
+        <button type="button" className={props.classes.root} onClick={props.firebase.doSignOut}>
+            SignOut
+        </button>
+    )
 }
 
 export default withFirebase(withStyles(styles)(SignOutButton));

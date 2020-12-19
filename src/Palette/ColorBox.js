@@ -10,8 +10,6 @@ import styles from './ColorBoxStyles'
 
 import classnames from 'classnames';
 
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-
 class ColorBox extends Component {
     constructor(props){
         super(props)

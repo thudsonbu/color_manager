@@ -1,5 +1,3 @@
-import zIndex from '@material-ui/core/styles/zIndex';
-import { GpsFixed } from '@material-ui/icons';
 import sizes from '../styles/sizes';
 
 export default {

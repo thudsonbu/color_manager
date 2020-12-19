@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import seedColors from './Helpers/seedColors';
 import { generatePalette } from './Helpers/colorHelpers';
 
 import Palette from './Palette/Palette';
@@ -38,6 +37,7 @@ class App extends Component {
       },
     );
     this.getPalettes();
+    console.log(this.props);
   }
 
   componentWillUnmount() {
@@ -59,7 +59,7 @@ class App extends Component {
       .catch((error) => {
           console.log(error);
         }
-    );
+      );
   }
 
   findPalette(id) {
@@ -78,6 +78,17 @@ class App extends Component {
       });
   }
 
+  saveEditedPalette(editedPalette, id) {
+    this.props.firebase.saveEditedPalette(editedPalette, id)
+      .then(() => {
+        console.log("Save Succesful");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  
+
   syncLocalStorage() {
     window.localStorage.setItem(
       "palettes",
@@ -94,7 +105,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.palettes);
     return (
       <Route 
         className='background'
@@ -131,7 +141,7 @@ class App extends Component {
                           authUser={this.state.authUser}
                           palette={this.findPalette(routeProps.match.params.id)}
                           savePalette={this.savePalette}
-                          saveEditedPalette={this.savePalette}
+                          saveEditedPalette={this.saveEditedPalette}
                           editing={true}
                           {...routeProps}
                           palettes={this.state.palettes}

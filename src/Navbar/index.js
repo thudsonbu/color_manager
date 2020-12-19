@@ -9,11 +9,9 @@ import { withRouter, Link } from 'react-router-dom';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import Button from '@material-ui/core/Button';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import TableChartRoundedIcon from '@material-ui/icons/TableChartRounded';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import SignOutButton from '../SignOut/index';

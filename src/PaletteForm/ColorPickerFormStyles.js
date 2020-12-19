@@ -1,4 +1,3 @@
-import { Feedback } from '@material-ui/icons';
 import sizes from '../styles/sizes';
 
 export default {

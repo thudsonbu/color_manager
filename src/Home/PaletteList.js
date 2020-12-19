@@ -20,10 +20,7 @@ import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 import green from "@material-ui/core/colors/green";
 
-
-import { AuthUserContext } from '../Session';
 import Navbar from '../Navbar';
-
 
 class PaletteList extends Component{
     constructor(props){

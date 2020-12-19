@@ -134,10 +134,11 @@ class NewPaletteForm extends Component {
         const { drawerOpen, colors, randomColor, stage } = this.state;
         const paletteFull = colors.length >= maxColors;
         
+        var paletteName = null;
         if(editing){
-            var paletteName = palette.data().paletteName;
+            paletteName = palette.data().paletteName;
         } else {
-            var paletteName = palette.paletteName;
+            paletteName = palette.paletteName;
         }
 
         try {
