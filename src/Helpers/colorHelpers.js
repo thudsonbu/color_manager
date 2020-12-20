@@ -2,12 +2,27 @@
 
 const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
-function generatePalette(starterPalette){
+function generatePalette(palette){
 
-    if (!starterPalette){
-        return {
+    /**
+     * @summary Takes in a database palette object and generates color gradations (levels) 
+     * for a new unpacked palette object that is returned.
+     *
+     * Description. (use period)
+     *
+     * @param {type} palette is a palette object in database format.
+     *     
+     * @return {any} Returns an unpacked palette with all color color gradations
+     * 
+     */
+
+    var stemPalette = null;
+
+    if (true){
+        console.log("Palette Not Found");
+        stemPalette = {
             paletteName: "New Palette",
-            id: "material-ui-colors",
+            id: "35hnofkzNUzZskfBUzMa",
             emoji: "🎨",
             colors: [
                 { name: "red", color: "#F44336" },
@@ -32,20 +47,39 @@ function generatePalette(starterPalette){
                 { name: "bluegrey", color: "#607D8B" }
             ]
         }
+
+    } else {
+
+        console.log("Palette Found");
+        const colors = palette.data().colors;
+        const name = palette.data().paletteName;
+        const id = palette.id;
+        const emoji = palette.data().emoji;
+
+        stemPalette = {
+            paletteName: name,
+            color: colors,
+            id: id,
+            emoji: emoji,
+        }
     }
 
-    // create or output Palette
-    let newPalette = {
-        paletteName: starterPalette.data().paletteName,
-        id: starterPalette.id,
-        emoji: starterPalette.data().emoji,
-        colors: {}
+    var newPalette = {
+        paletteName: stemPalette.paletteName,
+        colors: {},
+        id: stemPalette.id,
+        emoji: stemPalette.emoji,
     }
+
+    console.log(stemPalette);
+    console.log(stemPalette.colors);
+    
     // create arrays for each level 
     for(let level of levels) {
         newPalette.colors[level] = [];
     }
-    for(let color of starterPalette.data().colors){
+    for(let color of stemPalette.colors){
+        console.log(color);
         // create a new scale based on a color (revers it because it comes out backward)
         let scale = generateScale(color.color, 10).reverse();
         // add each new scale to color palette

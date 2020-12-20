@@ -35,7 +35,7 @@ class NewPaletteForm extends Component {
             drawerOpen: true,
             palette: {},
             newPaletteName: "",
-            randomColor: this.genRandomColor(),
+            randomColor: { name: "red", color: "#F44336" },
             status: 'loading'
         }
         this.addNewColor = this.addNewColor.bind(this);
@@ -50,18 +50,19 @@ class NewPaletteForm extends Component {
     }
 
     componentDidMount(){
-        const palette = this.props.findPalette(this.props.paletteID);
-
-        if(palette){
-            this.setState({
-                palette: palette,
-                status: 'loaded'
+        this.props.firebase.findPalette(this.props.paletteID)
+            .then((palette) => {
+                this.setState({
+                    colors: palette.data().colors,
+                    paletteName: palette.data().paletteName,
+                    status: 'loaded',
+                })
             })
-        } else {
-            this.setState({
-                status: 'error'
-            })
-        }
+            .catch((error) => {
+                this.setState({
+                    status: 'error'
+                })
+            });
     }
 
     handleDrawerOpen() {
@@ -131,17 +132,17 @@ class NewPaletteForm extends Component {
     }
 
     render() {
-        if (this.state.status == 'loading'){
+        if (this.state.status === 'loading'){
             return (
                 <PaletteLoading />
             )
-        } else {
+
+        } else if (this.state.status === 'loaded') {
 
             try {
-                const { classes, maxColors, palettes, editing } = this.props;
-                const { drawerOpen, colors, randomColor, stage, palette } = this.state;
-                const paletteFull = colors.length >= maxColors;
-                const paletteName = palette.data().paletteName;
+                const { classes, palettes, editing } = this.props;
+                const { drawerOpen, randomColor, stage, colors, paletteName } = this.state;
+                const paletteFull = colors.length >= 20;
 
                 return (
                     <div className={classes.root}>
@@ -227,10 +228,14 @@ class NewPaletteForm extends Component {
                 );
             } catch(e){
                 return (
-                    <PaletteNotFound />
-                )
+                    <PaletteLoading />
+                );
             }
+        } else {
+            return (
+                <PaletteNotFound />
+            );
         }
     }
 }
-export default withStyles(styles, { withTheme: true })(NewPaletteForm);
+export default withFirebase(withStyles(styles, { withTheme: true })(NewPaletteForm));
