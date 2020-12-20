@@ -55,14 +55,12 @@ class PaletteMetaForm extends Component{
         this.setState({
             [evt.target.name]: evt.target.value
         });
-        console.log(this.state.newPaletteName);
     }
 
     handleNameSubmit(){
         this.setState({
             stage: "emojiForm",
         })
-        console.log(this.state);
     }
 
     handleEmojiSubmit(selectedEmoji){

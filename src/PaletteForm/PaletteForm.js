@@ -33,9 +33,8 @@ class NewPaletteForm extends Component {
         super(props)
         this.state = {
             drawerOpen: true,
-            palette: {},
             newPaletteName: "",
-            randomColor: { name: "red", color: "#F44336" },
+            randomColor: this.genRandomColor(),
             status: 'loading'
         }
         this.addNewColor = this.addNewColor.bind(this);
@@ -53,6 +52,8 @@ class NewPaletteForm extends Component {
         this.props.firebase.findPalette(this.props.paletteID)
             .then((palette) => {
                 this.setState({
+                    id: palette.id,
+                    emoji: palette.data().emoji,
                     colors: palette.data().colors,
                     paletteName: palette.data().paletteName,
                     status: 'loaded',
@@ -82,12 +83,12 @@ class NewPaletteForm extends Component {
     handleSubmit(palette) {
         const newPalette = {
             paletteName: palette.paletteName,
-            id: palette.paletteName.toLowerCase().replace(/ /g, "-"),
+            id: this.state.id,
             colors: this.state.colors,
             emoji: palette.emoji,
         }
         if(this.props.editing){
-            this.props.saveEditedPalette(newPalette, this.state.oldPaletteId);
+            this.props.saveEditedPalette(newPalette, newPalette.id);
         } else {
             this.props.savePalette(newPalette);
         }

@@ -16,8 +16,7 @@ import { withFirebase } from './Firebase';
 
 class App extends Component {
   constructor(props) {
-    super(props)
-    // const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
+    super(props);
     this.state = {
       palettes: [],
       index: 0,
@@ -78,7 +77,6 @@ class App extends Component {
   saveNewPalette(newPalette) {
     this.props.firebase.saveNewPalette(newPalette)
       .then((success) => {
-        console.log("Palette Saved");
         return true;
       })
       .catch((error) => {
@@ -91,7 +89,6 @@ class App extends Component {
   saveEditedPalette(editedPalette, id) {
     this.props.firebase.saveEditedPalette(editedPalette, id)
       .then((success) => {
-        console.log("Palette Saved");
         return true;
       })
       .catch((error) => {
@@ -101,7 +98,6 @@ class App extends Component {
     this.getPalettes();
   }
   
-
   syncLocalStorage() {
     window.localStorage.setItem(
       "palettes",
