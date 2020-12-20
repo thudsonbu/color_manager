@@ -22,6 +22,7 @@ import PaletteMetaForm from './PaletteMetaForm';
 import PaletteNotFound from '../Palette/PaletteNotFound';
 import PaletteLoading from '../Palette/PaletteLoading';
 
+import allColors from '../Helpers/allColors';
 
 class NewPaletteForm extends Component {
     static defaultProps = {
@@ -30,7 +31,6 @@ class NewPaletteForm extends Component {
 
     constructor(props){
         super(props)
-        console.log(this.props);
         this.state = {
             drawerOpen: true,
             palette: {},
@@ -113,9 +113,8 @@ class NewPaletteForm extends Component {
     }
 
     genRandomColor(){
-        const allColors = this.props.palettes.map(p => p.colors).flat();
-        var randNum = Math.floor(Math.random() * allColors.length);
-        const randomColor = allColors[randNum];
+        var randNum = Math.floor(Math.random() * allColors.colors.length);
+        const randomColor = allColors.colors[randNum];
         return randomColor;
     }
 
@@ -142,6 +141,7 @@ class NewPaletteForm extends Component {
             try {
                 const { classes, palettes, editing } = this.props;
                 const { drawerOpen, randomColor, stage, colors, paletteName } = this.state;
+
                 const paletteFull = colors.length >= 20;
 
                 return (
