@@ -18,7 +18,7 @@ function generatePalette(palette){
 
     var stemPalette = null;
 
-    if (true){
+    if (!palette){
         console.log("Palette Not Found");
         stemPalette = {
             paletteName: "New Palette",
@@ -58,7 +58,7 @@ function generatePalette(palette){
 
         stemPalette = {
             paletteName: name,
-            color: colors,
+            colors: colors,
             id: id,
             emoji: emoji,
         }
@@ -78,8 +78,8 @@ function generatePalette(palette){
     for(let level of levels) {
         newPalette.colors[level] = [];
     }
+    console.log(newPalette.colors);
     for(let color of stemPalette.colors){
-        console.log(color);
         // create a new scale based on a color (revers it because it comes out backward)
         let scale = generateScale(color.color, 10).reverse();
         // add each new scale to color palette
@@ -93,6 +93,7 @@ function generatePalette(palette){
             })
         }
     }
+    console.log(newPalette);
     return newPalette
 }
 

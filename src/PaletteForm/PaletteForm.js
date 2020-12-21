@@ -251,7 +251,7 @@ class NewPaletteForm extends Component {
                 );
             } catch(e){
                 return (
-                    <PaletteLoading />
+                    <PaletteNotFound />
                 );
             }
         } else {

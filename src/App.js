@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import { generatePalette } from './Helpers/colorHelpers';
-
 import Palette from './Palette/Palette';
 import SingleColorPalette from './Palette/SingleColorPalette';
 import PaletteForm from './PaletteForm/PaletteForm';
@@ -45,12 +43,14 @@ class App extends Component {
   }
 
   componentDidMount() {
+
     this.authListener = this.props.firebase.auth.onAuthStateChanged(authUser => {
       authUser
         ? this.setState({ authUser: authUser })
         : this.setState({ authUser: null })
       },
     );
+
     const defaultPalettes = this.props.firebase.db.collection('defeaultpalettes');
     this.dbListener = defaultPalettes.onSnapshot(palettes => {
         let palettesArray = []
@@ -68,13 +68,7 @@ class App extends Component {
 
   componentWillUnmount() {
     this.authListener();
-  }
-
-  syncLocalStorage() {
-    window.localStorage.setItem(
-      "palettes",
-      JSON.stringify(this.state.palettes)
-    )
+    this.dbListener();
   }
 
   deletePalette(id) {
@@ -154,7 +148,8 @@ class App extends Component {
                       <Page>
                         <Palette
                           authUser={this.state.authUser}
-                          palette={generatePalette(this.findPalette(routeProps.match.params.id))}
+                          firebase={this.props.firebase}
+                          paletteID={routeProps.match.params.id}
                         />
                       </Page>
                     )
@@ -167,8 +162,9 @@ class App extends Component {
                       <Page>
                         <SingleColorPalette
                           authUser={this.state.authUser}
+                          firebase={this.props.firebase}
                           colorId={routeProps.match.params.colorId}
-                          palette={generatePalette(this.findPalette(routeProps.match.params.paletteId))}
+                          paletteID={routeProps.match.params.paletteId}
                         />
                       </Page>
                     )
