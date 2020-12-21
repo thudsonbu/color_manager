@@ -5,7 +5,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Palette from './Palette/Palette';
 import SingleColorPalette from './Palette/SingleColorPalette';
 import PaletteForm from './PaletteForm/PaletteForm';
-import PaletteList from './Home/PaletteList';
+import PaletteList from './PaletteList/PaletteList';
 import SignUpPage from './SignUp/index';
 import SignInPage from './SignIn';
 import Page from "./Page";

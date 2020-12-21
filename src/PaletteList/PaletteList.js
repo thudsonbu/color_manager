@@ -22,7 +22,7 @@ import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 import green from "@material-ui/core/colors/green";
 
-import Navbar from '../Navbar';
+import Navbar from './PaletteListNav';
 
 class PaletteList extends Component{
     constructor(props){

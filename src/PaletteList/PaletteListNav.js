@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { withStyles } from '@material-ui/styles';
-import styles from "./NavbarStyles";
+import styles from "./PaletteListNavStyles";
 
 import { withFirebase } from '../Firebase';
 

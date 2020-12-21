@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 
 import { withFirebase } from '../Firebase';
 
-import Navbar from '../Navbar/index';
+import Navbar from '../PaletteList/PaletteListNav';
 
 import { withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';

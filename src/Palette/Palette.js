@@ -62,7 +62,7 @@ class Palette extends Component{
             const { classes } = this.props;
             const { level, format } = this.state;
 
-            //try{
+            try{
                 const colorBoxes = colors[level].map( color => (
                     <ColorBox 
                         background={color[format]} 
@@ -87,11 +87,11 @@ class Palette extends Component{
                         <PaletteFooter paletteName={paletteName} emoji={emoji} />
                     </div>
                 )
-            //} catch(e){
+            } catch(e){
                 return (
                     <PaletteNotFound/>
                 )
-            //}
+            }
         } else {
             return (
                 <h1> Bacon </h1>

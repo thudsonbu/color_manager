@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
 import { SignUpLink } from '../SignUp';
-import Navbar from '../Navbar';
+import Navbar from '../PaletteList/PaletteListNav';
 
 import { withFirebase } from '../Firebase';
 
