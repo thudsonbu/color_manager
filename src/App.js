@@ -22,10 +22,7 @@ class App extends Component {
       index: 0,
       authUser: null
     };
-    this.saveNewPalette = this.saveNewPalette.bind(this);
-    this.saveEditedPalette = this.saveEditedPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
-    this.findPalette = this.findPalette.bind(this);
     this.getPalettes = this.getPalettes.bind(this);
   }
 
@@ -48,56 +45,31 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.authlistener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+    this.authListener = this.props.firebase.auth.onAuthStateChanged(authUser => {
       authUser
         ? this.setState({ authUser: authUser })
         : this.setState({ authUser: null })
       },
     );
-    this.getPalettes();
-    console.log(this.props);
+    const defaultPalettes = this.props.firebase.db.collection('defeaultpalettes');
+    this.dbListener = defaultPalettes.onSnapshot(palettes => {
+        let palettesArray = []
+        palettes.forEach((palette) => {
+          palettesArray.push(palette);
+        })
+        this.setState({
+          palettes: palettesArray
+        })
+      },
+      error => {
+        console.log(error);
+    });
   }
 
   componentWillUnmount() {
-    this.authlistener();
+    this.authListener();
   }
 
-  findPalette(id){
-    this.props.firebase.findPalette(id)
-      .then((palette) => {
-        console.log(palette);
-        return palette
-      })
-      .catch((error) => {
-        console.log(error);
-        return null
-      });
-  }
-
-  saveNewPalette(newPalette) {
-    this.props.firebase.saveNewPalette(newPalette)
-      .then((success) => {
-        return true;
-      })
-      .catch((error) => {
-        console.log(error);
-        return false;
-      })
-    this.getPalettes();
-  }
-
-  saveEditedPalette(editedPalette, id) {
-    this.props.firebase.saveEditedPalette(editedPalette, id)
-      .then((success) => {
-        return true;
-      })
-      .catch((error) => {
-        console.log(error);
-        return false;
-      })
-    this.getPalettes();
-  }
-  
   syncLocalStorage() {
     window.localStorage.setItem(
       "palettes",
@@ -132,7 +104,6 @@ class App extends Component {
                           authUser={this.state.authUser}
                           firebase={this.props.firebase}
                           palette={this.state.palettes[1]}
-                          savePalette={this.savePalette}
                           editing={false}
                           {...routeProps}
                           palettes={this.state.palettes}
@@ -151,9 +122,6 @@ class App extends Component {
                           authUser={this.state.authUser}
                           firebase={this.props.firebase}
                           paletteID={routeProps.match.params.id}
-                          findPalette={this.findPalette}
-                          savePalette={this.savePalette}
-                          saveEditedPalette={this.saveEditedPalette}
                           editing={true}
                           {...routeProps}
                           palettes={this.state.palettes}

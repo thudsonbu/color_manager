@@ -22,6 +22,7 @@ import PaletteMetaForm from './PaletteMetaForm';
 import PaletteNotFound from '../Palette/PaletteNotFound';
 import PaletteLoading from '../Palette/PaletteLoading';
 
+import starterPalettes from '../Helpers/seedColors';
 import allColors from '../Helpers/allColors';
 
 class NewPaletteForm extends Component {
@@ -46,9 +47,19 @@ class NewPaletteForm extends Component {
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.genRandomColor = this.genRandomColor.bind(this);
         this.addRandomColor = this.addRandomColor.bind(this);
+        this.getEditPalette = this.getEditPalette.bind(this);
+        this.getNewPalette = this.getNewPalette.bind(this);
     }
 
     componentDidMount(){
+        if (this.props.editing){
+            this.getEditPalette();
+        } else {
+            this.getNewPalette();
+        }
+    }
+
+    getEditPalette(){
         this.props.firebase.findPalette(this.props.paletteID)
             .then((palette) => {
                 this.setState({
@@ -64,6 +75,17 @@ class NewPaletteForm extends Component {
                     status: 'error'
                 })
             });
+    }
+
+    getNewPalette(){
+        let newPalette = starterPalettes[0];
+        this.setState({
+            id: null,
+            emoji: newPalette.emoji,
+            colors: newPalette.colors,
+            paletteName: '',
+            status: 'loaded',
+        })
     }
 
     handleDrawerOpen() {
@@ -88,9 +110,9 @@ class NewPaletteForm extends Component {
             emoji: palette.emoji,
         }
         if(this.props.editing){
-            this.props.saveEditedPalette(newPalette, newPalette.id);
+            this.props.firebase.saveEditedPalette(newPalette, newPalette.id);
         } else {
-            this.props.savePalette(newPalette);
+            this.props.firebase.saveNewPalette(newPalette);
         }
         this.props.history.push("/");
     }
