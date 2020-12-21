@@ -33,37 +33,12 @@ class PaletteList extends Component{
             dialog: false,
             operation: "",
             operationId: "",
-            deletingId: "",
-            editId: "",
         }
-        // this.getPalettes = this.getPalettes.bind(this);
         this.openDialog = this.openDialog.bind(this);
         this.closeDialog = this.closeDialog.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.goToPalette = this.goToPalette.bind(this);
-    }
-
-    componentDidMount(){
-        this.getPalettes();
-    }
-
-    getPalettes(){
-        this.props.firebase.getPalettes()
-          .then((palettes) => {
-              let palettesArray = []
-              palettes.forEach((palette) => {
-                palettesArray.push(palette);
-              })
-              this.setState({
-                palettes: palettesArray
-              })
-            }
-          )
-          .catch((error) => {
-              console.log(error);
-            }
-        );
     }
 
     openDialog(id, operation){
@@ -79,7 +54,13 @@ class PaletteList extends Component{
     }
 
     handleDelete(){
-        this.props.deletePalette(this.state.operationId);
+        this.props.firebase.db.collection('defeaultpalettes').doc(this.state.operationId).delete()
+            .then((success) => {
+                console.log("Palette Deleted");
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         this.closeDialog();
     }
 

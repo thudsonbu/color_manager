@@ -20,26 +20,6 @@ class App extends Component {
       index: 0,
       authUser: null
     };
-    this.deletePalette = this.deletePalette.bind(this);
-    this.getPalettes = this.getPalettes.bind(this);
-  }
-
-  getPalettes(){
-    this.props.firebase.getPalettes()
-      .then((palettes) => {
-          let palettesArray = []
-          palettes.forEach((palette) => {
-            palettesArray.push(palette);
-          })
-          this.setState({
-            palettes: palettesArray
-          })
-        }
-      )
-      .catch((error) => {
-          console.log(error);
-        }
-      );
   }
 
   componentDidMount() {
@@ -69,14 +49,6 @@ class App extends Component {
   componentWillUnmount() {
     this.authListener();
     this.dbListener();
-  }
-
-  deletePalette(id) {
-    let filteredPalettes = this.state.palettes.filter((palette) => (palette.id !== id))
-    this.setState(
-      {palettes: filteredPalettes},
-      this.syncLocalStorage
-    )
   }
 
   render() {
@@ -132,8 +104,8 @@ class App extends Component {
                       <Page>
                         <PaletteList
                           authUser={this.state.authUser}
+                          firebase={this.props.firebase}
                           palettes={this.state.palettes}
-                          deletePalette={this.deletePalette}
                           {...routeProps}
                         />
                       </Page>
