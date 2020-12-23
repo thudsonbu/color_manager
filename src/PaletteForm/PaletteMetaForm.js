@@ -16,7 +16,7 @@ class PaletteMetaForm extends Component{
         super(props)
         this.state = {
             stage: this.props.stage,
-            newPaletteName: "",
+            paletteName: this.props.paletteName
         }
         this.handleClickOpen = this.handleClickOpen.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -56,7 +56,7 @@ class PaletteMetaForm extends Component{
     handleClose() {
         this.setState({
             stage: "",
-            newPaletteName: "",
+            paletteName: "",
         })
     };
 
@@ -74,7 +74,7 @@ class PaletteMetaForm extends Component{
 
     handleEmojiSubmit(selectedEmoji){
         this.props.handleSubmit({
-            paletteName: this.state.newPaletteName,
+            paletteName: this.state.paletteName,
             emoji: selectedEmoji.native,
         })
         this.setState({stage: ""});
@@ -82,7 +82,7 @@ class PaletteMetaForm extends Component{
 
     render(){
         const { classes, editing } = this.props;
-        const { newPaletteName, stage } = this.state;
+        const { paletteName, stage } = this.state;
         const nameForm = stage === "nameForm"
         const emojiForm = stage === "emojiForm"
         return (
@@ -125,8 +125,8 @@ class PaletteMetaForm extends Component{
                             <TextValidator 
                                 className={classes.textInput}
                                 label="Palette Name" 
-                                value={newPaletteName} 
-                                name="newPaletteName"
+                                value={paletteName} 
+                                name="paletteName"
                                 onChange={this.handleChange}
                                 validators={["required",
                                 `${editing ? "isPaletteNameUniqueEditMode" : "isPaletteNameUnique"}`]}
