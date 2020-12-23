@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import ColorBox from './ColorBox';
 
-import PaletteNotFound from './PaletteNotFound';
-import PaletteLoading from '../Palette/PaletteLoading';
+import Error from '../Error';
+import Loading from '../Loading';
 
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
@@ -54,7 +54,7 @@ class Palette extends Component{
     render() {
         if(this.state.status === 'loading'){
             return (
-                <PaletteLoading />
+                <Loading />
             )
         } else if (this.state.status === 'loaded') {
 
@@ -89,12 +89,12 @@ class Palette extends Component{
                 )
             } catch(e){
                 return (
-                    <PaletteNotFound/>
+                    <Error/>
                 )
             }
         } else {
             return (
-                <h1> Bacon </h1>
+                <Error/>
             )
         }
     }

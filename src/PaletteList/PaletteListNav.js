@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import SignOutButton from '../SignOut/index';
+import SignOutButton from '../SignOut';
 
 
 function Alert(props) {

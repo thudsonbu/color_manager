@@ -22,17 +22,24 @@ import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 import green from "@material-ui/core/colors/green";
 
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
 import Navbar from './PaletteListNav';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 class PaletteList extends Component{
     constructor(props){
         super(props);
         this.state = {
-            deleteDialog: false,
-            editDialog: false,
             dialog: false,
             operation: "",
             operationId: "",
+            error: this.props.error,
+            success: "",
         }
         this.openDialog = this.openDialog.bind(this);
         this.closeDialog = this.closeDialog.bind(this);
@@ -55,11 +62,15 @@ class PaletteList extends Component{
 
     handleDelete(){
         this.props.firebase.db.collection('defeaultpalettes').doc(this.state.operationId).delete()
-            .then((success) => {
-                console.log("Palette Deleted");
+            .then(() => {
+                this.setState({
+                    success: "Palette Deleted"
+                })
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
+                this.setState({
+                    error: "Delete Failed"
+                })
             })
         this.closeDialog();
     }
@@ -70,9 +81,20 @@ class PaletteList extends Component{
         this.closeDialog();
     }
 
+    handleSnackClose = () => {
+        this.setState({
+            error: "",
+            success: ""
+        })
+    };
+
     render() {
-        const { operation, dialog } = this.state;
+
+        const { operation, dialog, error, success } = this.state;
         const { palettes, classes, authUser } = this.props;
+        const successReported = success === "" ? false : true;
+        const errorReported = error === "" ? false : true;
+
         return(
             <div className={classes.root}>
                 <div className={classes.container}>
@@ -138,6 +160,16 @@ class PaletteList extends Component{
                         </ListItem>
                     </List>
                 </Dialog>
+                <Snackbar open={errorReported} autoHideDuration={6000} onClose={this.handleSnackClose} className={classes.snackBar}>
+                    <Alert onClose={this.handleSnackClose} severity="error">
+                        {error}
+                    </Alert>
+                </Snackbar>
+                <Snackbar open={successReported} autoHideDuration={6000} onClose={this.handleSnackClose} className={classes.snackBar}>
+                    <Alert onClose={this.handleSnackClose} severity="success">
+                        {success}
+                    </Alert>
+                </Snackbar>
             </div>
         )
     }

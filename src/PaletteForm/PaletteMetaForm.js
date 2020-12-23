@@ -15,7 +15,7 @@ class PaletteMetaForm extends Component{
     constructor(props){
         super(props)
         this.state = {
-            stage: "",
+            stage: this.props.stage,
             newPaletteName: "",
         }
         this.handleClickOpen = this.handleClickOpen.bind(this);

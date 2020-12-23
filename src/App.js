@@ -6,7 +6,7 @@ import Palette from './Palette/Palette';
 import SingleColorPalette from './Palette/SingleColorPalette';
 import PaletteForm from './PaletteForm/PaletteForm';
 import PaletteList from './PaletteList/PaletteList';
-import SignUpPage from './SignUp/index';
+import SignUpPage from './SignUp';
 import SignInPage from './SignIn';
 import Page from "./Page";
 
@@ -17,8 +17,9 @@ class App extends Component {
     super(props);
     this.state = {
       palettes: [],
-      index: 0,
-      authUser: null
+      authUser: null,
+      state: "",
+      error: ""
     };
   }
 
@@ -43,6 +44,9 @@ class App extends Component {
       },
       error => {
         console.log(error);
+        this.setState({
+          error: "Database Connection Error"
+        })
     });
   }
 
@@ -106,6 +110,7 @@ class App extends Component {
                           authUser={this.state.authUser}
                           firebase={this.props.firebase}
                           palettes={this.state.palettes}
+                          error={this.state.error}
                           {...routeProps}
                         />
                       </Page>

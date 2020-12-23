@@ -10,6 +10,8 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import { arrayMove } from "react-sortable-hoc";
 
@@ -19,11 +21,15 @@ import DraggableColorList from "./DraggableColorList";
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import PaletteMetaForm from './PaletteMetaForm';
-import PaletteNotFound from '../Palette/PaletteNotFound';
-import PaletteLoading from '../Palette/PaletteLoading';
+import Error from '../Error';
+import Loading from '../Loading';
 
 import starterPalettes from '../Helpers/seedColors';
 import allColors from '../Helpers/allColors';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 class NewPaletteForm extends Component {
     static defaultProps = {
@@ -36,7 +42,9 @@ class NewPaletteForm extends Component {
             drawerOpen: true,
             newPaletteName: "",
             randomColor: this.genRandomColor(),
-            status: 'loading'
+            status: 'loading',
+            metaFormStage: "",
+            error: ""
         }
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -72,7 +80,7 @@ class NewPaletteForm extends Component {
             })
             .catch((error) => {
                 this.setState({
-                    status: 'error'
+                    error: "Palette Not Found"
                 })
             });
     }
@@ -110,11 +118,28 @@ class NewPaletteForm extends Component {
             emoji: palette.emoji,
         }
         if(this.props.editing){
-            this.props.firebase.saveEditedPalette(newPalette, newPalette.id);
+            this.props.firebase.saveEditedPalette(newPalette, newPalette.id)
+                .then(() => {
+                    this.props.history.push("/");
+                })
+                .catch((error) => {
+                    console.log(error);
+                    this.setState({
+                        error: "Save Error"
+                    })
+                })
         } else {
-            this.props.firebase.saveNewPalette(newPalette);
+            this.props.firebase.saveNewPalette(newPalette)
+                .then(() => {
+                    this.props.history.push("/");
+                })
+                .catch((error) => {
+                    console.log(error);
+                    this.setState({
+                        error: "Save Error"
+                    })
+                })
         }
-        this.props.history.push("/");
     }
 
     removeColor(colorName){
@@ -153,18 +178,24 @@ class NewPaletteForm extends Component {
         }))
     }
 
+    handleSnackClose = () => {
+        this.setState({
+            error: ""
+        })
+    };
+
     render() {
         if (this.state.status === 'loading'){
             return (
-                <PaletteLoading />
+                <Loading />
             )
 
         } else if (this.state.status === 'loaded') {
 
             try {
                 const { classes, palettes, editing } = this.props;
-                const { drawerOpen, randomColor, stage, colors, paletteName } = this.state;
-
+                const { drawerOpen, randomColor, stage, colors, paletteName, metaFormStage, error } = this.state;
+                const errorReported = error === "" ? false : true;
                 const paletteFull = colors.length >= 20;
 
                 return (
@@ -199,6 +230,7 @@ class NewPaletteForm extends Component {
                                                 handleSubmit={this.handleSubmit}
                                                 editing={editing}
                                                 paletteName={paletteName}
+                                                stage={metaFormStage}
                                             />
                                         </div>
                                         <Button
@@ -247,16 +279,21 @@ class NewPaletteForm extends Component {
                             editing={editing}
                             paletteName={paletteName}
                         />
+                        <Snackbar open={errorReported} autoHideDuration={6000} onClose={this.handleSnackClose} className={classes.snackBar}>
+                            <Alert onClose={this.handleSnackClose} severity="error">
+                                {error}
+                            </Alert>
+                        </Snackbar>
                     </div>
                 );
             } catch(e){
                 return (
-                    <PaletteNotFound />
+                    <Error />
                 );
             }
         } else {
             return (
-                <PaletteNotFound />
+                <Error />
             );
         }
     }

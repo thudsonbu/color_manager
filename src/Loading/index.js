@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles'
-import styles from './PaletteNotFoundStyles'
+import styles from './LoadingStyles'
 
 class PaletteLoading extends Component{
     render() {
@@ -8,7 +8,7 @@ class PaletteLoading extends Component{
         return (
             <div className={classes.paletteNotFound}>
                 <div className={classes.paletteNotFoundContent}>
-                    <h1 className={classes.paletteNotFoundHeader}>Palette Loading</h1>
+                    
                 </div>
             </div>
         )

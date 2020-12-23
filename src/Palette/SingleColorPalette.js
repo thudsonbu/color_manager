@@ -4,8 +4,8 @@ import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from './PaletteFooter';
 
-import PaletteNotFound from './PaletteNotFound';
-import PaletteLoading from '../Palette/PaletteLoading';
+import Error from '../Error';
+import Loading from '../Loading';
 
 import { withStyles } from '@material-ui/styles';
 import styles from './PaletteStyles';
@@ -61,7 +61,7 @@ class SingleColorPalette extends Component{
     render() {
         if(this.state.status === 'loading'){
             return (
-                <PaletteLoading />
+                <Loading />
             )
         } else if (this.state.status == 'loaded'){
             const { format } = this.state
@@ -92,7 +92,7 @@ class SingleColorPalette extends Component{
 
         } else {
             return (
-                <PaletteNotFound />
+                <Error />
             )
         }
     }
