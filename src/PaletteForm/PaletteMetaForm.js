@@ -30,12 +30,21 @@ class PaletteMetaForm extends Component{
             this.props.palettes.every(
                 (palette) => palette.data().paletteName.toLowerCase() !== value.toLowerCase()
             )
-        )
-        ValidatorForm.addValidationRule('isPaletteNameUniqueEditMode', (value) => 
-            this.props.palettes.every(
-                (palette) => palette.data().paletteName.toLowerCase() !== value.toLowerCase()
+        );
+        ValidatorForm.addValidationRule('isPaletteNameUniqueEditMode', (value) => {
+            let invalidInput = this.props.palettes.every(
+                (palette) => {
+                    if (palette.data().paletteName.toLowerCase() === this.props.paletteName.toLowerCase()){
+                        return true;
+                    } else if (palette.data().paletteName.toLowerCase() !== value.toLowerCase()){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
             )
-        )
+            return invalidInput
+        });
     }
     
     handleClickOpen() {

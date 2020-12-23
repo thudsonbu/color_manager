@@ -13,6 +13,7 @@ import Page from "./Page";
 import { withFirebase } from './Firebase';
 
 class App extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +28,8 @@ class App extends Component {
 
     this.authListener = this.props.firebase.auth.onAuthStateChanged(authUser => {
       authUser
-        ? this.setState({ authUser: authUser })
+        ? this.setState({ authUser: authUser
+         })
         : this.setState({ authUser: null })
       },
     );
@@ -39,7 +41,8 @@ class App extends Component {
           palettesArray.push(palette);
         })
         this.setState({
-          palettes: palettesArray
+          palettes: palettesArray,
+          error: ""
         })
       },
       error => {
