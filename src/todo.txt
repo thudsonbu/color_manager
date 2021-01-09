@@ -1,1 +1,3 @@
-- Edit palette should allow for same name as current
+- Add authentication requirements for editing palettes
+- Add note about sigining in if not signed in
+- Add edit button to view page => prompts for signin if necessary

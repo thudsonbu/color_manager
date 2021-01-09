@@ -36,6 +36,7 @@ class PaletteList extends Component{
         super(props);
         this.state = {
             dialog: false,
+            signUpDialog: false, 
             operation: "",
             operationId: "",
             error: this.props.error,
@@ -46,6 +47,7 @@ class PaletteList extends Component{
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.goToPalette = this.goToPalette.bind(this);
+        this.toggleSignInDialog = this.toggleSignInDialog.bind(this);
     }
 
     openDialog(id, operation){
@@ -76,9 +78,19 @@ class PaletteList extends Component{
     }
 
     handleEdit(){
-        let editUrl = `/palette/edit/${this.state.operationId}`
-        this.props.history.push(editUrl);
-        this.closeDialog();
+        if ( this.props.firebase.authUser ){
+            let editUrl = `/palette/edit/${this.state.operationId}`
+            this.props.history.push(editUrl);
+            this.closeDialog();
+        } else {
+            this.toggleSignInDialog();
+        }
+    }
+
+    toggleSignInDialog() {
+        this.setState({
+            signUpDialog: !this.state.signUpDialog,
+        })
     }
 
     handleSnackClose = () => {
@@ -116,6 +128,50 @@ class PaletteList extends Component{
                         ))}   
                     </TransitionGroup>
                 </div>
+                <Dialog 
+                    onClose={this.closeDialog}
+                    open={dialog}
+                    operation={operation} 
+                    aria-labelledby='dialog-title'
+                >
+                    <DialogTitle id='dialog-title'>{operation} This Palette?</DialogTitle>
+                    <List>
+                        {operation === "Delete" &&
+                            <ListItem button onClick={this.handleDelete}>
+                                <ListItemAvatar>
+                                    <Avatar style={{backgroundColor: red[100], color: red[600]}}>
+                                        <CheckIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText>
+                                    Delete
+                                </ListItemText>
+                            </ListItem>
+                        }
+                        {operation === "Edit" &&
+                            <ListItem button onClick={this.handleEdit}>
+                                <ListItemAvatar>
+                                    <Avatar style={{backgroundColor: green[100], color: green[600]}}>
+                                        <CheckIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText>
+                                    Edit
+                                </ListItemText>
+                            </ListItem>
+                        }
+                        <ListItem button onClick={this.closeDialog}>
+                            <ListItemAvatar>
+                                <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
+                                    <CloseIcon/>
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText>
+                                Cancel
+                            </ListItemText>
+                        </ListItem>
+                    </List>
+                </Dialog>
                 <Dialog 
                     onClose={this.closeDialog}
                     open={dialog}
