@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { Link } from "react-router-dom";
+
 import MiniPalette from './MiniPalette'
 
 import { withStyles } from '@material-ui/core'
@@ -181,27 +183,31 @@ class PaletteList extends Component{
                 >
                     <DialogTitle id='dialog-title'>Login To Do That</DialogTitle>
                     <List>
-                        <ListItem button to='/signup'>
-                            <ListItemAvatar>
-                                <Avatar style={{backgroundColor: green[100], color: green[600]}}>
-                                    <AccountCircleIcon />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText>
-                                Sign Up 
-                            </ListItemText>
-                        </ListItem>
-                        <ListItem button to='/signin'>
-                            <ListItemAvatar>
-                                <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
-                                    <AccountCircleIcon />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText>
-                                Sign In 
-                            </ListItemText>
-                        </ListItem>
-                        <ListItem button onClick={this.toggleSignInDialog}>
+                        <Link to='/signup' style={{color: 'black', textDecoration: 'none'}}>
+                            <ListItem button>
+                                <ListItemAvatar>
+                                    <Avatar style={{backgroundColor: green[100], color: green[600]}}>
+                                        <AccountCircleIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText>
+                                    Sign Up 
+                                </ListItemText>
+                            </ListItem>
+                        </Link>
+                        <Link to='/signin' style={{color: 'black', textDecoration: 'none'}}>
+                            <ListItem button>
+                                <ListItemAvatar>
+                                    <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
+                                        <AccountCircleIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText>
+                                    Sign In 
+                                </ListItemText>
+                            </ListItem>
+                        </Link>
+                       <ListItem button onClick={this.toggleSignInDialog}>
                             <ListItemAvatar>
                                 <Avatar style={{backgroundColor: grey[100], color: grey[600]}}>
                                     <CloseIcon/>
