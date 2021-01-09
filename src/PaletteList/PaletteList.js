@@ -22,6 +22,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 import green from "@material-ui/core/colors/green";
+import grey from "@material-ui/core/colors/grey";
 
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -52,7 +53,11 @@ class PaletteList extends Component{
     }
 
     openDialog(id, operation){
-        this.setState({dialog: true, operationId: id, operation: operation})
+        if ( this.props.firebase.authUser ) {
+            this.setState({dialog: true, operationId: id, operation: operation})
+        } else {
+            this.toggleSignInDialog();
+        }
     }
 
     closeDialog(){
@@ -64,34 +69,24 @@ class PaletteList extends Component{
     }
 
     handleDelete(){
-        if ( this.props.firebase.authUser ) {
-            this.props.firebase.db.collection('defeaultpalettes').doc(this.state.operationId).delete()
-                .then(() => {
-                    this.setState({
-                        success: "Palette Deleted"
-                    })
+        this.props.firebase.db.collection('defeaultpalettes').doc(this.state.operationId).delete()
+            .then(() => {
+                this.setState({
+                    success: "Palette Deleted"
                 })
-                .catch(() => {
-                    this.setState({
-                        error: "Delete Failed"
-                    })
+            })
+            .catch(() => {
+                this.setState({
+                    error: "Delete Failed"
                 })
-            this.closeDialog();
-        } else {
-            this.closeDialog();
-            this.toggleSignInDialog();
-        }
+            })
+        this.closeDialog();
     }
 
     handleEdit(){
-        if ( this.props.firebase.authUser ){
-            let editUrl = `/palette/edit/${this.state.operationId}`
-            this.props.history.push(editUrl);
-            this.closeDialog();
-        } else {
-            this.closeDialog();
-            this.toggleSignInDialog();
-        }
+        let editUrl = `/palette/edit/${this.state.operationId}`
+        this.props.history.push(editUrl);
+        this.closeDialog();
     }
 
     toggleSignInDialog() {
