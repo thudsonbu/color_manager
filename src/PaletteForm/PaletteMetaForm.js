@@ -106,9 +106,9 @@ class PaletteMetaForm extends Component{
                             <Picker onSelect={this.handleEmojiSubmit} />
                         </DialogContent>
                         <DialogActions>
-                                <Button onClick={this.handleClose}  variant="contained" color="secondary">
-                                    Cancel
-                                </Button>
+                            <Button onClick={this.handleClose}  variant="contained" color="secondary">
+                                Cancel
+                            </Button>
                         </DialogActions>
                 </Dialog> 
                 <Dialog 
