@@ -1,2 +1,2 @@
-- Add auth prompt for new button
+- Fix signout button to work every time
 - Add edit button to view page => prompts for signin if necessary
