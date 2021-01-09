@@ -16,6 +16,7 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 import blue from "@material-ui/core/colors/blue";
@@ -63,18 +64,23 @@ class PaletteList extends Component{
     }
 
     handleDelete(){
-        this.props.firebase.db.collection('defeaultpalettes').doc(this.state.operationId).delete()
-            .then(() => {
-                this.setState({
-                    success: "Palette Deleted"
+        if ( this.props.firebase.authUser ) {
+            this.props.firebase.db.collection('defeaultpalettes').doc(this.state.operationId).delete()
+                .then(() => {
+                    this.setState({
+                        success: "Palette Deleted"
+                    })
                 })
-            })
-            .catch(() => {
-                this.setState({
-                    error: "Delete Failed"
+                .catch(() => {
+                    this.setState({
+                        error: "Delete Failed"
+                    })
                 })
-            })
-        this.closeDialog();
+            this.closeDialog();
+        } else {
+            this.closeDialog();
+            this.toggleSignInDialog();
+        }
     }
 
     handleEdit(){
@@ -83,6 +89,7 @@ class PaletteList extends Component{
             this.props.history.push(editUrl);
             this.closeDialog();
         } else {
+            this.closeDialog();
             this.toggleSignInDialog();
         }
     }
@@ -102,7 +109,7 @@ class PaletteList extends Component{
 
     render() {
 
-        const { operation, dialog, error, success } = this.state;
+        const { operation, dialog, error, success, signUpDialog } = this.state;
         const { palettes, classes, authUser } = this.props;
         const successReported = success === "" ? false : true;
         const errorReported = error === "" ? false : true;
@@ -173,40 +180,35 @@ class PaletteList extends Component{
                     </List>
                 </Dialog>
                 <Dialog 
-                    onClose={this.closeDialog}
-                    open={dialog}
-                    operation={operation} 
+                    onClose={this.toggleSignInDialog}
+                    open={signUpDialog}
                     aria-labelledby='dialog-title'
                 >
-                    <DialogTitle id='dialog-title'>{operation} This Palette?</DialogTitle>
+                    <DialogTitle id='dialog-title'>Login To Do That</DialogTitle>
                     <List>
-                        {operation === "Delete" &&
-                            <ListItem button onClick={this.handleDelete}>
-                                <ListItemAvatar>
-                                    <Avatar style={{backgroundColor: red[100], color: red[600]}}>
-                                        <CheckIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText>
-                                    Delete
-                                </ListItemText>
-                            </ListItem>
-                        }
-                        {operation === "Edit" &&
-                            <ListItem button onClick={this.handleEdit}>
-                                <ListItemAvatar>
-                                    <Avatar style={{backgroundColor: green[100], color: green[600]}}>
-                                        <CheckIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText>
-                                    Edit
-                                </ListItemText>
-                            </ListItem>
-                        }
-                        <ListItem button onClick={this.closeDialog}>
+                        <ListItem button to='/signup'>
+                            <ListItemAvatar>
+                                <Avatar style={{backgroundColor: green[100], color: green[600]}}>
+                                    <AccountCircleIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText>
+                                Sign Up 
+                            </ListItemText>
+                        </ListItem>
+                        <ListItem button to='/signin'>
                             <ListItemAvatar>
                                 <Avatar style={{backgroundColor: blue[100], color: blue[600]}}>
+                                    <AccountCircleIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText>
+                                Sign In 
+                            </ListItemText>
+                        </ListItem>
+                        <ListItem button onClick={this.toggleSignInDialog}>
+                            <ListItemAvatar>
+                                <Avatar style={{backgroundColor: grey[100], color: grey[600]}}>
                                     <CloseIcon/>
                                 </Avatar>
                             </ListItemAvatar>
