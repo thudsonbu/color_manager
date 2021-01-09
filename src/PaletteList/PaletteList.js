@@ -55,7 +55,7 @@ class PaletteList extends Component{
     }
 
     openDialog(id, operation){
-        if ( this.props.firebase.authUser ) {
+        if ( this.props.authUser ) {
             this.setState({dialog: true, operationId: id, operation: operation})
         } else {
             this.toggleSignInDialog();

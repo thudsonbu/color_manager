@@ -1,3 +1,2 @@
-- Add authentication requirements for editing palettes 
-- Add note about sigining in if not signed in 
+- Add auth prompt for new button
 - Add edit button to view page => prompts for signin if necessary
