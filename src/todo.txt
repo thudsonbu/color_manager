@@ -1,2 +1,1 @@
-- Edit palette should fill in palette name automatically
 - Edit palette should allow for same name as current

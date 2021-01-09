@@ -56,7 +56,6 @@ class PaletteMetaForm extends Component{
     handleClose() {
         this.setState({
             stage: "",
-            paletteName: "",
         })
     };
 
