@@ -28,6 +28,7 @@ class Navbar extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleSnackClose = this.handleSnackClose.bind(this);
         this.handleSignOut = this.handleSignOut.bind(this);
+        this.handleNewClick = this.handleNewClick.bind(this);
         this.state = {
             menuOpen: false,
             snackBar: false,
@@ -62,6 +63,14 @@ class Navbar extends Component {
         })
     };
 
+    handleNewClick = () => {
+        if ( this.props.authUser ) {
+            this.props.history.push('/palette/new');
+        } else {
+            this.props.toggleSignInDialog();
+        }
+    }
+
     render(){
         const { classes, authUser } = this.props;
         const { menuOpen, menuAnchor, snackBar } = this.state;
@@ -72,12 +81,10 @@ class Navbar extends Component {
                     <div className={classes.logoBox}>
                         <Link to='/'><span>color</span>helper</Link>
                     </div>
-                    <Link to='/palette/new' className={classes.link}>
-                        <Button className={classes.linkButton}>
-                            <AddBoxIcon className={classes.icon}/>
-                            <p className={classes.linkLabel}>New</p>
-                        </Button>
-                    </Link>
+                    <Button className={classes.linkButton} onClick={this.handleNewClick}>
+                        <AddBoxIcon className={classes.icon}/>
+                        <p className={classes.linkLabel}>New</p>
+                    </Button>
                     {/* <Link to='/' className={classes.link}>
                         <Button className={classes.linkButton}>
                             <TableChartRoundedIcon className={classes.icon}/>

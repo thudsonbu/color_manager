@@ -63,7 +63,7 @@ class SingleColorPalette extends Component{
             return (
                 <Loading />
             )
-        } else if (this.state.status == 'loaded'){
+        } else if (this.state.status === 'loaded'){
             const { format } = this.state
             const { paletteName, emoji, id } = this.state;
             const { classes } = this.props

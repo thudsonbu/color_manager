@@ -114,7 +114,7 @@ class PaletteList extends Component{
         return(
             <div className={classes.root}>
                 <div className={classes.container}>
-                    <Navbar authUser={authUser}/>
+                    <Navbar authUser={authUser} toggleSignInDialog={this.toggleSignInDialog}/>
                     <h1 className={classes.title}>
                         Palette List
                     </h1>
