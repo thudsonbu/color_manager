@@ -35,17 +35,17 @@ class Navbar extends Component {
     };
   }
 
-  handleClick = (event) => {
-    this.setState({
-      menuOpen: true,
-      menuAnchor: event.currentTarget,
-    });
-  };
-
   handleClose = () => {
     this.setState({
       menuOpen: false,
       menuAnchor: null,
+    });
+  };
+
+  handleClick = (event) => {
+    this.setState({
+      menuOpen: true,
+      menuAnchor: event.currentTarget,
     });
   };
 

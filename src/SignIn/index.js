@@ -44,13 +44,6 @@ class SignInFormBase extends Component {
     });
   };
 
-  handleClose = () => {
-    this.setState({
-      menuOpen: false,
-      menuAnchor: null,
-    });
-  };
-
   handleSnackClose = () => {
     this.setState({
       error: false,
