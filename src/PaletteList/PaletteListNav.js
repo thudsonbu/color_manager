@@ -57,17 +57,19 @@ class Navbar extends Component {
   };
 
   handleSignOut = () => {
+    this.handleClose();
+
     this.props.firebase
       .doSignOut()
+
       .then(() => {
         this.setState({
-          manuOpen: false,
           successSnackbar: true,
         });
       })
+
       .catch(() => {
         this.setState({
-          menuOpen: false,
           failureSnackbar: true,
         });
       });
@@ -135,7 +137,7 @@ class Navbar extends Component {
                 </Link>
               </MenuItem>
             )}
-            {authUser && (
+            {authUser && menuOpen && (
               <MenuItem onClick={this.handleSignOut}>Sign Out</MenuItem>
             )}
           </Menu>
@@ -146,7 +148,7 @@ class Navbar extends Component {
           onClose={this.handleSnackClose}
           className={classes.snackBar}
         >
-          <Alert onClose={this.handleClose} severity="success">
+          <Alert onClose={this.handleSnackClose} severity="success">
             Logout Succesful
           </Alert>
         </Snackbar>
@@ -156,7 +158,7 @@ class Navbar extends Component {
           onClose={this.handleSnackClose}
           className={classes.snackBar}
         >
-          <Alert onClose={this.handleClose} severity="error">
+          <Alert onClose={this.handleSnackClose} severity="error">
             Logout Failed
           </Alert>
         </Snackbar>
