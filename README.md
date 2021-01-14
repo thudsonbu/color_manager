@@ -8,14 +8,14 @@ leaks with both fully functioning authentication, updated listeners, and databas
 
 # How to Use It
 
-https://github.com/thudsobu/color_manager/public/PaletteList.PNG
+(https://github.com/thudsobu/color_manager/public/PaletteList.PNG?raw=true)
 
 ### Viewing Palettes
 Color helper is currently deployed at https://color-manager.web.app/. At the index route you can find a list of all palettes that are currently saved in the database.
 Without logging in, a you can view the palettes others have created and copy colors from each while viewing them. While viewing you can adjust the tint of the color
 and also change between RGB, RGBA, and Hex values. When a color box is clicked, the value is coppied to the your clipboard.
 
-https://github.com/thudsobu/color_manager/public/EditAndCreatePalettes.PNG
+(https://github.com/thudsobu/color_manager/public/EditAndCreatePalettes.PNG?raw=true)
 
 ### Creating and Editing Palettes
 To create a palettes in color helper you must be signed in. Anyone can signup however. From the palette list click the new button in the top left and the palette
