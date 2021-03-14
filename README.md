@@ -25,7 +25,7 @@ with a unique emoji and name. In order to better compare how to colors look righ
 ordering of colors will be saved. To edit palettes press the edit button on the palette card in the palette list. This will bring you to the same page as if
 you were creating a new palette.
 
-# Running It
+# Getting Started
 1. Clone this repo
 2. Npm install
 3. Setup a firebase project with db and auth in firebase console
