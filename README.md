@@ -2,7 +2,7 @@
 Color helper is react app that uses the FFRN stack (firebase, firestore, react, node) and helps developers and content creators with keeping track of their color palettes.
 
 # Tech Stack
-Color helper runs the the FFRN tech stack where Google's firebase hosts a node server serving a react application, Google's firestore is used for data persistence, 
+Color helper runs the the FFRN tech stack where Google's firebase hosts a node server serving a react application, Google's firestore is used for data persistence,
 authentication, and real time updates of palettes. The app features a good example of how to integrate firebase into a simple application as a component without data
 leaks with both fully functioning authentication, updated listeners, and database triggers.
 
@@ -27,9 +27,9 @@ you were creating a new palette.
 
 # Getting Started
 1. Clone this repo
-2. Npm install
+2. `npm install`
 3. Setup a firebase project with db and auth in firebase console
 4. Install firebase CLI tools
-5. Firebase init
+5. `firebase init`
 6. Add firebase conf link from firebase console
-7. Firebase deploy (select redirect all requests to index)
+7. `firebase deploy` (select redirect all requests to index)

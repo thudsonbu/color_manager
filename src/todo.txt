@@ -1,1 +1,0 @@
-- Add edit button to view page => prompts for signin if necessary
